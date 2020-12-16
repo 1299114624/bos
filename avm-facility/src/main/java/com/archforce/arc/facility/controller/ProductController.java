@@ -1,11 +1,12 @@
 package com.archforce.arc.facility.controller;
 
+import com.archforce.arc.facility.entity.avm.Product;
 import com.archforce.arc.facility.service.ProductService;
+import com.archforce.arc.facility.utils.PageInfo;
+import com.archforce.arc.facility.utils.QueryVo;
+import com.archforce.arc.facility.utils.ResBody;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/page")
-    public List pageProducts() {
-        return productService.pageProducts();
+    @PostMapping("/page")
+    public ResBody pageProducts(@RequestBody QueryVo<Product> queryVo) {
+        return ResBody.ok(PageInfo.getPageInfo(productService.getAllProduct(queryVo)));
     }
 }
