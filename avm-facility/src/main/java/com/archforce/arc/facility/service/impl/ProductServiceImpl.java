@@ -9,6 +9,7 @@ import com.archforce.arc.facility.utils.QueryVo;
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,9 +23,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<Product> getAllProduct(QueryVo<Product> queryVo) {
         queryVo.resetPage();
-
-        Page<Product> products = productMapper.selectAllProducts();
         if (1==1) throw new BusinessException(PRODUCT_ENGSIMP_NAME_EXISTED);
-        return products;
+        return productMapper.selectAllProducts();
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int insertProduct(Product product) {
+        return productMapper.insertProduct(product);
     }
 }

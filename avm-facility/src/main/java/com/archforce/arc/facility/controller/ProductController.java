@@ -20,4 +20,10 @@ public class ProductController {
     public ResBody pageProducts(@RequestBody QueryVo<Product> queryVo) {
         return ResBody.ok(PageInfo.getPageInfo(productService.getAllProduct(queryVo)));
     }
+
+    @PostMapping("/insert")
+    public ResBody insertProduct(@RequestBody Product product) {
+        productService.insertProduct(product);
+        return ResBody.ok();
+    }
 }

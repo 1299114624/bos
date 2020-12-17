@@ -15,13 +15,21 @@
         <result column="del_status" jdbcType="VARCHAR" property="delStatus" />
     </resultMap>
     <sql id="BaseColumnList">
-        id,simple_english_name,full_english_name,full_chinese_name,group_member_names,product_desc,
-        add_user,add_time,update_user,update_time,del_status
+        id, simple_english_name, full_english_name, full_chinese_name, group_member_names, product_desc,
+            add_user, add_time, update_user, update_time, del_status
     </sql>
     <select id="selectAllProducts" resultMap="BaseResultMap">
         SELECT
         <include refid="BaseColumnList"/>
         FROM t_product
     </select>
+    <insert id="insertProduct" parameterType="com.archforce.arc.facility.entity.avm.Product">
+        insert into t_product (id, simple_english_name, full_english_name, full_chinese_name, group_member_names, product_desc,
+        add_user, add_time, update_user, update_time, del_status)
+        values (#{id,jdbcType=INTEGER}, #{simpleEnglishName,jdbcType=VARCHAR}, #{fullEnglishName,jdbcType=VARCHAR},
+         #{fullChineseName,jdbcType=VARCHAR}, #{groupMemberNames,jdbcType=VARCHAR}, #{productDesc,jdbcType=VARCHAR},
+          #{addUser,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR},
+           #{updateTime,jdbcType=TIMESTAMP}, #{delStatus,jdbcType=TINYINT})
+    </insert>
 </mapper>
 

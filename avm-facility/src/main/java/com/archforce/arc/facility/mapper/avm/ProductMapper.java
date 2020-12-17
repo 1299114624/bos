@@ -5,4 +5,6 @@ import com.github.pagehelper.Page;
 
 public interface ProductMapper {
     Page<Product> selectAllProducts();
+
+    int insertProduct(Product product);
 }

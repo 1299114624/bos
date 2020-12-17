@@ -39,6 +39,10 @@ public class ResBody implements Serializable {
         return new ResBody(null, errorCode, message);
     }
 
+    public static ResBody error(String message) {
+        return new ResBody(null, ERROR_CODE, message);
+    }
+
     public String getCode() {
         return code;
     }

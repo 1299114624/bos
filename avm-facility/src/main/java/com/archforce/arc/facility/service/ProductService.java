@@ -9,4 +9,6 @@ import java.util.List;
 public interface ProductService {
 
     Page<Product> getAllProduct(QueryVo<Product> queryVo);
+
+    int insertProduct(Product product);
 }
