@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.arc.facility.mapper.avm.DictMapper">
+    <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.Dict">
+        <!--@mbg.generated-->
+        <!--@Table t_dict-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="dict_code" jdbcType="VARCHAR" property="dictCode"/>
+        <result column="dict_value" jdbcType="VARCHAR" property="dictValue"/>
+        <result column="dict_name" jdbcType="VARCHAR" property="dictName"/>
+        <result column="category_code" jdbcType="VARCHAR" property="categoryCode"/>
+        <result column="sort_no" jdbcType="INTEGER" property="sortNo"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
+        <result column="add_user" jdbcType="VARCHAR" property="addUser"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+    </resultMap>
+
+    <resultMap id="DictResultMap" type="com.alibaba.fastjson.JSONObject">
+        <result column="category_code" jdbcType="VARCHAR" property="code"/>
+        <result column="category_name" jdbcType="VARCHAR" property="name"/>
+        <collection column="d_category_code" property="enums"
+                    ofType="com.alibaba.fastjson.JSONObject" javaType="com.alibaba.fastjson.JSONArray">
+            <result column="dict_code" jdbcType="VARCHAR" property="enum_name"/>
+            <result column="dict_value" jdbcType="VARCHAR" property="value"/>
+            <result column="dict_name" jdbcType="VARCHAR" property="name"/>
+            <result column="status" jdbcType="VARCHAR" property="status"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectAllDict" resultMap="DictResultMap">
+        SELECT
+            dc.category_code, dc.category_name, d.category_code as d_category_code, d.dict_code, d.dict_value, d.dict_name, d.status
+        FROM
+            t_dict_category dc
+        LEFT JOIN t_dict d ON dc.category_code = d.category_code
+        WHERE
+            d.status in (1)
+        ORDER BY
+            dc.sort_no ASC
+    </select>
+</mapper>

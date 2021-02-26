@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.arc.facility.mapper.avm.ComponentMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.Component">
+    <!--@mbg.generated-->
+    <!--@Table t_component-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="component_english_name" jdbcType="VARCHAR" property="componentEnglishName" />
+    <result column="component_name" jdbcType="VARCHAR" property="componentName" />
+    <result column="component_code" jdbcType="VARCHAR" property="componentCode" />
+    <result column="component_type" jdbcType="INTEGER" property="componentType" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="language_type" jdbcType="VARCHAR" property="languageType" />
+    <result column="chargeman" jdbcType="VARCHAR" property="chargeman" />
+    <result column="del_status" jdbcType="INTEGER" property="delStatus" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="add_user" jdbcType="VARCHAR" property="addUser" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="design_svn_address" jdbcType="VARCHAR" property="designSvnAddress" />
+    <result column="require_svn_address" jdbcType="VARCHAR" property="requireSvnAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, component_english_name, component_name, component_code, component_type, description, 
+    language_type, chargeman, del_status, update_user, update_time, add_user, add_time, 
+    design_svn_address, require_svn_address
+  </sql>
+  <select id="selectAllComponents" resultMap="BaseResultMap" parameterType="com.archforce.arc.facility.entity.avm.Component">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_component
+    where 1=1
+    <if test="componentName != null and componentName != ''">
+        and component_name like concat('%', #{componentName}, '%')
+    </if>
+    <if test="languageType != null and languageType != ''">
+        and language_type = #{languageType, jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteBatch">
+    delete from t_component
+    where id in
+    <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_component
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_component
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.Component" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_component
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="componentEnglishName != null">
+        component_english_name,
+      </if>
+      <if test="componentName != null">
+        component_name,
+      </if>
+      <if test="componentCode != null">
+        component_code,
+      </if>
+      <if test="componentType != null">
+        component_type,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="languageType != null">
+        language_type,
+      </if>
+      <if test="chargeman != null">
+        chargeman,
+      </if>
+      <if test="delStatus != null">
+        del_status,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="addUser != null">
+        add_user,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="designSvnAddress != null">
+        design_svn_address,
+      </if>
+      <if test="requireSvnAddress != null">
+        require_svn_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="componentEnglishName != null">
+        #{componentEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="componentName != null">
+        #{componentName,jdbcType=VARCHAR},
+      </if>
+      <if test="componentCode != null">
+        #{componentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="componentType != null">
+        #{componentType,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="languageType != null">
+        #{languageType,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeman != null">
+        #{chargeman,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null">
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null">
+        #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="designSvnAddress != null">
+        #{designSvnAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="requireSvnAddress != null">
+        #{requireSvnAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.arc.facility.entity.avm.Component">
+    <!--@mbg.generated-->
+    update t_component
+    <set>
+      <if test="componentEnglishName != null">
+        component_english_name = #{componentEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="componentName != null">
+        component_name = #{componentName,jdbcType=VARCHAR},
+      </if>
+      <if test="componentCode != null">
+        component_code = #{componentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="componentType != null">
+        component_type = #{componentType,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="languageType != null">
+        language_type = #{languageType,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeman != null">
+        chargeman = #{chargeman,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null">
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null">
+        add_user = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="designSvnAddress != null">
+        design_svn_address = #{designSvnAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="requireSvnAddress != null">
+        require_svn_address = #{requireSvnAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

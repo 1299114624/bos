@@ -1,7 +1,7 @@
 package com.archforce.arc.facility.controller;
 
 import com.archforce.arc.facility.entity.avm.Product;
-import com.archforce.arc.facility.service.ProductService;
+import com.archforce.arc.facility.service.product.ProductService;
 import com.archforce.arc.facility.utils.PageInfo;
 import com.archforce.arc.facility.utils.QueryVo;
 import com.archforce.arc.facility.utils.ResBody;
@@ -21,9 +21,21 @@ public class ProductController {
         return ResBody.ok(PageInfo.getPageInfo(productService.getAllProduct(queryVo)));
     }
 
-    @PostMapping("/insert")
+    @PostMapping("/add")
     public ResBody insertProduct(@RequestBody Product product) {
-        productService.insertProduct(product);
+        productService.insertSelective(product);
+        return ResBody.ok();
+    }
+
+    @PostMapping("/update")
+    public ResBody updateProduct(@RequestBody Product product) {
+        productService.updateByPrimaryKeySelective(product);
+        return ResBody.ok();
+    }
+
+    @PostMapping("/deleteBatch")
+    public ResBody deleteBatch(@RequestBody List<Integer> ids) {
+        productService.deleteBatch(ids);
         return ResBody.ok();
     }
 }

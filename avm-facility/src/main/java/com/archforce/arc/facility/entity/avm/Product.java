@@ -1,5 +1,7 @@
 package com.archforce.arc.facility.entity.avm;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Product {
@@ -17,13 +19,15 @@ public class Product {
 
     private String addUser;
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date addTime;
 
     private String updateUser;
 
+    @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date updateTime;
 
-    private Byte delStatus;
+    private String delStatus;
 
     public Integer getId() {
         return id;
@@ -105,11 +109,11 @@ public class Product {
         this.updateTime = updateTime;
     }
 
-    public Byte getDelStatus() {
+    public String getDelStatus() {
         return delStatus;
     }
 
-    public void setDelStatus(Byte delStatus) {
+    public void setDelStatus(String delStatus) {
         this.delStatus = delStatus;
     }
 }
