@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.archforce.arc.facility.mapper.avm.DictMapper">
-    <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.Dict">
+    <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.common.Dict">
         <!--@mbg.generated-->
         <!--@Table t_dict-->
         <id column="id" jdbcType="INTEGER" property="id"/>

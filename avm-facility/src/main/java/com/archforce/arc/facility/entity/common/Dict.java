@@ -1,4 +1,4 @@
-package com.archforce.arc.facility.entity.avm;
+package com.archforce.arc.facility.entity.common;
 
 import com.archforce.arc.facility.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;

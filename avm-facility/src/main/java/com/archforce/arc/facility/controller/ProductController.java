@@ -21,6 +21,11 @@ public class ProductController {
         return ResBody.ok(PageInfo.getPageInfo(productService.getAllProduct(queryVo)));
     }
 
+    @PostMapping("/list")
+    public ResBody listProducts() {
+        return ResBody.ok(productService.getAllProductList());
+    }
+
     @PostMapping("/add")
     public ResBody insertProduct(@RequestBody Product product) {
         productService.insertSelective(product);

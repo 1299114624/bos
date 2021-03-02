@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.arc.facility.mapper.avm.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.Company">
+    <!--@mbg.generated-->
+    <!--@Table t_company-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="english_company_name" jdbcType="VARCHAR" property="englishCompanyName" />
+    <result column="simple_company_name" jdbcType="VARCHAR" property="simpleCompanyName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="del_status" jdbcType="INTEGER" property="delStatus" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="add_user" jdbcType="VARCHAR" property="addUser" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, company_name, english_company_name, simple_company_name, description, del_status, 
+    update_user, update_time, add_user, add_time
+  </sql>
+   <select id="selectAllCompanys" resultMap="BaseResultMap" parameterType="com.archforce.arc.facility.entity.avm.Company">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_company
+    where 1=1
+    <if test="companyName != null and companyName != ''">
+        and company_name like concat('%', #{companyName}, '%')
+    </if>
+  </select>
+  <delete id="deleteBatch">
+    delete from t_company
+    where id in
+    <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+  </delete>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.Company" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="englishCompanyName != null">
+        english_company_name,
+      </if>
+      <if test="simpleCompanyName != null">
+        simple_company_name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="delStatus != null">
+        del_status,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="addUser != null">
+        add_user,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="englishCompanyName != null">
+        #{englishCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="simpleCompanyName != null">
+        #{simpleCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null">
+        #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null">
+        #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.arc.facility.entity.avm.Company">
+    <!--@mbg.generated-->
+    update t_company
+    <set>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="englishCompanyName != null">
+        english_company_name = #{englishCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="simpleCompanyName != null">
+        simple_company_name = #{simpleCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null">
+        del_status = #{delStatus,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null">
+        add_user = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.arc.facility.mapper.avm.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.Product">
+    <!--@mbg.generated-->
+    <!--@Table t_product-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="simple_english_name" jdbcType="VARCHAR" property="simpleEnglishName" />
+    <result column="full_english_name" jdbcType="VARCHAR" property="fullEnglishName" />
+    <result column="full_chinese_name" jdbcType="VARCHAR" property="fullChineseName" />
+    <result column="group_member_names" jdbcType="VARCHAR" property="groupMemberNames" />
+    <result column="product_desc" jdbcType="VARCHAR" property="productDesc" />
+    <result column="add_user" jdbcType="VARCHAR" property="addUser" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_status" jdbcType="VARCHAR" property="delStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, simple_english_name, full_english_name, full_chinese_name, group_member_names,
+    product_desc, add_user, add_time, update_user, update_time, del_status
+  </sql>
+  <select id="selectAllProductList" resultMap="BaseResultMap" parameterType="com.archforce.arc.facility.entity.avm.Product">
+    select 
+    <include refid="Base_Column_List" />
+    from t_product
+  </select>
+<select id="selectAllProducts" resultMap="BaseResultMap" parameterType="com.archforce.arc.facility.entity.avm.Product">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_product
+    where 1=1
+    <if test="simpleEnglishName != null and simpleEnglishName != ''">
+        and simple_english_name like concat('%', #{simpleEnglishName}, '%')
+    </if>
+<!--    <if test="groupMemberNameList != null and groupMemberNameList.size() > 0">-->
+<!--        and -->
+<!--        <foreach collection="groupMemberNameList" item="item" index="index" open="(" separator="or" close=")">-->
+<!--            group_member_names like concat('%', #{item}, '%')-->
+<!--        </foreach>-->
+<!--    </if>-->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.Product" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="simpleEnglishName != null">
+        simple_english_name,
+      </if>
+      <if test="fullEnglishName != null">
+        full_english_name,
+      </if>
+      <if test="fullChineseName != null">
+        full_chinese_name,
+      </if>
+      <if test="groupMemberNames != null">
+        group_member_names,
+      </if>
+      <if test="productDesc != null">
+        product_desc,
+      </if>
+      <if test="addUser != null">
+        add_user,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="delStatus != null">
+        del_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="simpleEnglishName != null">
+        #{simpleEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullEnglishName != null">
+        #{fullEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullChineseName != null">
+        #{fullChineseName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupMemberNames != null">
+        #{groupMemberNames,jdbcType=VARCHAR},
+      </if>
+      <if test="productDesc != null">
+        #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="addUser != null">
+        #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delStatus != null">
+        #{delStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.arc.facility.entity.avm.Product">
+    <!--@mbg.generated-->
+    update t_product
+    <set>
+      <if test="simpleEnglishName != null">
+        simple_english_name = #{simpleEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullEnglishName != null">
+        full_english_name = #{fullEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullChineseName != null">
+        full_chinese_name = #{fullChineseName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupMemberNames != null">
+        group_member_names = #{groupMemberNames,jdbcType=VARCHAR},
+      </if>
+      <if test="productDesc != null">
+        product_desc = #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="addUser != null">
+        add_user = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delStatus != null">
+        del_status = #{delStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteBatch">
+    delete from t_product
+    where id in
+    <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+  </delete>
+</mapper>

@@ -30,6 +30,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getAllProductList() {
+        return productMapper.selectAllProductList();
+    }
+
+    @Override
     public int deleteByPrimaryKey(Integer id) {
         return productMapper.deleteByPrimaryKey(id);
     }

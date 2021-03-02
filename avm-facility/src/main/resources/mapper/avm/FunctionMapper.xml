@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.arc.facility.mapper.avm.FunctionMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.Function">
+    <!--@mbg.generated-->
+    <!--@Table t_function-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="function_name" jdbcType="VARCHAR" property="functionName" />
+    <result column="function_code" jdbcType="VARCHAR" property="functionCode" />
+    <result column="function_type" jdbcType="INTEGER" property="functionType" />
+    <result column="chargeman" jdbcType="VARCHAR" property="chargeman" />
+    <result column="descirption" jdbcType="LONGVARCHAR" property="descirption" />
+    <result column="add_user" jdbcType="VARCHAR" property="addUser" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, function_name, function_code, function_type, chargeman, descirption, add_user, 
+    add_time, update_user, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_function
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_function
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.Function" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_function
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="functionName != null">
+        function_name,
+      </if>
+      <if test="functionCode != null">
+        function_code,
+      </if>
+      <if test="functionType != null">
+        function_type,
+      </if>
+      <if test="chargeman != null">
+        chargeman,
+      </if>
+      <if test="descirption != null">
+        descirption,
+      </if>
+      <if test="addUser != null">
+        add_user,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="functionName != null">
+        #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="functionCode != null">
+        #{functionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="functionType != null">
+        #{functionType,jdbcType=INTEGER},
+      </if>
+      <if test="chargeman != null">
+        #{chargeman,jdbcType=VARCHAR},
+      </if>
+      <if test="descirption != null">
+        #{descirption,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="addUser != null">
+        #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.arc.facility.entity.avm.Function">
+    <!--@mbg.generated-->
+    update t_function
+    <set>
+      <if test="functionName != null">
+        function_name = #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="functionCode != null">
+        function_code = #{functionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="functionType != null">
+        function_type = #{functionType,jdbcType=INTEGER},
+      </if>
+      <if test="chargeman != null">
+        chargeman = #{chargeman,jdbcType=VARCHAR},
+      </if>
+      <if test="descirption != null">
+        descirption = #{descirption,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="addUser != null">
+        add_user = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -11,6 +11,8 @@ public interface ProductService {
 
     Page<Product> getAllProduct(QueryVo<Product> queryVo);
 
+    List<Product> getAllProductList();
+
     int deleteByPrimaryKey(Integer id);
 
     int insertSelective(Product record);

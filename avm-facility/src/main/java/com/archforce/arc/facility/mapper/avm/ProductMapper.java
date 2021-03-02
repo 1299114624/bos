@@ -6,6 +6,13 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ProductMapper {
+
+    List<Product> selectAllProductList();
+
+    Page<Product> selectAllProducts(Product query);
+
+    void deleteBatch(@Param("ids") List<Integer> ids);
+
     int deleteByPrimaryKey(Integer id);
 
     int insertSelective(Product record);
@@ -14,7 +21,4 @@ public interface ProductMapper {
 
     int updateByPrimaryKeySelective(Product record);
 
-    Page<Product> selectAllProducts(Product query);
-
-    void deleteBatch(@Param("ids") List<Integer> ids);
 }
