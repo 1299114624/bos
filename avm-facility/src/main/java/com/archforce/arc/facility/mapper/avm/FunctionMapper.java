@@ -1,18 +1,25 @@
 package com.archforce.arc.facility.mapper.avm;
 
-import com.archforce.arc.facility.entity.avm.Function;
+import com.archforce.arc.facility.entity.avm.function.Function;
 import com.archforce.arc.facility.entity.vo.FunctionVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface FunctionMapper {
-//    List<FunctionVo> selectAllFunctionVo();
+    List<FunctionVo> selectAllFunctionVo();
+
+    FunctionVo selectByPrimaryKey(Integer id);
+
+    FunctionVo selectByFunctionName(String name);
+
+    FunctionVo selectByFunctionCode(String code);
+
+    int deleteBatch(@Param("ids") List<Integer> ids);
 
     int deleteByPrimaryKey(Integer id);
 
     int insertSelective(Function record);
-
-    Function selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Function record);
 }

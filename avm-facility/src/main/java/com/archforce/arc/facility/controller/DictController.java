@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DictController {
     @Autowired
-    DictService dictService;
+    private DictService dictService;
 
     @PostMapping("/allDicts")
     public ResBody allDicts() {

@@ -1,9 +1,8 @@
 package com.archforce.arc.facility.controller;
 
-import com.archforce.arc.facility.entity.avm.Company;
-import com.archforce.arc.facility.entity.avm.Component;
+import com.archforce.arc.facility.entity.avm.company.Company;
+import com.archforce.arc.facility.entity.vo.CompanyVo;
 import com.archforce.arc.facility.service.company.CompanyService;
-import com.archforce.arc.facility.service.component.ComponentService;
 import com.archforce.arc.facility.utils.PageInfo;
 import com.archforce.arc.facility.utils.QueryVo;
 import com.archforce.arc.facility.utils.ResBody;
@@ -22,18 +21,23 @@ public class CompanyController {
     private CompanyService companyService;
 
     @PostMapping("/page")
-    public ResBody pageProducts(@RequestBody QueryVo<Company> queryVo) {
+    public ResBody getAllCompany(@RequestBody QueryVo<CompanyVo> queryVo) {
         return ResBody.ok(PageInfo.getPageInfo(companyService.getAllCompany(queryVo)));
     }
 
+    @PostMapping("/list")
+    public ResBody getAllCompanyList() {
+        return ResBody.ok(companyService.getAllCompanyList());
+    }
+
     @PostMapping("/add")
-    public ResBody insertProduct(@RequestBody Company company) {
+    public ResBody insertSelective(@RequestBody CompanyVo company) {
         companyService.insertSelective(company);
         return ResBody.ok();
     }
 
     @PostMapping("/update")
-    public ResBody updateProduct(@RequestBody Company company) {
+    public ResBody updateByPrimaryKeySelective(@RequestBody CompanyVo company) {
         companyService.updateByPrimaryKeySelective(company);
         return ResBody.ok();
     }

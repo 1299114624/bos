@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.archforce.arc.facility.mapper.avm.FunctionMapper">
-  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.Function">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.function.Function">
     <!--@mbg.generated-->
     <!--@Table t_function-->
     <id column="id" jdbcType="INTEGER" property="id" />
@@ -9,7 +9,22 @@
     <result column="function_code" jdbcType="VARCHAR" property="functionCode" />
     <result column="function_type" jdbcType="INTEGER" property="functionType" />
     <result column="chargeman" jdbcType="VARCHAR" property="chargeman" />
-    <result column="descirption" jdbcType="LONGVARCHAR" property="descirption" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="add_user" jdbcType="VARCHAR" property="addUser" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.archforce.arc.facility.entity.vo.FunctionVo">
+    <!--@mbg.generated-->
+    <!--@Table t_function-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="function_name" jdbcType="VARCHAR" property="functionName" />
+    <result column="function_code" jdbcType="VARCHAR" property="functionCode" />
+    <result column="function_type" jdbcType="INTEGER" property="functionType" />
+    <result column="parent_code" jdbcType="INTEGER" property="parentCode" />
+    <result column="chargeman" jdbcType="VARCHAR" property="chargeman" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
     <result column="add_user" jdbcType="VARCHAR" property="addUser" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
@@ -17,22 +32,55 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, function_name, function_code, function_type, chargeman, descirption, add_user, 
+    id, function_name, function_code, function_type, chargeman, description, add_user,
     add_time, update_user, update_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <sql id="Base_Column_List2">
+    tf.id, function_name, function_code, function_type, chargeman, description, add_user,
+    add_time, update_user, update_time
+  </sql>
+  <select id="selectAllFunctionVo" resultMap="BaseResultMap2">
+    select
+    tfg.group_name, tfg.group_code as parent_code,
+    <include refid="Base_Column_List2" />
+    from t_function tf
+    left join t_function_function_group tffg on tf.id = tffg.function_id
+    left join t_function_group tfg on tffg.function_group_id = tfg.id
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap2">
     <!--@mbg.generated-->
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_function
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByFunctionName" parameterType="java.lang.String" resultMap="BaseResultMap2">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_function
+    where function_name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByFunctionCode" parameterType="java.lang.String" resultMap="BaseResultMap2">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_function
+    where function_code = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteBatch">
+    delete from t_function
+    where id in
+    <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+  </delete>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
     delete from t_function
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.Function" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.function.Function" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into t_function
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -48,8 +96,8 @@
       <if test="chargeman != null">
         chargeman,
       </if>
-      <if test="descirption != null">
-        descirption,
+      <if test="description != null">
+        description,
       </if>
       <if test="addUser != null">
         add_user,
@@ -77,8 +125,8 @@
       <if test="chargeman != null">
         #{chargeman,jdbcType=VARCHAR},
       </if>
-      <if test="descirption != null">
-        #{descirption,jdbcType=LONGVARCHAR},
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
       </if>
       <if test="addUser != null">
         #{addUser,jdbcType=VARCHAR},
@@ -94,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.arc.facility.entity.avm.Function">
+  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.arc.facility.entity.avm.function.Function">
     <!--@mbg.generated-->
     update t_function
     <set>
@@ -110,8 +158,8 @@
       <if test="chargeman != null">
         chargeman = #{chargeman,jdbcType=VARCHAR},
       </if>
-      <if test="descirption != null">
-        descirption = #{descirption,jdbcType=LONGVARCHAR},
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
       </if>
       <if test="addUser != null">
         add_user = #{addUser,jdbcType=VARCHAR},

@@ -1,6 +1,6 @@
 package com.archforce.arc.facility.mapper.avm;
 
-import com.archforce.arc.facility.entity.avm.Product;import com.github.pagehelper.Page;
+import com.archforce.arc.facility.entity.avm.product.Product;import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

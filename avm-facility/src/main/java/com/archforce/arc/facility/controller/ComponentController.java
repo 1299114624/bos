@@ -1,9 +1,7 @@
 package com.archforce.arc.facility.controller;
 
-import com.archforce.arc.facility.entity.avm.Component;
-import com.archforce.arc.facility.entity.avm.Product;
+import com.archforce.arc.facility.entity.avm.component.Component;
 import com.archforce.arc.facility.service.component.ComponentService;
-import com.archforce.arc.facility.service.product.ProductService;
 import com.archforce.arc.facility.utils.PageInfo;
 import com.archforce.arc.facility.utils.QueryVo;
 import com.archforce.arc.facility.utils.ResBody;
@@ -20,17 +18,21 @@ public class ComponentController {
 
     @PostMapping("/page")
     public ResBody pageProducts(@RequestBody QueryVo<Component> queryVo) {
-        return ResBody.ok(PageInfo.getPageInfo(componentService.getAllProduct(queryVo)));
+        return ResBody.ok(PageInfo.getPageInfo(componentService.getAllComponnet(queryVo)));
+    }
+    @PostMapping("/list")
+    public ResBody listProducts() {
+        return ResBody.ok(componentService.getAllComponnetList());
     }
 
     @PostMapping("/add")
-    public ResBody insertProduct(@RequestBody Component component) {
+    public ResBody insertSelective(@RequestBody Component component) {
         componentService.insertSelective(component);
         return ResBody.ok();
     }
 
     @PostMapping("/update")
-    public ResBody updateProduct(@RequestBody Component component) {
+    public ResBody updateByPrimaryKeySelective(@RequestBody Component component) {
         componentService.updateByPrimaryKeySelective(component);
         return ResBody.ok();
     }

@@ -1,6 +1,5 @@
 package com.archforce.arc.facility.service.component.impl;
 
-import com.archforce.arc.facility.entity.avm.Product;
 import com.archforce.arc.facility.utils.QueryVo;
 import com.archforce.arc.facility.utils.Sort;
 import com.github.pagehelper.Page;
@@ -8,7 +7,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.archforce.arc.facility.mapper.avm.ComponentMapper;
-import com.archforce.arc.facility.entity.avm.Component;
+import com.archforce.arc.facility.entity.avm.component.Component;
 import com.archforce.arc.facility.service.component.ComponentService;
 
 import java.util.List;
@@ -20,13 +19,17 @@ public class ComponentServiceImpl implements ComponentService{
     private ComponentMapper componentMapper;
 
     @Override
-    public Page<Component> getAllProduct(QueryVo<Component> queryVo) {
+    public Page<Component> getAllComponnet(QueryVo<Component> queryVo) {
         queryVo.resetPage();
         Component query = queryVo.getQuery();
         Sort sort = queryVo.getSort();
         String sortInfo = QueryVo.getSortTableFiled(sort.getKey()) + " " +sort.getSortType().name();
         PageHelper.orderBy(sortInfo);
         return componentMapper.selectAllComponents(query);
+    }
+    @Override
+    public List<Component> getAllComponnetList() {
+        return componentMapper.selectAllComponentList();
     }
 
     @Override
@@ -53,5 +56,7 @@ public class ComponentServiceImpl implements ComponentService{
     public int updateByPrimaryKeySelective(Component record) {
         return componentMapper.updateByPrimaryKeySelective(record);
     }
+
+
 
 }

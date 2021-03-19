@@ -1,9 +1,6 @@
 package com.archforce.arc.facility.common;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TreeUtils {
@@ -18,6 +15,28 @@ public class TreeUtils {
      */
     public static List<AvmTree> listToTree(List<AvmTree> list, String... rootCodes) {
         List<AvmTree> roots = new ArrayList<>();
+        Map<String, List<AvmTree>> childrenMap = new HashMap<>();
+        for (AvmTree tree : list) {
+            if (rootCodes == null || (rootCodes != null && rootCodes.length == 0)) {
+                if (tree.isRoot()) {
+                    roots.add(tree);
+                }
+            }
+            if (rootCodes != null) {
+                if (isContain(tree.getCode(), rootCodes)) {
+                    roots.add(tree);
+                }
+            }
+            List<AvmTree> ch = childrenMap.get(tree.getParentCode());
+            if (ch == null) {
+                ch = new ArrayList<>();
+                childrenMap.put(tree.getParentCode(), ch);
+            }
+            ch.add(tree);
+        }
+        for (AvmTree tree : list) {
+            tree.setChildren(childrenMap.get(tree.getCode()));
+        }
         return roots;
     }
 
@@ -54,5 +73,31 @@ public class TreeUtils {
      */
     public static List<AvmTree> tree (List<? extends AvmTreeConverter> allNodes, String... rootCodes) {
         return listToTree(allNodes.stream().map(node -> node.toAvmTree()).collect(Collectors.toList()), rootCodes);
+    }
+
+    /**
+     * 将两个实现了 AvmTreeConverter 的List合并后生成树结构
+     * @param firstList
+     * @param secondList
+     * @return
+     */
+    public static List<AvmTree> treeCombine (List<? extends AvmTreeConverter> firstList, List<? extends AvmTreeConverter> secondList) {
+        List<AvmTree> firstAvmList = firstList.stream().map(node -> node.toAvmTree()).collect(Collectors.toList());
+        List<AvmTree> secondAvmList = secondList.stream().map(node -> node.toAvmTree()).collect(Collectors.toList());
+        firstAvmList.addAll(secondAvmList);
+        return listToTree(firstAvmList);
+    }
+
+    /**
+     * 匹配 rootCodes 是否含有 str
+     * @param str
+     * @param rootCodes
+     * @return
+     */
+    private static boolean isContain(String str, String... rootCodes) {
+        if (rootCodes == null) {
+            return false;
+        }
+        return Arrays.stream(rootCodes).anyMatch(rootCode -> rootCode.equals(str));
     }
 }

@@ -1,7 +1,6 @@
 package com.archforce.arc.facility.mapper.avm;
 
-import com.archforce.arc.facility.entity.avm.Component;
-import com.archforce.arc.facility.entity.avm.Product;
+import com.archforce.arc.facility.entity.avm.component.Component;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,4 +18,6 @@ public interface ComponentMapper {
     Page<Component> selectAllComponents(Component record);
 
     void deleteBatch(@Param("ids") List<Integer> ids);
+
+    List<Component> selectAllComponentList();
 }

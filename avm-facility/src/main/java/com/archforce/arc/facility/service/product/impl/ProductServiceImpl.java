@@ -1,6 +1,6 @@
 package com.archforce.arc.facility.service.product.impl;
 
-import com.archforce.arc.facility.entity.avm.Product;
+import com.archforce.arc.facility.entity.avm.product.Product;
 import com.archforce.arc.facility.mapper.avm.ProductMapper;
 import com.archforce.arc.facility.service.product.ProductService;
 import com.archforce.arc.facility.utils.QueryVo;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

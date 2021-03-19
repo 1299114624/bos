@@ -1,4 +1,4 @@
-package com.archforce.arc.facility.entity.avm;
+package com.archforce.arc.facility.entity.avm.product;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

@@ -1,6 +1,6 @@
 package com.archforce.arc.facility.controller;
 
-import com.archforce.arc.facility.entity.avm.Product;
+import com.archforce.arc.facility.entity.avm.product.Product;
 import com.archforce.arc.facility.service.product.ProductService;
 import com.archforce.arc.facility.utils.PageInfo;
 import com.archforce.arc.facility.utils.QueryVo;

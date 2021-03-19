@@ -2,7 +2,7 @@ package com.archforce.arc.facility.exception.advice;
 
 import com.archforce.arc.facility.exception.ApplicationException;
 import com.archforce.arc.facility.exception.BusinessException;
-import com.archforce.arc.facility.exception.ErrorConstant;
+import com.archforce.arc.facility.exception.ErrorCodeConstant;
 import com.archforce.arc.facility.log.LogUtils;
 import com.archforce.arc.facility.utils.ResBody;
 import org.springframework.dao.DuplicateKeyException;
@@ -39,7 +39,7 @@ public class ExceptionAdviceHandler {
         String path = getPath();
         if (e instanceof ApplicationException) {
             final ApplicationException applicationException = (ApplicationException) e;
-            if (ErrorConstant.UNAUTHORIZED_CODE.equals(applicationException.getErrorCode())) {
+            if (ErrorCodeConstant.UNAUTHORIZED_CODE.equals(applicationException.getErrorCode())) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             }
             return ResBody.error(applicationException);

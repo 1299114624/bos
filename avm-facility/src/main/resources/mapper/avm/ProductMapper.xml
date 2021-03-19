@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.archforce.arc.facility.mapper.avm.ProductMapper">
-  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.Product">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.product.Product">
     <!--@mbg.generated-->
     <!--@Table t_product-->
     <id column="id" jdbcType="INTEGER" property="id" />
@@ -21,12 +21,12 @@
     id, simple_english_name, full_english_name, full_chinese_name, group_member_names,
     product_desc, add_user, add_time, update_user, update_time, del_status
   </sql>
-  <select id="selectAllProductList" resultMap="BaseResultMap" parameterType="com.archforce.arc.facility.entity.avm.Product">
+  <select id="selectAllProductList" resultMap="BaseResultMap" parameterType="com.archforce.arc.facility.entity.avm.product.Product">
     select 
     <include refid="Base_Column_List" />
     from t_product
   </select>
-<select id="selectAllProducts" resultMap="BaseResultMap" parameterType="com.archforce.arc.facility.entity.avm.Product">
+<select id="selectAllProducts" resultMap="BaseResultMap" parameterType="com.archforce.arc.facility.entity.avm.product.Product">
     <!--@mbg.generated-->
     select
     <include refid="Base_Column_List" />
@@ -54,7 +54,7 @@
     delete from t_product
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.Product" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.product.Product" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into t_product
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -122,7 +122,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.arc.facility.entity.avm.Product">
+  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.arc.facility.entity.avm.product.Product">
     <!--@mbg.generated-->
     update t_product
     <set>

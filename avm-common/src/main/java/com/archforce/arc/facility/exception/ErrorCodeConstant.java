@@ -8,7 +8,13 @@ package com.archforce.arc.facility.exception;
  * 4. 最后3位异常序列号
  */
 public class ErrorCodeConstant {
+    /**
+     * 用户未登录的错误码
+     */
+    public static final String UNAUTHORIZED_CODE = "10004";
     //功能管理 01
+    public static final String FUNCTION_CODE_EXIT = "801001";
+    public static final String FUNCTION_NAME_EXIT = "801002";
     //组件管理 02
     //产品管理 03
     public static final String PRODUCT_ENGSIMP_NAME_EXISTED = "803001";

@@ -1,9 +1,8 @@
 package com.archforce.arc.facility.service.product;
 
-import com.archforce.arc.facility.entity.avm.Product;
+import com.archforce.arc.facility.entity.avm.product.Product;
 import com.archforce.arc.facility.utils.QueryVo;
 import com.github.pagehelper.Page;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

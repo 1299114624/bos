@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.arc.facility.mapper.avm.CompanyProductMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.company.CompanyProduct">
+    <!--@mbg.generated-->
+    <!--@Table t_company_product-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, company_id, product_id
+  </sql>
+  <delete id="deleteByCompanyId" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_company_product
+    where company_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_company_product
+    (company_id, product_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.companyId,jdbcType=INTEGER}, #{item.productId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>

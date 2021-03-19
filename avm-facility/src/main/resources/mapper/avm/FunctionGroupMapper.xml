@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.archforce.arc.facility.mapper.avm.FunctionGroupMapper">
-  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.FunctionGroup">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.function.FunctionGroup">
     <!--@mbg.generated-->
     <!--@Table t_function_group-->
     <id column="id" jdbcType="INTEGER" property="id" />
@@ -15,6 +15,11 @@
     <!--@mbg.generated-->
     id, group_name, group_code, parent_code, group_desc, group_type
   </sql>
+  <select id="selectAllFunctionGroup" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_function_group
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
@@ -22,12 +27,24 @@
     from t_function_group
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByParentCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_function_group
+    where parent_code = #{code,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
     delete from t_function_group
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.FunctionGroup" useGeneratedKeys="true">
+  <delete id="deleteByParentCode" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from t_function_group
+    where parent_code = #{code,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.function.FunctionGroup" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into t_function_group
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -65,7 +82,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.arc.facility.entity.avm.FunctionGroup">
+  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.arc.facility.entity.avm.function.FunctionGroup">
     <!--@mbg.generated-->
     update t_function_group
     <set>

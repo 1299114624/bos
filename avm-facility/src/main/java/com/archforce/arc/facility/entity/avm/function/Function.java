@@ -1,4 +1,4 @@
-package com.archforce.arc.facility.entity.avm;
+package com.archforce.arc.facility.entity.avm.function;
 
 import com.archforce.arc.facility.common.AvmTree;
 import com.archforce.arc.facility.common.AvmTreeConverter;
@@ -9,7 +9,7 @@ import java.util.Date;
 /**
     * t_function
     */
-public class Function implements AvmTreeConverter {
+public class Function {
     /**
     * id
     */
@@ -36,9 +36,9 @@ public class Function implements AvmTreeConverter {
     private String chargeman;
 
     /**
-    * descirption
+    * description
     */
-    private String descirption;
+    private String description;
 
     /**
     * addUser
@@ -102,12 +102,12 @@ public class Function implements AvmTreeConverter {
         this.chargeman = chargeman;
     }
 
-    public String getDescirption() {
-        return descirption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescirption(String descirption) {
-        this.descirption = descirption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAddUser() {
@@ -142,8 +142,4 @@ public class Function implements AvmTreeConverter {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public AvmTree toAvmTree() {
-        return null;
-    }
 }

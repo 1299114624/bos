@@ -1,9 +1,12 @@
-package com.archforce.arc.facility.entity.avm;
+package com.archforce.arc.facility.entity.avm.function;
+
+import com.archforce.arc.facility.common.AvmTree;
+import com.archforce.arc.facility.common.AvmTreeConverter;
 
 /**
  * t_function_group
  */
-public class FunctionGroup {
+public class FunctionGroup implements AvmTreeConverter {
     /**
      * id
      */
@@ -80,5 +83,17 @@ public class FunctionGroup {
 
     public void setGroupType(Integer groupType) {
         this.groupType = groupType;
+    }
+
+    @Override
+    public AvmTree toAvmTree() {
+        AvmTree<FunctionGroup> avmTree = new AvmTree<>();
+        avmTree.setId(getId());
+        avmTree.setCode(getGroupCode());
+        avmTree.setParentCode(getParentCode());
+        avmTree.setName(getGroupName());
+        avmTree.setType(groupType);
+        avmTree.setNode(this);
+        return avmTree;
     }
 }

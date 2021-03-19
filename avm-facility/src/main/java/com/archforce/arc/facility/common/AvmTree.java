@@ -11,7 +11,7 @@ public class AvmTree<T> {
     private String parentCode;
     private String name;
     private String code;
-    private Integer type;
+    private Integer type; // 0标准产品，1客制产品
     private T node;
     private List<AvmTree> children;
 
