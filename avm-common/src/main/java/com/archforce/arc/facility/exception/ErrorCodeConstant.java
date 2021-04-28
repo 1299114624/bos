@@ -15,9 +15,11 @@ public class ErrorCodeConstant {
     //功能管理 01
     public static final String FUNCTION_CODE_EXIT = "801001";
     public static final String FUNCTION_NAME_EXIT = "801002";
+    public static final String FUNCTION_GROUP_NAME_EXIT = "801003";
     //组件管理 02
+    public static final String COMPONENT_NAME_EXIT = "802001";
     //产品管理 03
-    public static final String PRODUCT_ENGSIMP_NAME_EXISTED = "803001";
+    public static final String PRODUCT_SIMPLE_ENGLISH_NAME_EXIT = "803001";
     //客户管理 04
     //功能版本维护 05
     //组件版本维护 06

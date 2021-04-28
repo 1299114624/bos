@@ -11,6 +11,8 @@ public interface ProductMapper {
 
     Page<Product> selectAllProducts(Product query);
 
+    List<Product> selectProductsByCompanyId(Integer id);
+
     void deleteBatch(@Param("ids") List<Integer> ids);
 
     int deleteByPrimaryKey(Integer id);
@@ -18,6 +20,8 @@ public interface ProductMapper {
     int insertSelective(Product record);
 
     Product selectByPrimaryKey(Integer id);
+
+    Product selectBySimpleEnglishName(String name);
 
     int updateByPrimaryKeySelective(Product record);
 

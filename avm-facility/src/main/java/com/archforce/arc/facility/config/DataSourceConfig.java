@@ -17,4 +17,10 @@ public class DataSourceConfig {
         DataSource dataSource = DataSourceBuilder.create().build();
         return dataSource;
     }
+
+    @Bean(name = "zentaoDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.zentao")
+    public DataSource zentaoDataSource() {
+        return DataSourceBuilder.create().build();
+    }
 }

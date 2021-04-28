@@ -10,7 +10,7 @@ public interface FunctionGroupService{
 
     List<AvmTree> showTree();
 
-    int deleteByPrimaryKey(Integer id, Map<String, List<Integer>> paramMap);
+    int deleteByPrimaryKey(Integer id);
 
     int insertSelective(FunctionGroup record);
 
@@ -18,4 +18,5 @@ public interface FunctionGroupService{
 
     int updateByPrimaryKeySelective(FunctionGroup record);
 
+    int checkAddType(Integer id);
 }

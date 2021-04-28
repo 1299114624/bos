@@ -1,6 +1,7 @@
 package com.archforce.arc.facility.mapper.avm;
 
 import com.archforce.arc.facility.entity.avm.company.Company;
+import com.archforce.arc.facility.entity.avm.product.Product;
 import com.archforce.arc.facility.entity.vo.CompanyVo;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;

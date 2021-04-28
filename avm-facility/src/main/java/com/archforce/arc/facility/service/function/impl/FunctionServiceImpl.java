@@ -36,6 +36,7 @@ public class FunctionServiceImpl implements FunctionService{
 
     @Resource
     private FunctionComponentMapper functionComponentMapper;
+
     @Resource
     private FunctionCompanyMapper functionCompanyMapper;
 
@@ -125,6 +126,7 @@ public class FunctionServiceImpl implements FunctionService{
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateByPrimaryKeySelective(FunctionVo record) {
+
         int i = functionMapper.updateByPrimaryKeySelective(record);
         // 修改功能与组件的关联关系
         List<FunctionComponent> functionComponents = functionComponentMapper.selectByFunctionId(record.getId());
@@ -139,6 +141,19 @@ public class FunctionServiceImpl implements FunctionService{
             functionCompanyMapper.deleteByFunctionId(record.getId());
         }
         batchInsertFunctionCompany(record);
+
+        // 校验
+        try {
+            functionMapper.selectByFunctionCode(record.getFunctionCode());
+        } catch (Exception e) {
+            throw new BusinessException(FUNCTION_CODE_EXIT);
+        }
+        try {
+            functionMapper.selectByFunctionName(record.getFunctionName());
+        } catch (Exception e) {
+            throw new BusinessException(FUNCTION_NAME_EXIT);
+        }
+
         functionCache.load();
         return i;
     }
@@ -178,4 +193,6 @@ public class FunctionServiceImpl implements FunctionService{
         });
         functionCompanyMapper.batchInsert(functionCompanies);
     }
+
+
 }

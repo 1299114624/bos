@@ -26,4 +26,14 @@
       (#{item.companyId,jdbcType=INTEGER}, #{item.productId,jdbcType=INTEGER})
     </foreach>
   </insert>
+
+  <select id="selectUsedCompanyNamesByProductId" resultType="java.lang.String">
+    SELECT GROUP_CONCAT(ccc.company_name)
+    FROM
+    (SELECT cp.product_id, c.company_name, p.simple_english_name FROM `t_company_product` cp
+    LEFT JOIN t_company c ON cp.company_id = c.id
+    LEFT JOIN t_product p ON cp.product_id = p.id) ccc
+    WHERE ccc.product_id = #{productId,jdbcType=INTEGER}
+    GROUP BY ccc.product_id
+</select>
 </mapper>

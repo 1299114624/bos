@@ -12,6 +12,8 @@ public interface ProductService {
 
     List<Product> getAllProductList();
 
+    List<Product> selectProductsByCompanyId(Integer id);
+
     int deleteByPrimaryKey(Integer id);
 
     int insertSelective(Product record);

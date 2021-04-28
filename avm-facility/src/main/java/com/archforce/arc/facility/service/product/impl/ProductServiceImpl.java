@@ -1,6 +1,7 @@
 package com.archforce.arc.facility.service.product.impl;
 
 import com.archforce.arc.facility.entity.avm.product.Product;
+import com.archforce.arc.facility.exception.BusinessException;
 import com.archforce.arc.facility.mapper.avm.ProductMapper;
 import com.archforce.arc.facility.service.product.ProductService;
 import com.archforce.arc.facility.utils.QueryVo;
@@ -12,6 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
+
+import static com.archforce.arc.facility.exception.ErrorCodeConstant.FUNCTION_GROUP_NAME_EXIT;
+import static com.archforce.arc.facility.exception.ErrorCodeConstant.PRODUCT_SIMPLE_ENGLISH_NAME_EXIT;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -34,6 +39,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> selectProductsByCompanyId(Integer id) {
+        return productMapper.selectProductsByCompanyId(id);
+    }
+
+    @Override
     public int deleteByPrimaryKey(Integer id) {
         return productMapper.deleteByPrimaryKey(id);
     }
@@ -41,6 +51,11 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int insertSelective(Product record) {
+        //校验
+        Product product = productMapper.selectBySimpleEnglishName(record.getSimpleEnglishName());
+        if (Objects.nonNull(product)) {
+            throw new BusinessException(PRODUCT_SIMPLE_ENGLISH_NAME_EXIT);
+        }
         return productMapper.insertSelective(record);
     }
 
@@ -51,7 +66,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int updateByPrimaryKeySelective(Product record) {
-        return productMapper.updateByPrimaryKeySelective(record);
+        int i = productMapper.updateByPrimaryKeySelective(record);
+        // 校验
+        try {
+            productMapper.selectBySimpleEnglishName(record.getSimpleEnglishName());
+        } catch (Exception e) {
+            throw new BusinessException(PRODUCT_SIMPLE_ENGLISH_NAME_EXIT);
+        }
+        return i;
     }
 
     @Override

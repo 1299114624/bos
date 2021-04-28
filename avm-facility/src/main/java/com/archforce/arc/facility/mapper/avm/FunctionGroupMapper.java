@@ -8,13 +8,15 @@ import java.util.List;
 public interface FunctionGroupMapper {
     List<FunctionGroup> selectAllFunctionGroup();
 
+    FunctionGroup selectByPrimaryKey(Integer id);
+
+    FunctionGroup selectByGroupName(String groupName);
+
+    List<FunctionGroup> selectByParentCode(String code);
+
     int deleteByPrimaryKey(Integer id);
 
     int deleteByParentCode(String code);
-
-    FunctionGroup selectByPrimaryKey(Integer id);
-
-    List<FunctionGroup> selectByParentCode(String code);
 
     int insertSelective(FunctionGroup record);
 

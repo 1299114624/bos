@@ -27,7 +27,6 @@ public class AvmMybatisConfig {
     }
 
     @Bean("avmSqlSessionFactory")
-    @Qualifier("avmSqlSessionFactory")
     @Primary
     public SqlSessionFactory sqlSessionFactory(@Qualifier("avmDataSource") DataSource dataSource) {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();

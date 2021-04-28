@@ -20,13 +20,33 @@
     <result column="design_svn_address" jdbcType="VARCHAR" property="designSvnAddress" />
     <result column="require_svn_address" jdbcType="VARCHAR" property="requireSvnAddress" />
   </resultMap>
+  <resultMap id="BaseResultMap2" type="com.archforce.arc.facility.entity.vo.ComponentVo">
+    <!--@mbg.generated-->
+    <!--@Table t_component-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="component_english_name" jdbcType="VARCHAR" property="componentEnglishName" />
+    <result column="component_name" jdbcType="VARCHAR" property="componentName" />
+    <result column="component_code" jdbcType="VARCHAR" property="componentCode" />
+    <result column="component_type" jdbcType="INTEGER" property="componentType" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="language_type" jdbcType="VARCHAR" property="languageType" />
+    <result column="chargeman" jdbcType="VARCHAR" property="chargeman" />
+    <result column="del_status" jdbcType="INTEGER" property="delStatus" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="add_user" jdbcType="VARCHAR" property="addUser" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="design_svn_address" jdbcType="VARCHAR" property="designSvnAddress" />
+    <result column="require_svn_address" jdbcType="VARCHAR" property="requireSvnAddress" />
+    <result column="function_names" jdbcType="VARCHAR" property="functionNames" />
+  </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, component_english_name, component_name, component_code, component_type, description, 
     language_type, chargeman, del_status, update_user, update_time, add_user, add_time, 
     design_svn_address, require_svn_address
   </sql>
-  <select id="selectAllComponents" resultMap="BaseResultMap" parameterType="com.archforce.arc.facility.entity.avm.component.Component">
+  <select id="selectAllComponents" resultMap="BaseResultMap2" parameterType="com.archforce.arc.facility.entity.avm.component.Component">
     <!--@mbg.generated-->
     select
     <include refid="Base_Column_List" />
@@ -58,6 +78,13 @@
     <include refid="Base_Column_List" />
     from t_component
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByComponentName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_component
+    where component_name = #{componentName,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->

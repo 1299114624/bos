@@ -26,6 +26,11 @@ public class ProductController {
         return ResBody.ok(productService.getAllProductList());
     }
 
+    @PostMapping("/listByCompanyId/{id}")
+    public ResBody listByCompanyId(@PathVariable("id") Integer id) {
+        return ResBody.ok(productService.selectProductsByCompanyId(id));
+    }
+
     @PostMapping("/add")
     public ResBody insertProduct(@RequestBody Product product) {
         productService.insertSelective(product);

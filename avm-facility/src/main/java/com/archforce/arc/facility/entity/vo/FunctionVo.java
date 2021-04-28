@@ -66,7 +66,7 @@ public class FunctionVo extends Function implements AvmTreeConverter {
         avmTree.setId(getId());
         avmTree.setCode(getFunctionCode());
         avmTree.setParentCode(getParentCode());
-        avmTree.setName(getFunctionName());
+        avmTree.setName(getFunctionCode() + '-' + getFunctionName());
         avmTree.setType(getFunctionType());
         avmTree.setNode(this);
         return avmTree;

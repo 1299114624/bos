@@ -31,7 +31,7 @@ public class Component {
     /**
      * componentType
      */
-    private Integer componentType;
+    public Integer componentType;
 
     /**
      * description

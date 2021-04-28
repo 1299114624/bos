@@ -25,10 +25,26 @@
     left join t_component tc on component_id = tc.id
     where function_id = #{id,jdbcType=INTEGER}
   </select>
+    <select id="selectFunctionNamesByComponentId" resultType="java.lang.String">
+    SELECT GROUP_CONCAT(ccc.function_name)
+    FROM
+    (SELECT tfc.component_id, tf.function_name FROM `t_function_component` tfc
+    LEFT JOIN t_function tf ON tfc.function_id = tf.id) ccc
+    WHERE ccc.component_id = #{componentId,jdbcType=INTEGER}
+    GROUP BY ccc.component_id
+</select>
   <delete id="deleteByFunctionId" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
     delete from t_function_component
     where function_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteBatchByComponentId">
+    <!--@mbg.generated-->
+    delete from t_function_component
+        where component_id in
+    <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+    </foreach>
   </delete>
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->

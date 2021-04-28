@@ -21,6 +21,11 @@ public class FunctionGroupController {
         return ResBody.ok(functionGroupService.showTree());
     }
 
+    @PostMapping("/checkAddType/{id}")
+    public ResBody checkAddType(@PathVariable("id") Integer id) {
+        return ResBody.ok(functionGroupService.checkAddType(id));
+    }
+
     @PostMapping("/add")
     public ResBody insertSelective(@RequestBody FunctionGroup functionGroup) {
         functionGroupService.insertSelective(functionGroup);
@@ -34,9 +39,9 @@ public class FunctionGroupController {
     }
 
     @PostMapping("/delete/{id}")
-    public ResBody deleteByPrimaryKey(@RequestBody Map<String, List<Integer>> paramMap,
-            @PathVariable("id") Integer id) {
-        functionGroupService.deleteByPrimaryKey(id, paramMap);
+//    public ResBody deleteByPrimaryKey(@RequestBody Map<String, List<Integer>> paramMap, @PathVariable("id") Integer id) {
+    public ResBody deleteByPrimaryKey(@PathVariable("id") Integer id) {
+        functionGroupService.deleteByPrimaryKey(id);
         return ResBody.ok();
     }
 }

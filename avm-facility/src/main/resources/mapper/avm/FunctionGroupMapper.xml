@@ -27,6 +27,13 @@
     from t_function_group
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByGroupName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_function_group
+    where group_name = #{groupName,jdbcType=INTEGER}
+  </select>
   <select id="selectByParentCode" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
