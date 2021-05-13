@@ -29,6 +29,7 @@
     <result column="require_svn_address" jdbcType="VARCHAR" property="requireSvnAddress" />
     <result column="company_id" jdbcType="INTEGER" property="companyId" />
     <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="companyComponentId" jdbcType="INTEGER" property="companyComponentId" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -36,7 +37,13 @@
   </sql>
     <sql id="Base_Column_List2">
     <!--@mbg.generated-->
-    id, component_english_name, component_name, component_code, component_type, description,
+    tc.id, component_english_name, component_name, component_code, component_type, description,
+    language_type, chargeman, del_status, update_user, update_time, add_user, add_time,
+    design_svn_address, require_svn_address
+  </sql>
+    <sql id="Base_Column_List3">
+    <!--@mbg.generated-->
+    component_english_name, component_name, component_code, component_type, description,
     language_type, chargeman, del_status, update_user, update_time, add_user, add_time,
     design_svn_address, require_svn_address
   </sql>
@@ -46,15 +53,6 @@
     <include refid="Base_Column_List" />
     from t_company_component
     where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="getCompanyCom" parameterType="com.archforce.arc.facility.entity.avm.company.CompanyComponentInfo" resultMap="BaseResultMap2">
-    <!--@mbg.generated-->
-    select
-    <include refid="Base_Column_List2" />, product_id, company_id
-    from t_component tc
-    left join t_company_component tcc on tc.id = tcc.company_id
-    where tcc.product_id = #{productId,jdbcType=INTEGER}
-    and tcc.company_id = #{companyId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
@@ -71,12 +69,32 @@
         )
     </foreach>
   </insert>
-    <select id="getDisCompanyCom" parameterType="com.archforce.arc.facility.entity.avm.company.CompanyComponentInfo" resultMap="BaseResultMap2">
+    <select id="getCompanyCom" parameterType="com.archforce.arc.facility.entity.avm.company.CompanyComponentInfo" resultMap="BaseResultMap2">
     select
-    <include refid="Base_Column_List2" />, product_id, company_id
+    <include refid="Base_Column_List2" />, product_id, company_id, tcc.id as companyComponentId
     from t_component tc
-    left join t_company_component tcc on tc.id = tcc.company_id
+    left join t_company_component tcc on tc.id = tcc.component_id
     where tcc.product_id = #{productId,jdbcType=INTEGER}
     and tcc.company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+<!--  获取产品管理下该产品所有组件加上该客户的所有客制组件作为全量，减去t_company_component得到差量-->
+    <select id="getDisCompanyCom" parameterType="com.archforce.arc.facility.entity.avm.company.CompanyComponentInfo" resultMap="BaseResultMap2">
+        select
+        t1.id, <include refid="Base_Column_List3" />
+        FROM
+        (select
+        <include refid="Base_Column_List2" />
+        from t_component tc
+        left join t_product_component tpc on tc.id = tpc.component_id
+        where tpc.product_id = #{productId,jdbcType=INTEGER}
+        UNION
+        (select
+        <include refid="Base_Column_List2" />
+        from t_component tc
+        left join t_component_company tcc on tc.id = tcc.component_id
+        where tcc.company_id = #{companyId,jdbcType=INTEGER})) t1
+        LEFT JOIN (SELECT * FROM t_company_component cc WHERE cc.product_id = #{productId,jdbcType=INTEGER} AND cc.company_id = #{companyId,jdbcType=INTEGER}) scc
+        ON t1.id = scc.component_id
+        WHERE scc.component_id is NULL
   </select>
 </mapper>

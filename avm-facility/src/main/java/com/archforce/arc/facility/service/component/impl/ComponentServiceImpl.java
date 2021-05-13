@@ -1,7 +1,11 @@
 package com.archforce.arc.facility.service.component.impl;
 
+import com.archforce.arc.facility.entity.avm.component.ComponentCompany;
+import com.archforce.arc.facility.entity.avm.function.FunctionCompany;
 import com.archforce.arc.facility.entity.vo.ComponentVo;
+import com.archforce.arc.facility.entity.vo.FunctionVo;
 import com.archforce.arc.facility.exception.BusinessException;
+import com.archforce.arc.facility.mapper.avm.ComponentCompanyMapper;
 import com.archforce.arc.facility.mapper.avm.FunctionComponentMapper;
 import com.archforce.arc.facility.utils.QueryVo;
 import com.archforce.arc.facility.utils.Sort;
@@ -14,6 +18,8 @@ import com.archforce.arc.facility.entity.avm.component.Component;
 import com.archforce.arc.facility.service.component.ComponentService;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,6 +35,9 @@ public class ComponentServiceImpl implements ComponentService{
     @Resource
     private FunctionComponentMapper functionComponentMapper;
 
+    @Resource
+    private ComponentCompanyMapper componentCompanyMapper;
+
     @Override
     public Page<ComponentVo> getAllComponnet(QueryVo<Component> queryVo) {
         queryVo.resetPage();
@@ -40,6 +49,8 @@ public class ComponentServiceImpl implements ComponentService{
         List<ComponentVo> result = components.getResult();
         for(ComponentVo componentVo : result) {
             componentVo.setFunctionNames(functionComponentMapper.selectFunctionNamesByComponentId(componentVo.getId()));
+            componentVo.setCompanyNames(componentCompanyMapper.selectCompanyNamesByComponentId(componentVo.getId()));
+            componentVo.setCompanyIds(componentCompanyMapper.selectCompanyIdsByComponentId(componentVo.getId()));
         }
         return components;
     }
@@ -53,6 +64,12 @@ public class ComponentServiceImpl implements ComponentService{
     public void deleteBatch(List<Integer> ids) {
         functionComponentMapper.deleteBatchByComponentId(ids);
         componentMapper.deleteBatch(ids);
+        ids.stream().forEach(id -> {
+            List<ComponentCompany> componentCompanies = componentCompanyMapper.selectByComponentId(id);
+            if (componentCompanies != null && componentCompanies.size() > 0) {
+                componentCompanyMapper.deleteByComponentId(id);
+            }
+        });
     }
 
     @Override
@@ -61,12 +78,17 @@ public class ComponentServiceImpl implements ComponentService{
     }
 
     @Override
-    public int insertSelective(Component record) {
+    @Transactional(rollbackFor = Exception.class)
+    public int insertSelective(ComponentVo record) {
         Component component = componentMapper.selectByComponentName(record.getComponentName());
         if (Objects.nonNull(component)) {
             throw new BusinessException(COMPONENT_NAME_EXIT);
         }
-        return componentMapper.insertSelective(record);
+        int i = componentMapper.insertSelective(record);
+        // 添加组件与客户的关联关系
+        batchInsertComponentCompany(record);
+
+        return i;
     }
 
 
@@ -77,7 +99,7 @@ public class ComponentServiceImpl implements ComponentService{
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int updateByPrimaryKeySelective(Component record) {
+    public int updateByPrimaryKeySelective(ComponentVo record) {
         int i = componentMapper.updateByPrimaryKeySelective(record);
         // 校验
         try {
@@ -85,9 +107,31 @@ public class ComponentServiceImpl implements ComponentService{
         } catch (Exception e) {
             throw new BusinessException(COMPONENT_NAME_EXIT);
         }
+        List<ComponentCompany> componentCompanies = componentCompanyMapper.selectByComponentId(record.getId());
+        if (componentCompanies != null && componentCompanies.size() > 0) {
+            componentCompanyMapper.deleteByComponentId(record.getId());
+        }
+        batchInsertComponentCompany(record);
         return i;
     }
 
+    /**
+     * 添加功能与客户的关联关系
+     * @param record
+     */
+    private void batchInsertComponentCompany(ComponentVo record) {
+        List<ComponentCompany> componentCompanies = new ArrayList<>();
+        String companyIds = record.getCompanyIds();
+        if (companyIds == null || companyIds == "") return;
+
+        Arrays.asList(companyIds.split(",")).stream().forEach(v -> {
+            ComponentCompany componentCompany = new ComponentCompany();
+            componentCompany.setComponentId(record.getId());
+            componentCompany.setCompanyId(Integer.parseInt(v));
+            componentCompanies.add(componentCompany);
+        });
+        componentCompanyMapper.batchInsert(componentCompanies);
+    }
 
 
 }

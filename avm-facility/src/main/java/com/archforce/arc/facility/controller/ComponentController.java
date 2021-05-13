@@ -1,6 +1,7 @@
 package com.archforce.arc.facility.controller;
 
 import com.archforce.arc.facility.entity.avm.component.Component;
+import com.archforce.arc.facility.entity.vo.ComponentVo;
 import com.archforce.arc.facility.service.component.ComponentService;
 import com.archforce.arc.facility.utils.PageInfo;
 import com.archforce.arc.facility.utils.QueryVo;
@@ -26,14 +27,14 @@ public class ComponentController {
     }
 
     @PostMapping("/add")
-    public ResBody insertSelective(@RequestBody Component component) {
-        componentService.insertSelective(component);
+    public ResBody insertSelective(@RequestBody ComponentVo componentVo) {
+        componentService.insertSelective(componentVo);
         return ResBody.ok();
     }
 
     @PostMapping("/update")
-    public ResBody updateByPrimaryKeySelective(@RequestBody Component component) {
-        componentService.updateByPrimaryKeySelective(component);
+    public ResBody updateByPrimaryKeySelective(@RequestBody ComponentVo componentVo) {
+        componentService.updateByPrimaryKeySelective(componentVo);
         return ResBody.ok();
     }
 

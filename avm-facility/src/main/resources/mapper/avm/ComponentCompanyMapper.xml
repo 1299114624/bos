@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.arc.facility.mapper.avm.ComponentCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.component.ComponentCompany">
+    <!--@mbg.generated-->
+    <!--@Table t_component_company-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="component_id" jdbcType="INTEGER" property="componentId" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, component_id, company_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_component_company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByComponentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_component_company
+    where component_id = #{componentId,jdbcType=INTEGER}
+  </select>
+  <select id="selectCompanyNamesByComponentId" resultType="java.lang.String">
+    SELECT GROUP_CONCAT(ccc.company_name)
+    FROM
+    (SELECT tcc.component_id, tc.company_name FROM `t_component_company` tcc
+    LEFT JOIN t_company tc ON tcc.company_id = tc.id) ccc
+    WHERE ccc.component_id = #{componentId,jdbcType=INTEGER}
+    GROUP BY ccc.component_id
+</select>
+  <select id="selectCompanyIdsByComponentId" resultType="java.lang.String">
+    SELECT GROUP_CONCAT(ccc.company_id)
+    FROM
+    (SELECT tcc.component_id, tcc.company_id FROM `t_component_company` tcc) ccc
+    WHERE ccc.component_id = #{componentId,jdbcType=INTEGER}
+    GROUP BY ccc.component_id
+</select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_component_company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByComponentId" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_component_company
+    where component_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_component_company
+    (component_id, company_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.componentId,jdbcType=INTEGER}, #{item.companyId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>

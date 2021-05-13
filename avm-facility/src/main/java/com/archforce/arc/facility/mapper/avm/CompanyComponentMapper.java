@@ -18,4 +18,5 @@ public interface CompanyComponentMapper {
     Page<CompanyComponentInfo> getCompanyCom(CompanyComponentInfo companyComponentInfo);
 
     List<CompanyComponentInfo> getDisCompanyCom(CompanyComponentInfo companyComponentInfo);
+
 }

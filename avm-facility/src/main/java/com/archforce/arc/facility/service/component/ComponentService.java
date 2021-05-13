@@ -15,11 +15,11 @@ public interface ComponentService{
 
     int deleteByPrimaryKey(Integer id);
 
-    int insertSelective(Component record);
+    int insertSelective(ComponentVo record);
 
     Component selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Component record);
+    int updateByPrimaryKeySelective(ComponentVo record);
 
     List<Component> getAllComponnetList();
 }

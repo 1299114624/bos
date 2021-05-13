@@ -5,6 +5,7 @@ import com.archforce.arc.facility.entity.avm.component.Component;
 public class CompanyComponentInfo extends Component {
     private Integer companyId;
     private Integer productId;
+    private Integer companyComponentId;
 
     public Integer getCompanyId() {
         return companyId;
@@ -20,5 +21,13 @@ public class CompanyComponentInfo extends Component {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
+    }
+
+    public Integer getCompanyComponentId() {
+        return companyComponentId;
+    }
+
+    public void setCompanyComponentId(Integer companyComponentId) {
+        this.companyComponentId = companyComponentId;
     }
 }

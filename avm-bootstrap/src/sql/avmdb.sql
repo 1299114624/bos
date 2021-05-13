@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 28/04/2021 09:53:58
+ Date: 13/05/2021 15:19:24
 */
 
 SET NAMES utf8mb4;
@@ -55,7 +55,7 @@ INSERT INTO `t_company` VALUES (15, '中国银河证券股份有限公司', 'Chi
 INSERT INTO `t_company` VALUES (16, '国泰君安国际控股有限公司', 'Guotai Junan International Holdings Limited', '国泰君安', '', 0, '', '2021-03-01 14:41:30', '', '2021-03-01 14:41:30');
 INSERT INTO `t_company` VALUES (17, '东方证券股份有限公司', 'Orient Securities Company Limited', '东方证券', '', 0, '', '2021-03-01 14:42:23', '', '2021-03-01 14:42:23');
 INSERT INTO `t_company` VALUES (18, '国信证券股份有限公司', 'Guosen Securities Co.,Ltd', '国信证券', '', 0, '', '2021-03-01 14:43:00', '', '2021-03-01 14:43:00');
-INSERT INTO `t_company` VALUES (19, '天风证券股份有限公司', 'TF Securities Co.,Ltd', '天风证券', '', 0, '', '2021-03-01 14:43:41', '', '2021-03-01 14:43:41');
+INSERT INTO `t_company` VALUES (19, '天风证券股份有限公司', 'TF Securities Co.,Ltd', '天风证券', '', 0, '', '2021-05-01 02:29:47', '', '2021-05-01 10:29:46');
 INSERT INTO `t_company` VALUES (20, '中信建投证券股份有限公司', 'China Securities Co.,Ltd', '中信建投', '', 0, '', '2021-03-03 08:36:50', '', '2021-03-03 16:36:50');
 
 -- ----------------------------
@@ -68,7 +68,7 @@ CREATE TABLE `t_company_component`  (
   `product_id` int(0) NOT NULL DEFAULT -1 COMMENT 'productId',
   `component_id` int(0) NOT NULL DEFAULT -1 COMMENT 'componentId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_company_component' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_company_component' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_company_product
@@ -79,7 +79,7 @@ CREATE TABLE `t_company_product`  (
   `company_id` int(0) NOT NULL DEFAULT -1 COMMENT 'companyId',
   `product_id` int(0) NOT NULL DEFAULT -1 COMMENT 'productId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_company_product' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_company_product' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_company_product
@@ -87,7 +87,6 @@ CREATE TABLE `t_company_product`  (
 INSERT INTO `t_company_product` VALUES (9, 2, 6);
 INSERT INTO `t_company_product` VALUES (10, 10, 6);
 INSERT INTO `t_company_product` VALUES (11, 10, 8);
-INSERT INTO `t_company_product` VALUES (12, 19, 6);
 INSERT INTO `t_company_product` VALUES (13, 18, 6);
 INSERT INTO `t_company_product` VALUES (14, 17, 6);
 INSERT INTO `t_company_product` VALUES (15, 16, 6);
@@ -106,6 +105,7 @@ INSERT INTO `t_company_product` VALUES (27, 3, 6);
 INSERT INTO `t_company_product` VALUES (42, 20, 6);
 INSERT INTO `t_company_product` VALUES (43, 20, 7);
 INSERT INTO `t_company_product` VALUES (44, 20, 8);
+INSERT INTO `t_company_product` VALUES (46, 19, 6);
 
 -- ----------------------------
 -- Table structure for t_component
@@ -128,7 +128,7 @@ CREATE TABLE `t_component`  (
   `design_svn_address` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'designSvnAddress',
   `require_svn_address` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'requireSvnAddress',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_component' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_component' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_component
@@ -168,6 +168,27 @@ INSERT INTO `t_component` VALUES (34, 'Data Persistence', 'DP', '', 0, '数据�
 INSERT INTO `t_component` VALUES (35, '', 'RA', '', 0, '数据重演', '1', '', 0, '', '2021-04-13 11:16:54', '', '2021-04-13 11:16:54', '', '');
 
 -- ----------------------------
+-- Table structure for t_component_company
+-- ----------------------------
+DROP TABLE IF EXISTS `t_component_company`;
+CREATE TABLE `t_component_company`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `component_id` int(0) NOT NULL DEFAULT -1 COMMENT 'componentId',
+  `company_id` int(0) NOT NULL DEFAULT -1 COMMENT 'companyId',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_component_company' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_component_company
+-- ----------------------------
+INSERT INTO `t_component_company` VALUES (5, 6, 17);
+INSERT INTO `t_component_company` VALUES (6, 24, 15);
+INSERT INTO `t_component_company` VALUES (7, 23, 10);
+INSERT INTO `t_component_company` VALUES (8, 22, 20);
+INSERT INTO `t_component_company` VALUES (9, 13, 5);
+INSERT INTO `t_component_company` VALUES (10, 13, 6);
+
+-- ----------------------------
 -- Table structure for t_dict
 -- ----------------------------
 DROP TABLE IF EXISTS `t_dict`;
@@ -180,7 +201,7 @@ CREATE TABLE `t_dict`  (
   `sort_no` int(0) NOT NULL DEFAULT -1 COMMENT '排序',
   `status` int(0) NOT NULL DEFAULT -1 COMMENT '状态',
   `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '字典描述',
-  `add_time` datetime(0) NOT NULL DEFAULT '1000-01-01 00:00:00' COMMENT 'addTime',
+  `add_time` datetime(0) NOT NULL DEFAULT '1000-01-01 00:00:00' ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'addTime',
   `add_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'addUser',
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
   `update_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
@@ -198,6 +219,8 @@ INSERT INTO `t_dict` VALUES (5, 'html', '3', '前端', 'LanguageType', 3, 1, '',
 INSERT INTO `t_dict` VALUES (6, 'python', '4', 'Python', 'LanguageType', 4, 1, '', '2021-02-22 20:15:56', '', '2021-02-22 20:16:04', '');
 INSERT INTO `t_dict` VALUES (7, 'common', '0', '通用功能', 'FunctionType', 1, 1, '', '2021-02-22 20:15:56', '', '2021-02-22 20:16:04', '');
 INSERT INTO `t_dict` VALUES (8, 'customer', '1', '客制功能', 'FunctionType', 2, 1, '', '2021-02-22 20:15:56', '', '2021-02-22 20:16:04', '');
+INSERT INTO `t_dict` VALUES (9, ' commonCom', '0', '通用组件', 'ComponentType', 1, 1, '', '2021-05-12 15:38:45', '', '2021-05-12 15:38:52', '');
+INSERT INTO `t_dict` VALUES (10, 'customerCom', '1', '客制组件', 'ComponentType', 1, 1, '', '2021-05-12 15:39:42', '', '2021-05-12 15:39:47', '');
 
 -- ----------------------------
 -- Table structure for t_dict_category
@@ -211,7 +234,7 @@ CREATE TABLE `t_dict_category`  (
   `status` int(0) NOT NULL DEFAULT 1 COMMENT '状态 0停用   1启用',
   `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '字典描述',
   `maintain_type` int(0) NOT NULL DEFAULT 0 COMMENT '字典维护方式：0 不在界面维护  1 在界面维护',
-  `add_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT 'addTime',
+  `add_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'addTime',
   `add_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'addUser',
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
   `update_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
@@ -224,6 +247,7 @@ CREATE TABLE `t_dict_category`  (
 INSERT INTO `t_dict_category` VALUES (1, 'QuestionType', '问题类型', 1, 1, '', 0, '2021-02-22 20:19:53', '', '2021-02-22 20:19:57', '');
 INSERT INTO `t_dict_category` VALUES (2, 'LanguageType', '开发语言', 2, 1, '', 0, '2021-02-22 20:19:53', '', '2021-02-22 20:19:57', '');
 INSERT INTO `t_dict_category` VALUES (3, 'FunctionType', '功能类型', 3, 1, '', 0, '2021-02-22 20:19:53', '', '2021-03-05 16:06:44', '');
+INSERT INTO `t_dict_category` VALUES (4, 'ComponentType', '组件类型', 4, 1, '', 0, '2021-05-12 15:36:17', '', '2021-05-12 15:36:21', '');
 
 -- ----------------------------
 -- Table structure for t_function
@@ -295,7 +319,7 @@ CREATE TABLE `t_function_company`  (
   `function_id` int(0) NOT NULL DEFAULT -1 COMMENT 'functionId',
   `company_id` int(0) NOT NULL DEFAULT -1 COMMENT 'companyId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_function_company' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_function_company' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_function_component
@@ -449,7 +473,29 @@ CREATE TABLE `t_product_component`  (
   `product_id` int(0) NOT NULL DEFAULT -1 COMMENT 'productId',
   `component_id` int(0) NOT NULL DEFAULT -1 COMMENT 'componentId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_product_component' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_product_component' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_product_component
+-- ----------------------------
+INSERT INTO `t_product_component` VALUES (7, 6, 5);
+INSERT INTO `t_product_component` VALUES (8, 7, 5);
+INSERT INTO `t_product_component` VALUES (9, 7, 7);
+INSERT INTO `t_product_component` VALUES (10, 7, 8);
+INSERT INTO `t_product_component` VALUES (11, 6, 4);
+INSERT INTO `t_product_component` VALUES (12, 6, 7);
+INSERT INTO `t_product_component` VALUES (13, 6, 9);
+INSERT INTO `t_product_component` VALUES (14, 6, 10);
+INSERT INTO `t_product_component` VALUES (15, 6, 11);
+INSERT INTO `t_product_component` VALUES (16, 6, 12);
+INSERT INTO `t_product_component` VALUES (17, 6, 10);
+INSERT INTO `t_product_component` VALUES (18, 6, 11);
+INSERT INTO `t_product_component` VALUES (19, 6, 12);
+INSERT INTO `t_product_component` VALUES (20, 6, 22);
+INSERT INTO `t_product_component` VALUES (21, 6, 7);
+INSERT INTO `t_product_component` VALUES (22, 6, 9);
+INSERT INTO `t_product_component` VALUES (23, 6, 12);
+INSERT INTO `t_product_component` VALUES (24, 6, 22);
 
 -- ----------------------------
 -- Table structure for t_user
