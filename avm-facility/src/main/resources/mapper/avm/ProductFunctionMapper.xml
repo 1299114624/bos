@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.arc.facility.mapper.avm.ProductFunctionMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.product.ProductFunction">
+    <!--@mbg.generated-->
+    <!--@Table t_product_function-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="function_id" jdbcType="INTEGER" property="functionId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, product_id, function_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_product_function
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_product_function
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_product_function
+    (product_id, function_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.productId,jdbcType=INTEGER}, #{item.functionId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+<select id="selectFunctionIdsByProductIds" resultType="java.lang.String">
+    SELECT GROUP_CONCAT(ccc.function_id)
+    FROM
+    (SELECT tpf.product_id, tpf.function_id FROM `t_product_function` tpf) ccc
+    WHERE ccc.product_id = #{product_id,jdbcType=INTEGER}
+    GROUP BY ccc.product_id
+</select>
+</mapper>

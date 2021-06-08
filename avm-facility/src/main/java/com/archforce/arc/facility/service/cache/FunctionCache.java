@@ -6,16 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Service
 public class FunctionCache {
     @Autowired
     FunctionMapper functionMapper;
 
-    private Map<String, FunctionVo> functionVoMap = new ConcurrentHashMap<>();
+    private Map<Integer, FunctionVo> functionVoMap = new ConcurrentHashMap<>();
 
     private List<FunctionVo> allFunctions;
 
@@ -24,7 +27,7 @@ public class FunctionCache {
         allFunctions = functionMapper.selectAllFunctionVo();
         functionVoMap.clear();
         for (FunctionVo functionVo : allFunctions) {
-            functionVoMap.put(functionVo.getFunctionCode(), functionVo);
+            functionVoMap.put(functionVo.getId(), functionVo);
         }
     }
 
@@ -32,7 +35,15 @@ public class FunctionCache {
         return allFunctions;
     }
 
-    public FunctionVo getByCode(String code) {
-        return functionVoMap.get(code);
+    public FunctionVo getById(Integer id) {
+        return functionVoMap.get(id);
+    }
+
+    public List<FunctionVo> getByIds(String ids) {
+        ArrayList<String> idList = new ArrayList<>(Arrays.asList(ids.split(",")));
+        List<FunctionVo> collect = idList.stream().map(item -> {
+            return functionVoMap.get(Integer.parseInt(item));
+        }).collect(Collectors.toList());
+        return collect;
     }
 }

@@ -46,11 +46,48 @@ public class TreeUtils {
      * @param leaves 需要展示的树节点集合
      * @return
      */
-    public static List<AvmTree> getTreeList(List<AvmTree> list, List<AvmTree> leaves) {
+    public static List<AvmTree> filterLeafTree(List<AvmTree> list, List<AvmTree> leaves) {
         Set<AvmTree> pList = new HashSet<>();
+        Map<String, AvmTree> idMap = new HashMap<>();
+        for (AvmTree tree : list) {
+            idMap.put(tree.getCode(), tree);
+        }
+
+        Set<AvmTree> parentList = new HashSet<>();
+        for (AvmTree leaf : leaves) {
+            parentList.add(leaf);
+            parentList.addAll(getParentList(idMap, leaf));
+        }
+
+        pList.addAll(parentList);
         return new ArrayList<>(pList);
     }
 
+    /**
+     * 递归获取父亲节点
+     * @param idMap
+     * @param leaf
+     * @return
+     */
+    private static Set<AvmTree> getParentList(Map<String, AvmTree> idMap, AvmTree leaf) {
+        Set<AvmTree> pSet = new HashSet<>();
+        if (leaf == null || leaf.isRoot()) {
+            return pSet;
+        } else {
+            AvmTree p = idMap.get(leaf.getParentCode());
+            if (p != null) {
+                pSet.add(p);
+                pSet.addAll(getParentList(idMap, p));
+            }
+            return pSet;
+        }
+    }
+
+    public static List<AvmTree> filterLeafTree(List<? extends AvmTreeConverter> list, List<? extends AvmTreeConverter> leaves, Boolean bool) {
+        List<AvmTree> listNodes = list.stream().map(node -> node.toAvmTree()).collect(Collectors.toList());
+        List<AvmTree> leafNodes = leaves.stream().map(node -> node.toAvmTree()).collect(Collectors.toList());
+        return filterLeafTree(listNodes, leafNodes);
+    }
 
 
     /**
