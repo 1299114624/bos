@@ -1,5 +1,6 @@
 package com.archforce.arc.facility.config;
 
+import org.mapstruct.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,12 @@ public class DataSourceConfig {
     @Bean(name = "zentaoDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.zentao")
     public DataSource zentaoDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean(name = "domainConfigDataSource")
+    @ConfigurationProperties(prefix = "domainconfigdb.datasource")
+    public DataSource domainConfigDataSource() {
         return DataSourceBuilder.create().build();
     }
 }

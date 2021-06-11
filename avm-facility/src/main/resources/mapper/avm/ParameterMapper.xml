@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.arc.facility.mapper.avm.ParameterMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.Parameter">
+    <!--@mbg.generated-->
+    <!--@Table t_parameter-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="para_type" jdbcType="VARCHAR" property="paraType" />
+    <result column="para_name" jdbcType="VARCHAR" property="paraName" />
+    <result column="para_value" jdbcType="VARCHAR" property="paraValue" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="para_desc" jdbcType="VARCHAR" property="paraDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, para_type, para_name, para_value, `status`, para_desc
+  </sql>
+  <select id="selectByParamName" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM t_parameter WHERE para_name=#{paramName}
+</select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_parameter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.arc.facility.entity.avm.Parameter" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_parameter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="paraType != null">
+        para_type,
+      </if>
+      <if test="paraName != null">
+        para_name,
+      </if>
+      <if test="paraValue != null">
+        para_value,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="paraDesc != null">
+        para_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="paraType != null">
+        #{paraType,jdbcType=VARCHAR},
+      </if>
+      <if test="paraName != null">
+        #{paraName,jdbcType=VARCHAR},
+      </if>
+      <if test="paraValue != null">
+        #{paraValue,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="paraDesc != null">
+        #{paraDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.archforce.arc.facility.entity.avm.Parameter">
+    <!--@mbg.generated-->
+    update t_parameter
+    set para_type = #{paraType,jdbcType=VARCHAR},
+      para_name = #{paraName,jdbcType=VARCHAR},
+      para_value = #{paraValue,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      para_desc = #{paraDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

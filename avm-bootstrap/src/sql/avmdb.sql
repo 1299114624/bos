@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 13/05/2021 15:19:24
+ Date: 11/06/2021 16:32:06
 */
 
 SET NAMES utf8mb4;
@@ -206,7 +206,7 @@ CREATE TABLE `t_dict`  (
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
   `update_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_dict' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_dict' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_dict
@@ -239,7 +239,7 @@ CREATE TABLE `t_dict_category`  (
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
   `update_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_dict_category' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_dict_category' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_dict_category
@@ -319,7 +319,7 @@ CREATE TABLE `t_function_company`  (
   `function_id` int(0) NOT NULL DEFAULT -1 COMMENT 'functionId',
   `company_id` int(0) NOT NULL DEFAULT -1 COMMENT 'companyId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_function_company' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_function_company' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_function_component
@@ -439,6 +439,60 @@ INSERT INTO `t_function_group` VALUES (49, 'OSS03-系统运维', '3463dd00-9d36-
 INSERT INTO `t_function_group` VALUES (50, 'OSS04-系统监控', '9416cee6-c62a-40da-917e-5153215fe863', '9b574de5-2d71-4641-a2cd-5daff02bc6c4', '', 0);
 
 -- ----------------------------
+-- Table structure for t_member
+-- ----------------------------
+DROP TABLE IF EXISTS `t_member`;
+CREATE TABLE `t_member`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `account` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `pass_word` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '密码',
+  `real_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '真实名称',
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'email',
+  `ip` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'ip',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_user' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_member
+-- ----------------------------
+INSERT INTO `t_member` VALUES (1, 'liyunchong', '', '李云翀', '', '');
+INSERT INTO `t_member` VALUES (2, 'niliqiong', '', '倪丽琼', '', '');
+INSERT INTO `t_member` VALUES (3, 'huangguangli', '', '黄广立', '', '');
+INSERT INTO `t_member` VALUES (4, 'yanhongzhi', '', '闫红智', '', '');
+INSERT INTO `t_member` VALUES (5, 'panbo', '', '潘博', '', '');
+INSERT INTO `t_member` VALUES (6, 'fengxiangyang', '', '冯向阳', '', '');
+INSERT INTO `t_member` VALUES (7, 'chenkang', '', '陈康', '', '');
+INSERT INTO `t_member` VALUES (8, 'weidongdong', '', '魏冬冬', '', '');
+INSERT INTO `t_member` VALUES (9, 'hefatao', '', '何发涛', '', '');
+INSERT INTO `t_member` VALUES (10, 'zhuxiaowu', '', '朱晓武', '', '');
+INSERT INTO `t_member` VALUES (11, 'zhangyu', '', '张玉', '', '');
+INSERT INTO `t_member` VALUES (12, 'tiantao', '', '田涛', '', '');
+INSERT INTO `t_member` VALUES (13, 'chenquan', '', '陈权', '', '');
+INSERT INTO `t_member` VALUES (14, 'hujun', '', '胡军', '', '');
+INSERT INTO `t_member` VALUES (15, 'songwenhui', '', '宋文慧', '', '');
+INSERT INTO `t_member` VALUES (16, 'zhoushengbing', '', '周胜兵', '', '');
+INSERT INTO `t_member` VALUES (17, 'rulong', '', '汝龙', '', '');
+
+-- ----------------------------
+-- Table structure for t_parameter
+-- ----------------------------
+DROP TABLE IF EXISTS `t_parameter`;
+CREATE TABLE `t_parameter`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `para_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '类别',
+  `para_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '名称',
+  `para_value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '值',
+  `status` int(0) NOT NULL DEFAULT -1 COMMENT '状态（1启用 2禁用）',
+  `para_desc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '描述',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_sys_parameter' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_parameter
+-- ----------------------------
+INSERT INTO `t_parameter` VALUES (1, 'web', 'bos.config.loginType', '0', 1, '0 BOS 1 标准 SSO 2 客户用户名密码模式 3 客户用户名密码+token验证模式');
+
+-- ----------------------------
 -- Table structure for t_product
 -- ----------------------------
 DROP TABLE IF EXISTS `t_product`;
@@ -498,38 +552,14 @@ INSERT INTO `t_product_component` VALUES (23, 6, 12);
 INSERT INTO `t_product_component` VALUES (24, 6, 22);
 
 -- ----------------------------
--- Table structure for t_user
+-- Table structure for t_product_function
 -- ----------------------------
-DROP TABLE IF EXISTS `t_user`;
-CREATE TABLE `t_user`  (
+DROP TABLE IF EXISTS `t_product_function`;
+CREATE TABLE `t_product_function`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `account` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户名',
-  `pass_word` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '密码',
-  `real_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '真实名称',
-  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'email',
-  `ip` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'ip',
+  `product_id` int(0) NOT NULL DEFAULT -1 COMMENT 'productId',
+  `function_id` int(0) NOT NULL DEFAULT -1 COMMENT 'functionId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_user' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of t_user
--- ----------------------------
-INSERT INTO `t_user` VALUES (1, 'liyunchong', '', '李云翀', '', '');
-INSERT INTO `t_user` VALUES (2, 'niliqiong', '', '倪丽琼', '', '');
-INSERT INTO `t_user` VALUES (3, 'huangguangli', '', '黄广立', '', '');
-INSERT INTO `t_user` VALUES (4, 'yanhongzhi', '', '闫红智', '', '');
-INSERT INTO `t_user` VALUES (5, 'panbo', '', '潘博', '', '');
-INSERT INTO `t_user` VALUES (6, 'fengxiangyang', '', '冯向阳', '', '');
-INSERT INTO `t_user` VALUES (7, 'chenkang', '', '陈康', '', '');
-INSERT INTO `t_user` VALUES (8, 'weidongdong', '', '魏冬冬', '', '');
-INSERT INTO `t_user` VALUES (9, 'hefatao', '', '何发涛', '', '');
-INSERT INTO `t_user` VALUES (10, 'zhuxiaowu', '', '朱晓武', '', '');
-INSERT INTO `t_user` VALUES (11, 'zhangyu', '', '张玉', '', '');
-INSERT INTO `t_user` VALUES (12, 'tiantao', '', '田涛', '', '');
-INSERT INTO `t_user` VALUES (13, 'chenquan', '', '陈权', '', '');
-INSERT INTO `t_user` VALUES (14, 'hujun', '', '胡军', '', '');
-INSERT INTO `t_user` VALUES (15, 'songwenhui', '', '宋文慧', '', '');
-INSERT INTO `t_user` VALUES (16, 'zhoushengbing', '', '周胜兵', '', '');
-INSERT INTO `t_user` VALUES (17, 'rulong', '', '汝龙', '', '');
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_product_function' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -3,7 +3,7 @@ package com.archforce.arc.facility.entity.common;
 /**
  * t_user
  */
-public class User {
+public class Member {
     /**
      * id
      */

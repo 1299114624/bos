@@ -16,6 +16,15 @@ public class LogUtils {
         }
     }
 
+    public static void warn(Class clz, String title, String message) {
+        Logger logger = getLogger(clz);
+        if (logger.isWarnEnabled()) {
+            StringBuilder s = new StringBuilder();
+            s.append(title).append(SPLICE).append(message);
+            logger.warn(s.toString());
+        }
+    }
+
     public static void info(Class clz, String title, String message, Object... objects) {
         Logger logger = getLogger(clz);
         if (logger.isInfoEnabled()) {
