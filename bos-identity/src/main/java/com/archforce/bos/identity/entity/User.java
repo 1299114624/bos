@@ -1,6 +1,7 @@
 package com.archforce.bos.identity.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * t_user
@@ -50,6 +51,39 @@ public class User {
      * dataStatus
      */
     private Integer dataStatus;
+
+    /**
+     * 是否支持查询首页
+     */
+    private boolean isQueryHomeData = false;
+
+    /**
+     * 是否受限用户
+     */
+    private boolean isLimit;
+
+    /**
+     * 用户的角色列表
+     */
+    private List<Role> roles;
+
+    /**
+     * 权限编码数组
+     */
+    private List<String> permission;
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    /**
+     * 注销用户
+     */
+    private boolean isClose;
 
     public Integer getId() {
         return id;
@@ -121,5 +155,37 @@ public class User {
 
     public void setDataStatus(Integer dataStatus) {
         this.dataStatus = dataStatus;
+    }
+
+    public Boolean getIsLimit() {
+        return isLimit;
+    }
+
+    public void setIsLimit(Boolean isLimit) {
+        this.isLimit = isLimit;
+    }
+
+    public Boolean getIsClose() {
+        return isClose;
+    }
+
+    public void setIsClose(Boolean isClose) {
+        this.isClose = isClose;
+    }
+
+    public boolean getIsQueryHomeData() {
+        return isQueryHomeData;
+    }
+
+    public void setIsQueryHomeData(boolean isQueryHomeData) {
+        this.isQueryHomeData = isQueryHomeData;
+    }
+
+    public List<String> getPermission() {
+        return permission;
+    }
+
+    public void setPermission(List<String> permission) {
+        this.permission = permission;
     }
 }

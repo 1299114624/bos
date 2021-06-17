@@ -1,0 +1,11 @@
+
+-- DROP TABLE IF EXISTS t_role;
+CREATE TABLE t_role(
+	id BIGINT (15) NOT NULL AUTO_INCREMENT COMMENT 'id',
+	role_name VARCHAR (50) NOT NULL DEFAULT '' COMMENT '角色名称',
+	business_type INT (11) NOT NULL DEFAULT -1 COMMENT '业务类型',
+	account_range INT (11) NOT NULL DEFAULT -1 COMMENT '账户范围',
+	org_type INT (11) NOT NULL DEFAULT -1 COMMENT '组织类型',
+	description VARCHAR (50) NOT NULL DEFAULT '' COMMENT '描述',
+	PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 't_role';

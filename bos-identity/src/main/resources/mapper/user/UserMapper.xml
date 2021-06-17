@@ -13,11 +13,13 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="data_status" jdbcType="INTEGER" property="dataStatus" />
+    <result column="is_limit" jdbcType="BIT" property="isLimit" />
+    <result column="is_close" jdbcType="BIT" property="isClose" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, user_name, `password`, `name`, add_time, add_user, update_time, update_user, 
-    data_status
+    data_status, is_limit, is_close
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
