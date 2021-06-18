@@ -21,9 +21,22 @@
     id, user_name, `password`, `name`, add_time, add_user, update_time, update_user, 
     data_status, is_limit, is_close
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectOne"  resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where 1=1
+    <if test="id != null">
+    AND id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="userName != null">
+    AND user_name = #{userName,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
     <include refid="Base_Column_List" />
     from t_user
     where id = #{id,jdbcType=INTEGER}

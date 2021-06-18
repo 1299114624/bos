@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.bos.identity.mapper.ResourceMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.bos.identity.entity.Resource">
+    <!--@mbg.generated-->
+    <!--@Table t_resource-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="res_code" jdbcType="VARCHAR" property="resCode" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="disabled" jdbcType="INTEGER" property="disabled" />
+    <result column="ismenu" jdbcType="INTEGER" property="ismenu" />
+    <result column="menu_type" jdbcType="VARCHAR" property="menuType" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="orderby" jdbcType="INTEGER" property="orderby" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="add_user" jdbcType="VARCHAR" property="addUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, res_code, parent_id, app_name, menu_name, disabled, ismenu, menu_type, menu_url, 
+    orderby, description, add_time, add_user, update_time, update_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_resource
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_resource
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.archforce.bos.identity.entity.Resource" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_resource (res_code, parent_id, app_name, 
+      menu_name, disabled, ismenu, 
+      menu_type, menu_url, orderby, 
+      description, add_time, add_user, 
+      update_time, update_user)
+    values (#{resCode,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{appName,jdbcType=VARCHAR}, 
+      #{menuName,jdbcType=VARCHAR}, #{disabled,jdbcType=INTEGER}, #{ismenu,jdbcType=INTEGER}, 
+      #{menuType,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, #{orderby,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{addUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.archforce.bos.identity.entity.Resource">
+    <!--@mbg.generated-->
+    update t_resource
+    set res_code = #{resCode,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      app_name = #{appName,jdbcType=VARCHAR},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      disabled = #{disabled,jdbcType=INTEGER},
+      ismenu = #{ismenu,jdbcType=INTEGER},
+      menu_type = #{menuType,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      orderby = #{orderby,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user = #{addUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

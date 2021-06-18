@@ -1,12 +1,16 @@
 package com.archforce.bos.identity.entity;
 
+
+import com.archforce.arc.facility.entity.BaseEntity;
+
 import java.util.Date;
 import java.util.List;
 
 /**
  * t_user
  */
-public class User {
+public class User extends BaseEntity {
+    private static final long serialVersionUID = 7445079243713772691L;
     /**
      * id
      */

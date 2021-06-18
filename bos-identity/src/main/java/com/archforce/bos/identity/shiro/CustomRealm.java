@@ -17,6 +17,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 
@@ -58,7 +59,8 @@ public class CustomRealm extends AuthorizingRealm {
         if (StringUtils.isNotEmpty(account)) {
             User user = userService.getUserPermission(account);
             if (null != user) {
-                setSession(IdentityConstants.SESSION_USER, user);
+                this.setSession(IdentityConstants.SESSION_USER, user);
+                System.out.println(1);
                 return new SimpleAuthenticationInfo(account, user.getPassword(), getName());
             }
         }

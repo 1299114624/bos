@@ -1,6 +1,8 @@
 package com.archforce.bos.identity.entity;
 
-public class Role {
+import com.archforce.arc.facility.entity.BaseEntity;
+
+public class Role extends BaseEntity {
     private static final long serialVersionUID = 1L;
     private Integer id;
     /**

@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
@@ -93,6 +94,7 @@ public class UserController {
         Session session = subject.getSession();
         try {
             if (specialUserList(loginInfo.getUserName()) || IdentityConstants.SSO_LOGIN_TYPE_BOS.equals(loginType) || IdentityConstants.SSO_LOGIN_TYPE_CUSTOM_PASSWORD.equals(loginType)) {
+                Serializable id = session.getId();
                 subject.login(new UsernamePasswordToken(loginInfo.getUserName(), Encrypt.SHA256(loginInfo.getPassword())));
             } else {
                 subject.login(new UsernamePasswordToken(loginInfo.getUserName(), loginInfo.getPassword()));
@@ -102,6 +104,9 @@ public class UserController {
             session.removeAttribute(IdentityConstants.SESSION_USER);
             LogUtils.info(UserController.class, "登录时用户名或者密码错误", loginInfo.getUserName() + " close, login failed");
             return ResBody.error(new ApplicationException("10002"));
+        } catch (Exception e) {
+            Serializable id = session.getId();
+            e.printStackTrace();
         }
         return ResBody.ok(IdentityUtils.getSessionUser());
     }

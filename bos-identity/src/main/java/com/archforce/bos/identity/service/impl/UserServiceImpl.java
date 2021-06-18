@@ -27,7 +27,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserPermission(String userName) {
-        return null;
+        User query = new User();
+        query.setUserName(userName);
+        User user = userMapper.selectOne(query);
+        return user;
     }
 
     @Override
