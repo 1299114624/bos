@@ -44,6 +44,15 @@ public class LogUtils {
         }
     }
 
+    public static void trace(Class clz, String title, String message) {
+        Logger logger = getLogger(clz);
+        if (logger.isTraceEnabled()) {
+            StringBuilder s = new StringBuilder();
+            s.append(title).append(SPLICE).append(message);
+            logger.trace(s.toString());
+        }
+    }
+
     public static Logger getLogger(Class clz) {
         return LoggerFactory.getLogger(clz);
     }

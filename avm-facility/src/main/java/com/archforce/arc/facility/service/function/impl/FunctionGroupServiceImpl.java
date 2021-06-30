@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-import static com.archforce.arc.facility.exception.ErrorCodeConstant.FUNCTION_CODE_EXIT;
 import static com.archforce.arc.facility.exception.ErrorCodeConstant.FUNCTION_GROUP_NAME_EXIT;
 
 @Service

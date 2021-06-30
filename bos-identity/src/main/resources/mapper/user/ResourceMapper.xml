@@ -25,9 +25,16 @@
     id, res_code, parent_id, app_name, menu_name, disabled, ismenu, menu_type, menu_url, 
     orderby, description, add_time, add_user, update_time, update_user
   </sql>
+  <select id="getAllMenu"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_resource
+    where disabled = 1
+    ORDER BY orderby, id
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_resource
     where id = #{id,jdbcType=INTEGER}

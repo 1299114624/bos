@@ -20,10 +20,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
@@ -34,6 +31,7 @@ import java.util.*;
  */
 @RestController
 public class UserController {
+
     /**
      * BOS参数服务类
      */
@@ -109,6 +107,20 @@ public class UserController {
             e.printStackTrace();
         }
         return ResBody.ok(IdentityUtils.getSessionUser());
+    }
+
+    @RequestMapping(path = "/logout", method = RequestMethod.POST)
+    public ResBody logout() {
+        Subject subject = SecurityUtils.getSubject();
+        Session session = subject.getSession();
+        User user = IdentityUtils.getSessionUser();
+        String loginType = getParameterService(IdentityConstants.PARAMETER_BOS_CONFIG_LOGIN_TYPE);
+        final Boolean isSpecialUser = specialUserList(user.getUserName());
+        // 非特殊用户才执行SSO的逻辑
+        // ...待开发
+        session.removeAttribute(IdentityConstants.SESSION_USER);
+        subject.logout();
+        return ResBody.ok();
     }
 
     /**

@@ -60,7 +60,6 @@ public class CustomRealm extends AuthorizingRealm {
             User user = userService.getUserPermission(account);
             if (null != user) {
                 this.setSession(IdentityConstants.SESSION_USER, user);
-                System.out.println(1);
                 return new SimpleAuthenticationInfo(account, user.getPassword(), getName());
             }
         }

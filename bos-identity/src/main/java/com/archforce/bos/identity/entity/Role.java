@@ -1,8 +1,9 @@
 package com.archforce.bos.identity.entity;
 
-import com.archforce.arc.facility.entity.BaseEntity;
 
-public class Role extends BaseEntity {
+import java.io.Serializable;
+
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
     /**

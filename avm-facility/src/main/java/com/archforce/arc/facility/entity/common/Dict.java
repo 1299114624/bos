@@ -1,15 +1,15 @@
 package com.archforce.arc.facility.entity.common;
 
-import com.archforce.arc.facility.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * t_dict
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Dict extends BaseEntity {
+public class Dict implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * id

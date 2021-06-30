@@ -2,6 +2,8 @@ package com.archforce.bos.identity.mapper;
 
 import com.archforce.bos.identity.entity.Resource;
 
+import java.util.List;
+
 public interface ResourceMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -10,4 +12,6 @@ public interface ResourceMapper {
     Resource selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKey(Resource record);
+
+    List<Resource> getAllMenu();
 }

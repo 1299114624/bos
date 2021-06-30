@@ -6,6 +6,8 @@ import com.archforce.bos.identity.mapper.ResourceMapper;
 import com.archforce.bos.identity.entity.Resource;
 import com.archforce.bos.identity.service.ResourceService;
 
+import java.util.List;
+
 @Service
 public class ResourceServiceImpl implements ResourceService{
 
@@ -30,6 +32,12 @@ public class ResourceServiceImpl implements ResourceService{
     @Override
     public int updateByPrimaryKey(Resource record) {
         return resourceMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<Resource> getAllMenu() {
+        List<Resource> resourceList = resourceMapper.getAllMenu();
+        return resourceList;
     }
 
 }

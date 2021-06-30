@@ -18,7 +18,9 @@
   <modules>
     <module>avm-bootstrap</module>
     <module>avm-common</module>
-      <module>bos-identity</module>
+    <module>bos-identity</module>
+    <module>avm-facility</module>
+    <module>domain-config-client</module>
   </modules>
 
   <properties>

@@ -1,10 +1,11 @@
 package com.archforce.arc.facility.entity.common;
 
-import com.archforce.arc.facility.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.io.Serializable;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DictCategory extends BaseEntity {
+public class DictCategory implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * id

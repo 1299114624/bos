@@ -1,12 +1,8 @@
 package com.archforce.bos.identity.config;
 
 import com.archforce.bos.identity.service.ResourceService;
-import com.archforce.bos.identity.shiro.CustomRealm;
-import com.archforce.bos.identity.shiro.IdentityConfig;
-import com.archforce.bos.identity.shiro.ShiroPermissionFactory;
+import com.archforce.bos.identity.shiro.*;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
-import org.apache.shiro.session.mgt.DefaultSessionManager;
-import org.apache.shiro.session.mgt.SimpleSession;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -34,7 +30,7 @@ public class IdentityShiroConfig {
         defaultWebSessionManager.setGlobalSessionTimeout(identityConfig.getExpireTime());
         defaultWebSessionManager.setSessionValidationSchedulerEnabled(true);
         defaultWebSessionManager.setSessionIdCookie(simpleCookie());
-        defaultWebSessionManager.setGlobalSessionTimeout(60 * 1000);
+//        defaultWebSessionManager.setGlobalSessionTimeout(10 * 1000);
         return defaultWebSessionManager;
     }
 
@@ -72,7 +68,12 @@ public class IdentityShiroConfig {
                                                          IdentityConfig identityConfig, @Qualifier("kaptchaFilter") Filter kaptchaFilter) {
         ShiroPermissionFactory shiroPermissionFactory = new ShiroPermissionFactory();
         shiroPermissionFactory.setSecurityManager(securityManager);
-        shiroPermissionFactory.setLoginUrl("/login");
+        shiroPermissionFactory.setResourceService(resourceService); //AjaxAuthenticationFilter
+        shiroPermissionFactory.setIdentityConfig(identityConfig);
+        shiroPermissionFactory.getFilters().put("authc", new AjaxAuthenticationFilter());
+        shiroPermissionFactory.getFilters().put("resources", new AnyResourcesAuthorizationFilter());
+        shiroPermissionFactory.setFilterChainDefinitions(ShiroPermissionFactory.definition);
+
         return shiroPermissionFactory;
     }
 
