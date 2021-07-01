@@ -98,7 +98,6 @@ public class ReadDbPropertiesPostProcessor implements EnvironmentPostProcessor, 
                                     if (CollectionUtils.isEmpty(moduleParamList)) {
                                         throw new RuntimeException("There is no params, module_code is " + moduleCode);
                                     }
-
                                     List<Map<String, Object>> moduleParamList2 = dataUtil.getBrokerParams(connectParams, appId, moduleCode, instanceName);
                                     moduleParamList.addAll(moduleParamList2);
                                     Properties newProperties = new Properties();
@@ -148,11 +147,37 @@ public class ReadDbPropertiesPostProcessor implements EnvironmentPostProcessor, 
     }
 
     private void setEnv(Properties envProperties, Map<String, Object> item) {
-
+        String paraName = item.get("para_name").toString().trim();
+        String paraValue = item.get("para_value").toString();
+        if (!StringUtils.isEmpty(item.get("is_encrypt")) && Boolean.valueOf(item.get("is_encrypt").toString())) {
+            try {
+                paraValue = EncryptUtil.decode(paraValue);
+            } catch (Exception var6) {
+                throw new RuntimeException("Environment parameter encrypt decode fail, parameter name:" + paraName +", parameter value:" + paraValue);
+            }
+        }
+        envProperties.put(paraName, paraValue);
     }
 
     private void setParams(Properties newProperties, Properties envProperties, Map<String, Object> item) {
+        String paraValue = "";
+        if (!StringUtils.isEmpty(item.get("para_value"))) {
+            paraValue = item.get("para_value").toString().trim();
+        }
+        String paraName = item.get("para_name").toString().trim();
+        if (!StringUtils.isEmpty(paraValue) && !StringUtils.isEmpty(item.get("is_encrypt")) && Boolean.valueOf(item.get("is_encrypt").toString())) {
+            try {
+                paraValue = EncryptUtil.decode(paraValue);
+            } catch (Exception var7) {
+                throw new RuntimeException("Sys parameter Encrypt decode fail,module name:" + item.get("module_code") + ", parameter name:" + paraName + ", parameter value:" + paraValue);
+            }
+        }
 
+        paraValue = this.helper.replacePlaceholders(paraValue, envProperties);
+        newProperties.put(paraName, paraValue);
+        if (paraName.startsWith("log.config")) {
+            System.setProperty(paraName, paraValue);
+        }
     }
 
     @Override

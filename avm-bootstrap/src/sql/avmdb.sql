@@ -3,15 +3,15 @@
 
  Source Server         : 127.0.0.1
  Source Server Type    : MySQL
- Source Server Version : 80020
+ Source Server Version : 50734
  Source Host           : 127.0.0.1:3306
  Source Schema         : avmdb
 
  Target Server Type    : MySQL
- Target Server Version : 80020
+ Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 11/06/2021 16:32:06
+ Date: 01/07/2021 19:41:32
 */
 
 SET NAMES utf8mb4;
@@ -22,18 +22,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `t_company`;
 CREATE TABLE `t_company`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `company_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '公司名称',
-  `english_company_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '公司英文名称',
-  `simple_company_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '公司简称',
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '描述',
-  `del_status` int(0) NOT NULL DEFAULT 0 COMMENT '删除状态\r\n\r\n',
-  `update_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '更新人',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `company_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '公司名称',
+  `english_company_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '公司英文名称',
+  `simple_company_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '公司简称',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '描述',
+  `del_status` int(11) NOT NULL DEFAULT 0 COMMENT '删除状态\r\n\r\n',
+  `update_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '更新人',
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
-  `add_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '添加人',
+  `add_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '添加人',
   `add_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '添加时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_company' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_company' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_company
@@ -63,23 +63,23 @@ INSERT INTO `t_company` VALUES (20, '中信建投证券股份有限公司', 'Chi
 -- ----------------------------
 DROP TABLE IF EXISTS `t_company_component`;
 CREATE TABLE `t_company_component`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `company_id` int(0) NOT NULL DEFAULT -1 COMMENT 'companyId',
-  `product_id` int(0) NOT NULL DEFAULT -1 COMMENT 'productId',
-  `component_id` int(0) NOT NULL DEFAULT -1 COMMENT 'componentId',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `company_id` int(11) NOT NULL DEFAULT -1 COMMENT 'companyId',
+  `product_id` int(11) NOT NULL DEFAULT -1 COMMENT 'productId',
+  `component_id` int(11) NOT NULL DEFAULT -1 COMMENT 'componentId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_company_component' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_company_component' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_company_product
 -- ----------------------------
 DROP TABLE IF EXISTS `t_company_product`;
 CREATE TABLE `t_company_product`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `company_id` int(0) NOT NULL DEFAULT -1 COMMENT 'companyId',
-  `product_id` int(0) NOT NULL DEFAULT -1 COMMENT 'productId',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `company_id` int(11) NOT NULL DEFAULT -1 COMMENT 'companyId',
+  `product_id` int(11) NOT NULL DEFAULT -1 COMMENT 'productId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_company_product' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_company_product' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_company_product
@@ -112,23 +112,23 @@ INSERT INTO `t_company_product` VALUES (46, 19, 6);
 -- ----------------------------
 DROP TABLE IF EXISTS `t_component`;
 CREATE TABLE `t_component`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `component_english_name` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'componentEnglishName',
-  `component_name` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'componentName',
-  `component_code` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'componentCode',
-  `component_type` int(0) NOT NULL DEFAULT 0 COMMENT 'componentType',
-  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'description',
-  `language_type` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'languageType',
-  `chargeman` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'chargeman',
-  `del_status` int(0) NOT NULL DEFAULT 0 COMMENT 'delStatus',
-  `update_user` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `component_english_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'componentEnglishName',
+  `component_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'componentName',
+  `component_code` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'componentCode',
+  `component_type` int(11) NOT NULL DEFAULT 0 COMMENT 'componentType',
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'description',
+  `language_type` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'languageType',
+  `chargeman` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'chargeman',
+  `del_status` int(11) NOT NULL DEFAULT 0 COMMENT 'delStatus',
+  `update_user` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
-  `add_user` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'addUser',
+  `add_user` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'addUser',
   `add_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'addTime',
-  `design_svn_address` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'designSvnAddress',
-  `require_svn_address` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'requireSvnAddress',
+  `design_svn_address` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'designSvnAddress',
+  `require_svn_address` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'requireSvnAddress',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_component' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_component' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_component
@@ -172,11 +172,11 @@ INSERT INTO `t_component` VALUES (35, '', 'RA', '', 0, '数据重演', '1', '', 
 -- ----------------------------
 DROP TABLE IF EXISTS `t_component_company`;
 CREATE TABLE `t_component_company`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `component_id` int(0) NOT NULL DEFAULT -1 COMMENT 'componentId',
-  `company_id` int(0) NOT NULL DEFAULT -1 COMMENT 'companyId',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `component_id` int(11) NOT NULL DEFAULT -1 COMMENT 'componentId',
+  `company_id` int(11) NOT NULL DEFAULT -1 COMMENT 'companyId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_component_company' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_component_company' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_component_company
@@ -193,20 +193,20 @@ INSERT INTO `t_component_company` VALUES (10, 13, 6);
 -- ----------------------------
 DROP TABLE IF EXISTS `t_dict`;
 CREATE TABLE `t_dict`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `dict_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '编码',
-  `dict_value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '值',
-  `dict_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '名称',
-  `category_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '类型编码',
-  `sort_no` int(0) NOT NULL DEFAULT -1 COMMENT '排序',
-  `status` int(0) NOT NULL DEFAULT -1 COMMENT '状态',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '字典描述',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `dict_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '编码',
+  `dict_value` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '值',
+  `dict_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '名称',
+  `category_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '类型编码',
+  `sort_no` int(11) NOT NULL DEFAULT -1 COMMENT '排序',
+  `status` int(11) NOT NULL DEFAULT -1 COMMENT '状态',
+  `remark` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '字典描述',
   `add_time` datetime(0) NOT NULL DEFAULT '1000-01-01 00:00:00' ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'addTime',
-  `add_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'addUser',
+  `add_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'addUser',
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
-  `update_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
+  `update_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_dict' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_dict' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_dict
@@ -227,19 +227,19 @@ INSERT INTO `t_dict` VALUES (10, 'customerCom', '1', '客制组件', 'ComponentT
 -- ----------------------------
 DROP TABLE IF EXISTS `t_dict_category`;
 CREATE TABLE `t_dict_category`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `category_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '编码',
-  `category_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '名称',
-  `sort_no` int(0) NOT NULL DEFAULT 0 COMMENT '排序',
-  `status` int(0) NOT NULL DEFAULT 1 COMMENT '状态 0停用   1启用',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '字典描述',
-  `maintain_type` int(0) NOT NULL DEFAULT 0 COMMENT '字典维护方式：0 不在界面维护  1 在界面维护',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `category_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '编码',
+  `category_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '名称',
+  `sort_no` int(11) NOT NULL DEFAULT 0 COMMENT '排序',
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '状态 0停用   1启用',
+  `remark` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '字典描述',
+  `maintain_type` int(11) NOT NULL DEFAULT 0 COMMENT '字典维护方式：0 不在界面维护  1 在界面维护',
   `add_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'addTime',
-  `add_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'addUser',
+  `add_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'addUser',
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
-  `update_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
+  `update_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_dict_category' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_dict_category' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_dict_category
@@ -254,18 +254,18 @@ INSERT INTO `t_dict_category` VALUES (4, 'ComponentType', '组件类型', 4, 1, 
 -- ----------------------------
 DROP TABLE IF EXISTS `t_function`;
 CREATE TABLE `t_function`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `function_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '功能名称',
-  `function_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '功能编号',
-  `function_type` int(0) NOT NULL DEFAULT 0 COMMENT '0通用共能，1客制功能',
-  `chargeman` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'chargeman',
-  `description` varchar(8000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'descirption',
-  `add_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'addUser',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `function_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '功能名称',
+  `function_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '功能编号',
+  `function_type` int(11) NOT NULL DEFAULT 0 COMMENT '0通用共能，1客制功能',
+  `chargeman` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'chargeman',
+  `description` varchar(8000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'descirption',
+  `add_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'addUser',
   `add_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'addTime',
-  `update_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
+  `update_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 67 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_function' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 67 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_function' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_function
@@ -315,22 +315,22 @@ INSERT INTO `t_function` VALUES (64, '数据查询', 'TSM11', 0, '', '', '', '20
 -- ----------------------------
 DROP TABLE IF EXISTS `t_function_company`;
 CREATE TABLE `t_function_company`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `function_id` int(0) NOT NULL DEFAULT -1 COMMENT 'functionId',
-  `company_id` int(0) NOT NULL DEFAULT -1 COMMENT 'companyId',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `function_id` int(11) NOT NULL DEFAULT -1 COMMENT 'functionId',
+  `company_id` int(11) NOT NULL DEFAULT -1 COMMENT 'companyId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_function_company' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_function_company' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for t_function_component
 -- ----------------------------
 DROP TABLE IF EXISTS `t_function_component`;
 CREATE TABLE `t_function_component`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `function_id` int(0) NOT NULL DEFAULT -1 COMMENT 'componentEnglishName',
-  `component_id` int(0) NOT NULL DEFAULT -1 COMMENT 'componentName',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `function_id` int(11) NOT NULL DEFAULT -1 COMMENT 'componentEnglishName',
+  `component_id` int(11) NOT NULL DEFAULT -1 COMMENT 'componentName',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_function_component' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_function_component' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_function_component
@@ -344,11 +344,11 @@ INSERT INTO `t_function_component` VALUES (26, 62, 25);
 -- ----------------------------
 DROP TABLE IF EXISTS `t_function_function_group`;
 CREATE TABLE `t_function_function_group`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `function_id` int(0) NOT NULL DEFAULT -1 COMMENT '功能ID',
-  `function_group_id` int(0) NOT NULL DEFAULT -1 COMMENT '分组ID',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `function_id` int(11) NOT NULL DEFAULT -1 COMMENT '功能ID',
+  `function_group_id` int(11) NOT NULL DEFAULT -1 COMMENT '分组ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 65 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_function_function_group' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 65 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_function_function_group' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_function_function_group
@@ -398,14 +398,14 @@ INSERT INTO `t_function_function_group` VALUES (62, 64, 34);
 -- ----------------------------
 DROP TABLE IF EXISTS `t_function_group`;
 CREATE TABLE `t_function_group`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `group_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '分组名称',
-  `group_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '分组编号',
-  `parent_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'parentCode',
-  `group_desc` varchar(8000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'groupDesc',
-  `group_type` int(0) NOT NULL DEFAULT 0 COMMENT '0通用功能下分组，1客制功能下分组',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `group_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '分组名称',
+  `group_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '分组编号',
+  `parent_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'parentCode',
+  `group_desc` varchar(8000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'groupDesc',
+  `group_type` int(11) NOT NULL DEFAULT 0 COMMENT '0通用功能下分组，1客制功能下分组',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_function_group' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_function_group' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_function_group
@@ -443,14 +443,14 @@ INSERT INTO `t_function_group` VALUES (50, 'OSS04-系统监控', '9416cee6-c62a-
 -- ----------------------------
 DROP TABLE IF EXISTS `t_member`;
 CREATE TABLE `t_member`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `account` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户名',
-  `pass_word` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '密码',
-  `real_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '真实名称',
-  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'email',
-  `ip` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'ip',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `account` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `pass_word` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '密码',
+  `real_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '真实名称',
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'email',
+  `ip` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'ip',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_user' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_user' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_member
@@ -478,14 +478,14 @@ INSERT INTO `t_member` VALUES (17, 'rulong', '', '汝龙', '', '');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_parameter`;
 CREATE TABLE `t_parameter`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `para_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '类别',
-  `para_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '名称',
-  `para_value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '值',
-  `status` int(0) NOT NULL DEFAULT -1 COMMENT '状态（1启用 2禁用）',
-  `para_desc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '描述',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `para_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '类别',
+  `para_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '名称',
+  `para_value` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '值',
+  `status` int(11) NOT NULL DEFAULT -1 COMMENT '状态（1启用 2禁用）',
+  `para_desc` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '描述',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_sys_parameter' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_sys_parameter' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_parameter
@@ -497,19 +497,19 @@ INSERT INTO `t_parameter` VALUES (1, 'web', 'bos.config.loginType', '0', 1, '0 B
 -- ----------------------------
 DROP TABLE IF EXISTS `t_product`;
 CREATE TABLE `t_product`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `simple_english_name` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'simpleEnglishName',
-  `full_english_name` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'fullEnglishName',
-  `full_chinese_name` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'fullChineseName',
-  `group_member_names` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'groupMemberNames',
-  `product_desc` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'productDesc',
-  `add_user` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'addUser',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `simple_english_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'simpleEnglishName',
+  `full_english_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'fullEnglishName',
+  `full_chinese_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'fullChineseName',
+  `group_member_names` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'groupMemberNames',
+  `product_desc` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'productDesc',
+  `add_user` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'addUser',
   `add_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'addTime',
-  `update_user` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
+  `update_user` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
-  `del_status` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'delStatus',
+  `del_status` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'delStatus',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_product' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_product' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_product
@@ -523,11 +523,11 @@ INSERT INTO `t_product` VALUES (7, 'ERS', 'eXtreme Risk System', '外部接入�
 -- ----------------------------
 DROP TABLE IF EXISTS `t_product_component`;
 CREATE TABLE `t_product_component`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `product_id` int(0) NOT NULL DEFAULT -1 COMMENT 'productId',
-  `component_id` int(0) NOT NULL DEFAULT -1 COMMENT 'componentId',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `product_id` int(11) NOT NULL DEFAULT -1 COMMENT 'productId',
+  `component_id` int(11) NOT NULL DEFAULT -1 COMMENT 'componentId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_product_component' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_product_component' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_product_component
@@ -556,10 +556,10 @@ INSERT INTO `t_product_component` VALUES (24, 6, 22);
 -- ----------------------------
 DROP TABLE IF EXISTS `t_product_function`;
 CREATE TABLE `t_product_function`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `product_id` int(0) NOT NULL DEFAULT -1 COMMENT 'productId',
-  `function_id` int(0) NOT NULL DEFAULT -1 COMMENT 'functionId',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `product_id` int(11) NOT NULL DEFAULT -1 COMMENT 'productId',
+  `function_id` int(11) NOT NULL DEFAULT -1 COMMENT 'functionId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 't_product_function' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_product_function' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

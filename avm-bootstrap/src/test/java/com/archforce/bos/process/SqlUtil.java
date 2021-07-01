@@ -12,6 +12,7 @@ public class SqlUtil {
         String ARCHFORCE_DOMAIN_URL = "jdbc:mysql://localhost:3306/domainConfigdb?useSSL=false|root|" + EncryptUtil.encodePwd("root");
         System.out.println("================");
         System.out.println(ARCHFORCE_DOMAIN_URL);
+        System.out.println(EncryptUtil.encode("root"));
         System.out.println(EncryptUtil.encode(ARCHFORCE_DOMAIN_URL));
     }
 }

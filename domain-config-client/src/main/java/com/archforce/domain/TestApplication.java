@@ -9,19 +9,19 @@ import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 public class TestApplication {
-    @Value("${file.size}")
-    private String fileSize;
+    @Value("${identity.expireTime}")
+    private Long expireTime;
 
-    private static String fileSizeFinal;
+    private static Long expireTimeFinal;
 
     @PostConstruct
     public void init() {
-        fileSizeFinal = fileSize;
+        expireTimeFinal = expireTime;
     }
 
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(TestApplication.class, args);
-        System.out.println(run.getEnvironment().getProperty("file.size"));
-        System.out.println(fileSizeFinal);
+        System.out.println(run.getEnvironment().getProperty("identity.expireTime"));
+        System.out.println(expireTimeFinal);
     }
 }
