@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 01/07/2021 19:42:01
+ Date: 02/07/2021 16:51:45
 */
 
 SET NAMES utf8mb4;
@@ -58,6 +58,12 @@ INSERT INTO `t_environment_parameter` VALUES (2, 'expireTime', '18000000', '会�
 INSERT INTO `t_environment_parameter` VALUES (3, 'domainconfigdb.database.host', '127.0.0.1:3306', '配置中心数据库ip', b'1', b'0', 'domainconfigdb', 3);
 INSERT INTO `t_environment_parameter` VALUES (4, 'domainconfigdb.database.username', 'root', '配置中心数据库用户名', b'1', b'0', 'domainconfigdb', 4);
 INSERT INTO `t_environment_parameter` VALUES (5, 'domainconfigdb.database.password', 'Vl9kolqsxX65cWET7SKx2g==', '配置中心数据库密码', b'1', b'1', 'domainconfigdb', 5);
+INSERT INTO `t_environment_parameter` VALUES (6, 'userdb.database.host', '127.0.0.1:3306', '用户管理数据库ip', b'1', b'0', 'userdb', 6);
+INSERT INTO `t_environment_parameter` VALUES (7, 'userdb.database.username', 'root', '用户管理数据库用户名', b'1', b'0', 'userdb', 7);
+INSERT INTO `t_environment_parameter` VALUES (8, 'userdb.database.password', 'Vl9kolqsxX65cWET7SKx2g==', '用户管理数据库密码', b'1', b'1', 'userdb', 8);
+INSERT INTO `t_environment_parameter` VALUES (9, 'avmdb.database.host', '127.0.0.1:3306', 'avmdb数据库ip', b'1', b'0', 'avmdb', 9);
+INSERT INTO `t_environment_parameter` VALUES (10, 'avmdb.database.username', 'root', 'avmdb数据库用户名', b'1', b'0', 'avmdb', 10);
+INSERT INTO `t_environment_parameter` VALUES (11, 'avmdb.database.password', 'Vl9kolqsxX65cWET7SKx2g==', 'avmdb数据库密码', b'1', b'1', 'avmdb', 11);
 
 -- ----------------------------
 -- Table structure for t_sys_parameter
@@ -77,7 +83,7 @@ CREATE TABLE `t_sys_parameter`  (
   `sort_field` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '排序字段',
   `sort_num` int(11) NULL DEFAULT NULL COMMENT '排序顺序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_sys_parameter' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_sys_parameter' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_parameter
@@ -85,13 +91,20 @@ CREATE TABLE `t_sys_parameter`  (
 INSERT INTO `t_sys_parameter` VALUES (1, 1, 'BOS', 'BOS_1_1_11', 'conf.instance.name', 'BOS_1_1_11', 2, b'1', '实例名', b'0', NULL, NULL);
 INSERT INTO `t_sys_parameter` VALUES (2, 1, 'BOS', '', 'upload-dir', '${tsm.upload.dir}', 1, b'1', '上传文件基础路径', b'0', NULL, NULL);
 INSERT INTO `t_sys_parameter` VALUES (3, 1, 'BOS', NULL, 'identity.expireTime', '${expireTime}', 1, b'1', '会话超时时间（毫秒）', b'0', 'identity', NULL);
-INSERT INTO `t_sys_parameter` VALUES (4, 1, 'BOS', NULL, 'domainconfigdb.datasource.url', 'jdbc:mysql://${domainconfigdb.database.host}/domainconfigdb?useSSL=false&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&autoReconnectForPools=true', 1, b'1', '配置数据库地址', b'0', 'domainconfigdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (4, 1, 'BOS', NULL, 'domainconfigdb.datasource.jdbc-url', 'jdbc:mysql://${domainconfigdb.database.host}/domainconfigdb?useSSL=false&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&autoReconnectForPools=true', 1, b'1', '配置数据库地址', b'0', 'domainconfigdb', NULL);
 INSERT INTO `t_sys_parameter` VALUES (5, 1, 'BOS', NULL, 'domainconfigdb.datasource.username', '${domainconfigdb.database.username}', 1, b'1', '数据库账户', b'0', 'domainconfigdb', NULL);
-INSERT INTO `t_sys_parameter` VALUES (6, 1, 'BOS', NULL, 'domainconfigdb.datasource.password', '${domainconfigdb.database.password}', 1, b'1', '数据库账户登录密码', b'0', 'domainconfigdb', NULL);
-INSERT INTO `t_sys_parameter` VALUES (7, 1, 'BOS', NULL, 'domainconfigdb.datasource.driver-class-name', 'com.mysql.jdbc.Driver', 1, b'1', '指定driver的类名', b'0', 'domainconfigdb', NULL);
-INSERT INTO `t_sys_parameter` VALUES (8, 1, 'BOS', NULL, 'spring.datasource.url', 'jdbc:mysql://localhost:3306/domainconfigdb?serverTimezone=UTC', 1, b'1', '配置数据库地址', b'0', 'domainconfigdb', NULL);
-INSERT INTO `t_sys_parameter` VALUES (9, 1, 'BOS', NULL, 'spring.datasource.username', 'root', 1, b'1', '数据库账户', b'0', 'domainconfigdb', NULL);
-INSERT INTO `t_sys_parameter` VALUES (10, 1, 'BOS', NULL, 'spring.datasource.password', 'root', 1, b'1', '数据库账户登录密码', b'0', 'domainconfigdb', NULL);
-INSERT INTO `t_sys_parameter` VALUES (11, 1, 'BOS', NULL, 'spring.datasource.driver-class-name', 'com.mysql.jdbc.Driver', 1, b'1', '指定driver的类名', b'0', 'domainconfigdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (6, 1, 'BOS', NULL, 'domainconfigdb.datasource.password', '${domainconfigdb.database.username}', 1, b'1', '数据库账户登录密码', b'0', 'domainconfigdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (7, 1, 'BOS', NULL, 'domainconfigdb.datasource.driver-class-name', 'com.mysql.cj.jdbc.Driver', 1, b'1', '指定driver的类名', b'0', 'domainconfigdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (8, 1, 'BOS', NULL, 'userdb.datasource.jdbc-url', 'jdbc:mysql://${userdb.database.host}/userdb?useSSL=false&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&autoReconnectForPools=true', 1, b'1', '用户管理数据库地址', b'0', 'domainconfigdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (9, 1, 'BOS', NULL, 'userdb.datasource.username', '${userdb.database.username}', 1, b'1', '用户管理账户', b'0', 'domainconfigdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (10, 1, 'BOS', NULL, 'userdb.datasource.password', '${userdb.database.username}', 1, b'1', '用户管理登录密码', b'0', 'domainconfigdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (11, 1, 'BOS', NULL, 'userdb.datasource.driver-class-name', 'com.mysql.cj.jdbc.Driver', 1, b'1', '指定driver的类名', b'0', 'domainconfigdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (12, 1, 'BOS', NULL, 'avmdb.datasource.jdbc-url', 'jdbc:mysql://${avmdb.database.host}/avmdb?useSSL=false&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&autoReconnectForPools=true', 1, b'1', 'avmdb数据库地址', b'0', 'avmdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (13, 1, 'BOS', NULL, 'avmdb.datasource.username', '${avmdb.database.username}', 1, b'1', 'avmdb账户', b'0', 'avmdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (14, 1, 'BOS', NULL, 'avmdb.datasource.password', '${avmdb.database.username}', 1, b'1', 'avmdb登录密码', b'0', 'avmdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (15, 1, 'BOS', NULL, 'avmdb.datasource.driver-class-name', 'com.mysql.cj.jdbc.Driver', 1, b'1', '指定driver的类名', b'0', 'avmdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (16, 1, 'BOS', NULL, 'server.port', '8080', 1, b'1', 'BOS端口', b'0', NULL, NULL);
+INSERT INTO `t_sys_parameter` VALUES (17, 1, 'BOS', NULL, 'server.servlet.context-path', '/arc', 1, b'1', '当前项目相对路径', b'0', NULL, NULL);
+INSERT INTO `t_sys_parameter` VALUES (18, 1, 'BOS', NULL, 'identity.login.validateCode', '0', 1, b'1', '验证码开关', b'0', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

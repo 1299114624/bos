@@ -59,10 +59,22 @@ public class ReadDbPropertiesPostProcessor implements EnvironmentPostProcessor, 
                             if (!var12.hasNext()) {
                                 String[] split;
                                 if (!StringUtils.isEmpty(argParams)) {
+                                    String[] split1 = argParams.split("=");
+                                    if (split1.length != 2 || split1[1].split("/").length < 2) {
+                                        throw new RuntimeException("Parameter type error!Parameter type:APP=app/instance_name/startType");
+                                    }
+                                    split1 = split1[1].split("/");
+                                    app = split1[0];
+                                    instanceName = split1[1];
+                                    if (split1.length >= 3) {
+                                        startType = Integer.parseInt(split1[3]);
+                                    }
                                 }
                                 if (StringUtils.isEmpty(encryption)) {
+                                    encryption = "true";
                                 }
                                 if (StringUtils.isEmpty(config)) {
+                                    throw new RuntimeException("Empty domain config database connection string");
                                 }
 
                                 Boolean isEncryption = Boolean.valueOf(encryption);

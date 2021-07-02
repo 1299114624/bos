@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.domain.mapper.SystemParamMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.domain.entity.SystemParam">
+    <!--@mbg.generated-->
+    <!--@Table t_sys_parameter-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="module_code" jdbcType="VARCHAR" property="moduleCode" />
+    <result column="broker_code" jdbcType="VARCHAR" property="brokerCode" />
+    <result column="para_name" jdbcType="VARCHAR" property="paraName" />
+    <result column="para_value" jdbcType="VARCHAR" property="paraValue" />
+    <result column="para_type" jdbcType="BOOLEAN" property="paraType" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="para_desc" jdbcType="VARCHAR" property="paraDesc" />
+    <result column="is_encrypt" jdbcType="BIT" property="isEncrypt" />
+    <result column="sort_field" jdbcType="VARCHAR" property="sortField" />
+    <result column="sort_num" jdbcType="INTEGER" property="sortNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, app_id, module_code, broker_code, para_name, para_value, para_type, `status`, 
+    para_desc, is_encrypt, sort_field, sort_num
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_sys_parameter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.archforce.domain.entity.SystemParam" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_sys_parameter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="brokerCode != null">
+        broker_code,
+      </if>
+      <if test="paraName != null">
+        para_name,
+      </if>
+      <if test="paraValue != null">
+        para_value,
+      </if>
+      <if test="paraType != null">
+        para_type,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="paraDesc != null">
+        para_desc,
+      </if>
+      <if test="isEncrypt != null">
+        is_encrypt,
+      </if>
+      <if test="sortField != null">
+        sort_field,
+      </if>
+      <if test="sortNum != null">
+        sort_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appId != null">
+        #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerCode != null">
+        #{brokerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paraName != null">
+        #{paraName,jdbcType=VARCHAR},
+      </if>
+      <if test="paraValue != null">
+        #{paraValue,jdbcType=VARCHAR},
+      </if>
+      <if test="paraType != null">
+        #{paraType,jdbcType=BOOLEAN},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="paraDesc != null">
+        #{paraDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isEncrypt != null">
+        #{isEncrypt,jdbcType=BIT},
+      </if>
+      <if test="sortField != null">
+        #{sortField,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNum != null">
+        #{sortNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.archforce.domain.entity.SystemParam">
+    <!--@mbg.generated-->
+    update t_sys_parameter
+    set app_id = #{appId,jdbcType=INTEGER},
+      module_code = #{moduleCode,jdbcType=VARCHAR},
+      broker_code = #{brokerCode,jdbcType=VARCHAR},
+      para_name = #{paraName,jdbcType=VARCHAR},
+      para_value = #{paraValue,jdbcType=VARCHAR},
+      para_type = #{paraType,jdbcType=BOOLEAN},
+      `status` = #{status,jdbcType=BIT},
+      para_desc = #{paraDesc,jdbcType=VARCHAR},
+      is_encrypt = #{isEncrypt,jdbcType=BIT},
+      sort_field = #{sortField,jdbcType=VARCHAR},
+      sort_num = #{sortNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_sys_parameter
+    (app_id, module_code, broker_code, para_name, para_value, para_type, `status`, para_desc, 
+      is_encrypt, sort_field, sort_num)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.appId,jdbcType=INTEGER}, #{item.moduleCode,jdbcType=VARCHAR}, #{item.brokerCode,jdbcType=VARCHAR}, 
+        #{item.paraName,jdbcType=VARCHAR}, #{item.paraValue,jdbcType=VARCHAR}, #{item.paraType,jdbcType=BOOLEAN}, 
+        #{item.status,jdbcType=BIT}, #{item.paraDesc,jdbcType=VARCHAR}, #{item.isEncrypt,jdbcType=BIT}, 
+        #{item.sortField,jdbcType=VARCHAR}, #{item.sortNum,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>

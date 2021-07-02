@@ -19,15 +19,4 @@ public class DataSourceConfig {
         return dataSource;
     }
 
-    @Bean(name = "zentaoDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.zentao")
-    public DataSource zentaoDataSource() {
-        return DataSourceBuilder.create().build();
-    }
-
-    @Bean(name = "domainConfigDataSource")
-    @ConfigurationProperties(prefix = "domainconfigdb.datasource")
-    public DataSource domainConfigDataSource() {
-        return DataSourceBuilder.create().build();
-    }
 }

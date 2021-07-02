@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.domain.mapper.EnvironmentParameterMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.domain.entity.EnvironmentParameter">
+    <!--@mbg.generated-->
+    <!--@Table t_environment_parameter-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="para_name" jdbcType="VARCHAR" property="paraName" />
+    <result column="para_value" jdbcType="VARCHAR" property="paraValue" />
+    <result column="para_desc" jdbcType="VARCHAR" property="paraDesc" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="is_encrypt" jdbcType="BIT" property="isEncrypt" />
+    <result column="sort_field" jdbcType="VARCHAR" property="sortField" />
+    <result column="sort_num" jdbcType="INTEGER" property="sortNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, para_name, para_value, para_desc, `status`, is_encrypt, sort_field, sort_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_environment_parameter
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_environment_parameter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.archforce.domain.entity.EnvironmentParameter">
+    <!--@mbg.generated-->
+    insert into t_environment_parameter (id, para_name, para_value, 
+      para_desc, `status`, is_encrypt, 
+      sort_field, sort_num)
+    values (#{id,jdbcType=INTEGER}, #{paraName,jdbcType=VARCHAR}, #{paraValue,jdbcType=VARCHAR}, 
+      #{paraDesc,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{isEncrypt,jdbcType=BIT}, 
+      #{sortField,jdbcType=VARCHAR}, #{sortNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.archforce.domain.entity.EnvironmentParameter">
+    <!--@mbg.generated-->
+    insert into t_environment_parameter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="paraName != null">
+        para_name,
+      </if>
+      <if test="paraValue != null">
+        para_value,
+      </if>
+      <if test="paraDesc != null">
+        para_desc,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="isEncrypt != null">
+        is_encrypt,
+      </if>
+      <if test="sortField != null">
+        sort_field,
+      </if>
+      <if test="sortNum != null">
+        sort_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="paraName != null">
+        #{paraName,jdbcType=VARCHAR},
+      </if>
+      <if test="paraValue != null">
+        #{paraValue,jdbcType=VARCHAR},
+      </if>
+      <if test="paraDesc != null">
+        #{paraDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="isEncrypt != null">
+        #{isEncrypt,jdbcType=BIT},
+      </if>
+      <if test="sortField != null">
+        #{sortField,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNum != null">
+        #{sortNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.domain.entity.EnvironmentParameter">
+    <!--@mbg.generated-->
+    update t_environment_parameter
+    <set>
+      <if test="paraName != null">
+        para_name = #{paraName,jdbcType=VARCHAR},
+      </if>
+      <if test="paraValue != null">
+        para_value = #{paraValue,jdbcType=VARCHAR},
+      </if>
+      <if test="paraDesc != null">
+        para_desc = #{paraDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=BIT},
+      </if>
+      <if test="isEncrypt != null">
+        is_encrypt = #{isEncrypt,jdbcType=BIT},
+      </if>
+      <if test="sortField != null">
+        sort_field = #{sortField,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNum != null">
+        sort_num = #{sortNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.archforce.domain.entity.EnvironmentParameter">
+    <!--@mbg.generated-->
+    update t_environment_parameter
+    set para_name = #{paraName,jdbcType=VARCHAR},
+      para_value = #{paraValue,jdbcType=VARCHAR},
+      para_desc = #{paraDesc,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=BIT},
+      is_encrypt = #{isEncrypt,jdbcType=BIT},
+      sort_field = #{sortField,jdbcType=VARCHAR},
+      sort_num = #{sortNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into t_environment_parameter
+    (id, para_name, para_value, para_desc, `status`, is_encrypt, sort_field, sort_num
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.paraName,jdbcType=VARCHAR}, #{item.paraValue,jdbcType=VARCHAR}, 
+        #{item.paraDesc,jdbcType=VARCHAR}, #{item.status,jdbcType=BIT}, #{item.isEncrypt,jdbcType=BIT}, 
+        #{item.sortField,jdbcType=VARCHAR}, #{item.sortNum,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>
