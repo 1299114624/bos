@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.bos.identity.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.bos.identity.entity.Role">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="business_type" jdbcType="INTEGER" property="businessType" />
+    <result column="account_range" jdbcType="INTEGER" property="accountRange" />
+    <result column="org_type" jdbcType="INTEGER" property="orgType" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+    <resultMap id="ResourceResultMap" type="com.archforce.bos.identity.entity.Role">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="business_type" jdbcType="INTEGER" property="businessType" />
+    <result column="account_range" jdbcType="INTEGER" property="accountRange" />
+    <result column="org_type" jdbcType="INTEGER" property="orgType" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <collection column="menu_id" property="resources" javaType="com.alibaba.fastjson.JSONArray" ofType="com.archforce.bos.identity.entity.Resource" >
+        <id column="menu_id" jdbcType="BIGINT" property="id" />
+        <result column="res_code" jdbcType="VARCHAR" property="resCode" />
+        <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+        <result column="app_name" jdbcType="VARCHAR" property="appName" />
+        <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+        <result column="disabled" jdbcType="INTEGER" property="disabled" />
+        <result column="ismenu" jdbcType="INTEGER" property="ismenu" />
+        <result column="menu_type" jdbcType="VARCHAR" property="menuType" />
+        <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+        <result column="orderby" jdbcType="INTEGER" property="orderby" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, role_name, business_type, account_range, org_type, description
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.archforce.bos.identity.entity.Role" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_role (role_name, business_type, account_range, 
+      org_type, description)
+    values (#{roleName,jdbcType=VARCHAR}, #{businessType,jdbcType=INTEGER}, #{accountRange,jdbcType=INTEGER}, 
+      #{orgType,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.archforce.bos.identity.entity.Role">
+    <!--@mbg.generated-->
+    update t_role
+    <set>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        business_type = #{businessType,jdbcType=INTEGER},
+      </if>
+      <if test="accountRange != null">
+        account_range = #{accountRange,jdbcType=INTEGER},
+      </if>
+      <if test="orgType != null">
+        org_type = #{orgType,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.archforce.bos.identity.entity.Role">
+    <!--@mbg.generated-->
+    update t_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      business_type = #{businessType,jdbcType=INTEGER},
+      account_range = #{accountRange,jdbcType=INTEGER},
+      org_type = #{orgType,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectRoleAndResourceByUserId" parameterType="java.lang.Long" resultMap="ResourceResultMap">
+        SELECT r.id, r.role_name, r.business_type, r.account_range, r.org_type, r.description,
+            res.id as menu_id, res.res_code, res.parent_id, res.app_name, res.menu_name, res.disabled, res.ismenu,
+            res.menu_type, res.menu_url, res.orderby, res.description as res_description
+        FROM t_user_role ur
+        LEFT JOIN t_role r ON ur.role_id = r.id
+        LEFT JOIN t_role_resource rr ON r.id = rr.role_id
+        LEFT JOIN t_resource res ON rr.menu_id = res.id
+        WHERE ur.user_id = #{userId,jdbcType=BIGINT} AND res.disabled = 1
+        ORDER BY r.id ASC,res.orderby ASC
+    </select>
+
+    <select id="selectRoleByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_user_role ur
+        LEFT JOIN t_role r ON ur.role_id = r.id
+        WHERE ur.user_id = #{userId,jdbcType=BIGINT}
+        ORDER BY r.id
+    </select>
+</mapper>

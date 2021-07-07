@@ -3,6 +3,7 @@ package com.archforce.bos.identity.entity;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class User implements Serializable {
     /**
      * id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 用户名
@@ -52,11 +53,6 @@ public class User implements Serializable {
     private String updateUser;
 
     /**
-     * dataStatus
-     */
-    private Integer dataStatus;
-
-    /**
      * 是否支持查询首页
      */
     private boolean isQueryHomeData = false;
@@ -76,6 +72,47 @@ public class User implements Serializable {
      */
     private List<String> permission;
 
+    /**
+     * 用户的角色id列表
+     */
+    private List<Long> roleIds = new ArrayList<>();
+
+    /**
+     * 注销用户
+     */
+    private boolean isClose;
+
+    /**
+     * 是否仅有指定账户角色
+     */
+    private boolean onlyAccountRole;
+
+    public List<Long> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(List<Long> roleIds) {
+        this.roleIds = roleIds;
+    }
+
+    private boolean isSuperAdmin = false;
+
+    public boolean isSuperAdmin() {
+        return isSuperAdmin;
+    }
+
+    public void setSuperAdmin(boolean superAdmin) {
+        isSuperAdmin = superAdmin;
+    }
+
+    public boolean isOnlyAccountRole() {
+        return onlyAccountRole;
+    }
+
+    public void setOnlyAccountRole(boolean onlyAccountRole) {
+        this.onlyAccountRole = onlyAccountRole;
+    }
+
     public List<Role> getRoles() {
         return roles;
     }
@@ -84,16 +121,11 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    /**
-     * 注销用户
-     */
-    private boolean isClose;
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -153,13 +185,6 @@ public class User implements Serializable {
         this.updateUser = updateUser;
     }
 
-    public Integer getDataStatus() {
-        return dataStatus;
-    }
-
-    public void setDataStatus(Integer dataStatus) {
-        this.dataStatus = dataStatus;
-    }
 
     public Boolean getIsLimit() {
         return isLimit;

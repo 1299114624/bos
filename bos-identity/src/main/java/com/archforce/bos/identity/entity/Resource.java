@@ -10,7 +10,7 @@ public class Resource {
     /**
      * id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 资源编码
@@ -20,7 +20,7 @@ public class Resource {
     /**
      * 父资源id
      */
-    private Integer parentId;
+    private Long parentId;
 
     /**
      * 应用名称
@@ -82,11 +82,11 @@ public class Resource {
      */
     private String updateUser;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -98,11 +98,11 @@ public class Resource {
         this.resCode = resCode;
     }
 
-    public Integer getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 

@@ -30,7 +30,6 @@ public class IdentityShiroConfig {
         defaultWebSessionManager.setGlobalSessionTimeout(identityConfig.getExpireTime());
         defaultWebSessionManager.setSessionValidationSchedulerEnabled(true);
         defaultWebSessionManager.setSessionIdCookie(simpleCookie());
-//        defaultWebSessionManager.setGlobalSessionTimeout(10 * 1000);
         return defaultWebSessionManager;
     }
 
@@ -72,6 +71,7 @@ public class IdentityShiroConfig {
         shiroPermissionFactory.setIdentityConfig(identityConfig);
         shiroPermissionFactory.getFilters().put("authc", new AjaxAuthenticationFilter());
         shiroPermissionFactory.getFilters().put("resources", new AnyResourcesAuthorizationFilter());
+        shiroPermissionFactory.getFilters().put("kaptcha", kaptchaFilter);
         shiroPermissionFactory.setFilterChainDefinitions(ShiroPermissionFactory.definition);
 
         return shiroPermissionFactory;

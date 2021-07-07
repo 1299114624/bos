@@ -30,7 +30,7 @@ public class CustomRealm extends AuthorizingRealm {
     private UserService userService;
 
     /**
-     * 权限配置类 为当前登录的Subject授予角色和权限
+     * 授权信息 为当前登录的Subject授予角色和权限
      * @param principalCollection
      * @return
      */

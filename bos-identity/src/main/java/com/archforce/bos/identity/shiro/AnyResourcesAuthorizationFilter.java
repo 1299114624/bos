@@ -7,6 +7,7 @@ import org.apache.shiro.web.util.WebUtils;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -17,18 +18,27 @@ public class AnyResourcesAuthorizationFilter extends PermissionsAuthorizationFil
     @Override
     public boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws IOException {
         Subject subject = this.getSubject(request, response);
-        String[] perms = (String[])((String[])mappedValue);
+        String[] perms = (String[]) mappedValue;
 
-        return true;
+        if (perms == null || perms.length == 0) {
+            return true;
+        }
+
+        for (String perm : perms) {
+            if (subject.isPermitted(perm)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
         Subject subject = this.getSubject(request, response);
         if (subject.getPrincipal() == null) {
-
+            WebUtils.toHttp(response).sendError(HttpServletResponse.SC_UNAUTHORIZED);
         } else {
-                WebUtils.toHttp(response).sendError(401);
+            WebUtils.toHttp(response).sendError(HttpServletResponse.SC_FORBIDDEN);
         }
         return false;
     }

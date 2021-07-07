@@ -1,41 +1,50 @@
 package com.archforce.bos.identity.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 
-import java.io.Serializable;
-
-public class Role implements Serializable {
+public class Role {
     private static final long serialVersionUID = 1L;
-    private Integer id;
+    /**
+     * id
+     */
+    private Long id;
+
     /**
      * 角色名称
      */
     private String roleName;
+
     /**
      * 业务类型
      */
     private Integer businessType;
+
     /**
      * 账户范围
      */
     private Integer accountRange;
+
     /**
      * 组织类型
      */
     private Integer orgType;
+
     /**
      * 描述
      */
     private String description;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+    /**
+     * 角色对应的资源
+     */
+    private List<Resource> resources = new ArrayList<>();
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -77,5 +86,13 @@ public class Role implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
     }
 }

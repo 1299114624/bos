@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.bos.identity.mapper.RoleResourceMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.bos.identity.entity.RoleResource">
+    <!--@mbg.generated-->
+    <!--@Table t_role_resource-->
+    <id column="role_id" jdbcType="BIGINT" property="roleId" />
+    <id column="menu_id" jdbcType="BIGINT" property="menuId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    role_id, menu_id
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    <!--@mbg.generated-->
+    delete from t_role_resource
+    where role_id = #{roleId,jdbcType=BIGINT}
+      and menu_id = #{menuId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.archforce.bos.identity.entity.RoleResource">
+    <!--@mbg.generated-->
+    insert into t_role_resource (role_id, menu_id)
+    values (#{roleId,jdbcType=BIGINT}, #{menuId,jdbcType=BIGINT})
+  </insert>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into t_role_resource
+    (role_id, menu_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.roleId,jdbcType=BIGINT}, #{item.menuId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+</mapper>

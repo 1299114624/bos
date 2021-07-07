@@ -10,7 +10,7 @@ public interface UserMapper {
      */
     User selectOne(User query);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
-    User selectByPrimaryKey(Integer id);
+    User selectByPrimaryKey(Long id);
 }

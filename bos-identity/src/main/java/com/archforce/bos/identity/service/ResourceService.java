@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ResourceService{
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Resource record);
 
-    Resource selectByPrimaryKey(Integer id);
+    Resource selectByPrimaryKey(Long id);
 
     int updateByPrimaryKey(Resource record);
 

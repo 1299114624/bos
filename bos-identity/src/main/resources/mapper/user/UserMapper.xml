@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.archforce.bos.identity.entity.User">
     <!--@mbg.generated-->
     <!--@Table t_user-->
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -12,14 +12,12 @@
     <result column="add_user" jdbcType="VARCHAR" property="addUser" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
-    <result column="data_status" jdbcType="INTEGER" property="dataStatus" />
     <result column="is_limit" jdbcType="BIT" property="isLimit" />
     <result column="is_close" jdbcType="BIT" property="isClose" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, user_name, `password`, `name`, add_time, add_user, update_time, update_user, 
-    data_status, is_limit, is_close
+    id, user_name, `password`, `name`, add_time, add_user, update_time, update_user,  is_limit, is_close
   </sql>
   <select id="selectOne"  resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -28,22 +26,22 @@
     from t_user
     where 1=1
     <if test="id != null">
-    AND id = #{id,jdbcType=INTEGER}
+    AND id = #{id,jdbcType=BIGINT}
     </if>
     <if test="userName != null">
     AND user_name = #{userName,jdbcType=VARCHAR}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <include refid="Base_Column_List" />
     from t_user
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from t_user
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
 </mapper>

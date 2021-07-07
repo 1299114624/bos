@@ -57,7 +57,7 @@ public class ShiroPermissionFactory extends ShiroFilterFactoryBean {
             }
 
             for (Map.Entry<String, String[]> item : urlMap.entrySet()) {
-                extChians.put(item.getKey(), "resource,resource[" + StringUtils.arrayToCommaDelimitedString(item.getValue()) + "]");
+                extChians.put(item.getKey(), "resources,resources[" + StringUtils.arrayToCommaDelimitedString(item.getValue()) + "]");
             }
             if (!Objects.isNull(identityConfig.getAuthc())) {
                 identityConfig.getAuthc().forEach(s -> {

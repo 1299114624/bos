@@ -4,9 +4,9 @@
   <resultMap id="BaseResultMap" type="com.archforce.bos.identity.entity.Resource">
     <!--@mbg.generated-->
     <!--@Table t_resource-->
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="res_code" jdbcType="VARCHAR" property="resCode" />
-    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="app_name" jdbcType="VARCHAR" property="appName" />
     <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
     <result column="disabled" jdbcType="INTEGER" property="disabled" />
@@ -32,14 +32,14 @@
     where disabled = 1
     ORDER BY orderby, id
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <include refid="Base_Column_List" />
     from t_resource
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from t_resource
     where id = #{id,jdbcType=INTEGER}

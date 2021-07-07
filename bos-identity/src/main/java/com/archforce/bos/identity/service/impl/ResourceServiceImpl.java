@@ -15,7 +15,7 @@ public class ResourceServiceImpl implements ResourceService{
     private ResourceMapper resourceMapper;
 
     @Override
-    public int deleteByPrimaryKey(Integer id) {
+    public int deleteByPrimaryKey(Long id) {
         return resourceMapper.deleteByPrimaryKey(id);
     }
 
@@ -25,7 +25,7 @@ public class ResourceServiceImpl implements ResourceService{
     }
 
     @Override
-    public Resource selectByPrimaryKey(Integer id) {
+    public Resource selectByPrimaryKey(Long id) {
         return resourceMapper.selectByPrimaryKey(id);
     }
 
