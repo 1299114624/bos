@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+ARCHFORCE_DOMAIN_URL=M66sdAtNQ8DumhaA/RReBJn8x6ms89pwBCvt16wHw7nBctdB8WnnM5rJqkVsels2Ovm8OqCn5ngIPmLQz3hkxAswguwhs5b44Si8hmR3LP4Mjqh9i686hv1BgoIVCtUhzdf8qwkI/v790aKObs3cBo3UWna3orSD0x0lu6og1L0ZSW041w/+Cg==
+APP_NAME=TSM
+INSTANCE_NAME=BOS_1_1_11
+BASE_LOG_PATH=D/test/log/

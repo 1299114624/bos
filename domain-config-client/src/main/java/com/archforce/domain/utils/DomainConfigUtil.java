@@ -51,6 +51,7 @@ public class DomainConfigUtil {
         } else {
             envParasList = this.getRestParams(connectParams, "");
         }
+        System.out.println(envParasList);
         return envParasList;
     }
 
@@ -60,7 +61,7 @@ public class DomainConfigUtil {
     }
 
     public Connection getConnection(Map<String, String> connectParams) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         String url = (String)connectParams.get("url");
         String username = (String)connectParams.get("username");
         String password = (String)connectParams.get("password");

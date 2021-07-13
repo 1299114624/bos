@@ -14,4 +14,6 @@ public interface ResourceMapper {
     int updateByPrimaryKey(Resource record);
 
     List<Resource> getAllMenu();
+
+//    List<Resource> gerResourceByUserId(Long id);
 }

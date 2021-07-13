@@ -1,10 +1,8 @@
 package com.archforce.arc.facility.entity.vo;
 
-import com.archforce.arc.facility.entity.avm.company.Company;
 import com.archforce.arc.facility.entity.avm.product.Product;
-import org.springframework.beans.factory.annotation.Value;
+import com.archforce.arc.facility.entity.avm.company.Company;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

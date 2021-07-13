@@ -75,7 +75,7 @@ public class User implements Serializable {
     /**
      * 用户的角色id列表
      */
-    private List<Long> roleIds = new ArrayList<>();
+    private List<Long> roleIds = new ArrayList();
 
     /**
      * 注销用户

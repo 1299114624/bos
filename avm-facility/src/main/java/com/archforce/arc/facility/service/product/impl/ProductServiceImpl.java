@@ -1,11 +1,11 @@
 package com.archforce.arc.facility.service.product.impl;
 
 import com.archforce.arc.facility.entity.avm.product.Product;
-import com.archforce.arc.facility.exception.BusinessException;
+import com.archforce.common.exception.BusinessException;
 import com.archforce.arc.facility.mapper.avm.ProductMapper;
 import com.archforce.arc.facility.service.product.ProductService;
-import com.archforce.arc.facility.utils.QueryVo;
-import com.archforce.arc.facility.utils.Sort;
+import com.archforce.common.utils.QueryVo;
+import com.archforce.common.utils.Sort;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 
-import static com.archforce.arc.facility.exception.ErrorCodeConstant.FUNCTION_GROUP_NAME_EXIT;
-import static com.archforce.arc.facility.exception.ErrorCodeConstant.PRODUCT_SIMPLE_ENGLISH_NAME_EXIT;
+import static com.archforce.common.exception.ErrorCodeConstant.PRODUCT_SIMPLE_ENGLISH_NAME_EXIT;
 
 @Service
 public class ProductServiceImpl implements ProductService {

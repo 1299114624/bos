@@ -1,6 +1,6 @@
 package com.archforce.bos.identity.common;
 
-import com.archforce.arc.facility.exception.ApplicationException;
+import com.archforce.common.exception.ApplicationException;
 import com.archforce.bos.identity.entity.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;

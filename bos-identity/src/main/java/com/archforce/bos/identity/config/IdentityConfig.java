@@ -29,7 +29,7 @@ public class IdentityConfig {
     /**
      * 白名单用户
      */
-    private List<String> whiteUser = new ArrayList<>();
+    private List<String> whiteUser = new ArrayList();
 
     public Integer getCluster() {
         return cluster;

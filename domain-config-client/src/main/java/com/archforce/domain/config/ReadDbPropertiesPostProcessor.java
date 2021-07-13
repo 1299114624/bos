@@ -76,7 +76,6 @@ public class ReadDbPropertiesPostProcessor implements EnvironmentPostProcessor, 
                                 if (StringUtils.isEmpty(config)) {
                                     throw new RuntimeException("Empty domain config database connection string");
                                 }
-
                                 Boolean isEncryption = Boolean.valueOf(encryption);
                                 if (isEncryption) {
                                     config = EncryptUtil.decode(config);
@@ -90,8 +89,8 @@ public class ReadDbPropertiesPostProcessor implements EnvironmentPostProcessor, 
                                     connectParams.put("username",split[1]);
                                     connectParams.put("password",EncryptUtil.decodePwd(split[2]));
                                     DomainConfigUtil dataUtil = new DomainConfigUtil();
-                                    Integer appId = dataUtil.getAppId(app, connectParams);
                                     List<Map<String, Object>> envParasList = dataUtil.getEnvProperties(connectParams);
+                                    Integer appId = dataUtil.getAppId(app, connectParams);
                                     Properties envProperties = new Properties();
                                     envProperties.putAll(envMap);
 

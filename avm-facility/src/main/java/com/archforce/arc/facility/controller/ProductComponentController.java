@@ -3,9 +3,9 @@ package com.archforce.arc.facility.controller;
 import com.archforce.arc.facility.entity.avm.product.ProductComponent;
 import com.archforce.arc.facility.entity.avm.product.ProductComponentInfo;
 import com.archforce.arc.facility.service.product.ProductComponentService;
-import com.archforce.arc.facility.utils.PageInfo;
-import com.archforce.arc.facility.utils.QueryVo;
-import com.archforce.arc.facility.utils.ResBody;
+import com.archforce.common.utils.PageInfo;
+import com.archforce.common.utils.QueryVo;
+import com.archforce.common.utils.ResBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

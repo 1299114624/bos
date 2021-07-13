@@ -1,16 +1,16 @@
 package com.archforce.arc.facility.service.function.impl;
 
-import com.archforce.arc.facility.entity.avm.function.FunctionCompany;
 import com.archforce.arc.facility.entity.avm.function.FunctionComponent;
+import com.archforce.arc.facility.service.function.FunctionService;
+import com.archforce.arc.facility.entity.avm.function.FunctionCompany;
 import com.archforce.arc.facility.entity.avm.function.FunctionFunctionGroup;
 import com.archforce.arc.facility.entity.vo.FunctionVo;
-import com.archforce.arc.facility.exception.BusinessException;
+import com.archforce.common.exception.BusinessException;
 import com.archforce.arc.facility.mapper.avm.FunctionCompanyMapper;
 import com.archforce.arc.facility.mapper.avm.FunctionComponentMapper;
 import com.archforce.arc.facility.mapper.avm.FunctionFunctionGroupMapper;
 import com.archforce.arc.facility.mapper.avm.FunctionMapper;
 import com.archforce.arc.facility.service.cache.FunctionCache;
-import com.archforce.arc.facility.service.function.FunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,11 +22,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.archforce.arc.facility.exception.ErrorCodeConstant.FUNCTION_CODE_EXIT;
-import static com.archforce.arc.facility.exception.ErrorCodeConstant.FUNCTION_NAME_EXIT;
+import static com.archforce.common.exception.ErrorCodeConstant.FUNCTION_CODE_EXIT;
+import static com.archforce.common.exception.ErrorCodeConstant.FUNCTION_NAME_EXIT;
 
 @Service
-public class FunctionServiceImpl implements FunctionService{
+public class FunctionServiceImpl implements FunctionService {
 
     @Resource
     private FunctionMapper functionMapper;

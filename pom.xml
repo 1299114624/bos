@@ -22,6 +22,7 @@
     <module>avm-facility</module>
     <module>domain-config-client</module>
     <module>domain-config-server</module>
+    <module>oss-monitor</module>
   </modules>
 
   <properties>
@@ -41,7 +42,7 @@
     <dependency>
       <groupId>com.archforce.domain</groupId>
       <artifactId>domain-config-client</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.7-SNAPSHOT</version>
     </dependency>
 
 <!--    arc-framework-->

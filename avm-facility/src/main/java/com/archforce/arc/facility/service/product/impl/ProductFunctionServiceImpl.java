@@ -1,11 +1,11 @@
 package com.archforce.arc.facility.service.product.impl;
 
-import com.archforce.arc.facility.common.AvmTree;
 import com.archforce.arc.facility.common.TreeUtils;
-import com.archforce.arc.facility.entity.avm.product.Product;
 import com.archforce.arc.facility.entity.vo.FunctionVo;
 import com.archforce.arc.facility.mapper.avm.ProductMapper;
 import com.archforce.arc.facility.service.cache.FunctionCache;
+import com.archforce.arc.facility.service.product.ProductFunctionService;
+import com.archforce.arc.facility.common.AvmTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -13,12 +13,11 @@ import com.archforce.arc.facility.entity.avm.product.ProductFunction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.archforce.arc.facility.mapper.avm.ProductFunctionMapper;
-import com.archforce.arc.facility.service.product.ProductFunctionService;
+
 @Service
-public class ProductFunctionServiceImpl implements ProductFunctionService{
+public class ProductFunctionServiceImpl implements ProductFunctionService {
 
     @Resource
     private ProductFunctionMapper productFunctionMapper;

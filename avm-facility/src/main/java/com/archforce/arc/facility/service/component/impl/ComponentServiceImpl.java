@@ -1,19 +1,18 @@
 package com.archforce.arc.facility.service.component.impl;
 
+import com.archforce.arc.facility.mapper.avm.ComponentMapper;
 import com.archforce.arc.facility.entity.avm.component.ComponentCompany;
-import com.archforce.arc.facility.entity.avm.function.FunctionCompany;
 import com.archforce.arc.facility.entity.vo.ComponentVo;
-import com.archforce.arc.facility.entity.vo.FunctionVo;
-import com.archforce.arc.facility.exception.BusinessException;
+import com.archforce.common.exception.BusinessException;
 import com.archforce.arc.facility.mapper.avm.ComponentCompanyMapper;
 import com.archforce.arc.facility.mapper.avm.FunctionComponentMapper;
-import com.archforce.arc.facility.utils.QueryVo;
-import com.archforce.arc.facility.utils.Sort;
+import com.archforce.common.utils.QueryVo;
+import com.archforce.common.utils.Sort;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
-import com.archforce.arc.facility.mapper.avm.ComponentMapper;
+
 import com.archforce.arc.facility.entity.avm.component.Component;
 import com.archforce.arc.facility.service.component.ComponentService;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static com.archforce.arc.facility.exception.ErrorCodeConstant.COMPONENT_NAME_EXIT;
-import static com.archforce.arc.facility.exception.ErrorCodeConstant.FUNCTION_GROUP_NAME_EXIT;
+import static com.archforce.common.exception.ErrorCodeConstant.COMPONENT_NAME_EXIT;
 
 @Service
 public class ComponentServiceImpl implements ComponentService{

@@ -1,6 +1,6 @@
 package com.archforce.bos.identity.shiro;
 
-import com.archforce.arc.facility.log.LogUtils;
+import com.archforce.common.log.LogUtils;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;

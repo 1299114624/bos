@@ -1,9 +1,9 @@
 package com.archforce.arc.facility.mapper.avm;
 
 import com.archforce.arc.facility.entity.avm.company.CompanyProduct;
+
 import java.util.List;
 
-import com.archforce.arc.facility.entity.avm.product.Product;
 import org.apache.ibatis.annotations.Param;
 
 public interface CompanyProductMapper {

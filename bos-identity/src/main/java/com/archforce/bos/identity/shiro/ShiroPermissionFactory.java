@@ -31,7 +31,7 @@ public class ShiroPermissionFactory extends ShiroFilterFactoryBean {
         synchronized (this) {
             definitions = Objects.isNull(definitions) ? "" : definitions;
             definition = definitions;
-            Map<String, String> extChians = new LinkedHashMap<>();
+            Map<String, String> extChians = new LinkedHashMap();
             if (!Objects.isNull(identityConfig.getAnno())) {
                 identityConfig.getAnno().forEach(s -> {
                     if (!StringUtils.isEmpty(s)) {

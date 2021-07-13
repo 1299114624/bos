@@ -1,16 +1,17 @@
 package com.archforce.arc.facility.service.product.impl;
 
 import com.archforce.arc.facility.entity.avm.product.ProductComponentInfo;
-import com.archforce.arc.facility.utils.QueryVo;
+import com.archforce.arc.facility.service.product.ProductComponentService;
+import com.archforce.common.utils.QueryVo;
 import com.github.pagehelper.Page;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 import com.archforce.arc.facility.entity.avm.product.ProductComponent;
 import com.archforce.arc.facility.mapper.avm.ProductComponentMapper;
-import com.archforce.arc.facility.service.product.ProductComponentService;
+
 @Service
-public class ProductComponentServiceImpl implements ProductComponentService{
+public class ProductComponentServiceImpl implements ProductComponentService {
 
     @Resource
     private ProductComponentMapper productComponentMapper;

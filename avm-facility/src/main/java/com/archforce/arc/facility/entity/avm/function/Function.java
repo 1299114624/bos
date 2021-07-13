@@ -1,7 +1,5 @@
 package com.archforce.arc.facility.entity.avm.function;
 
-import com.archforce.arc.facility.common.AvmTree;
-import com.archforce.arc.facility.common.AvmTreeConverter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;

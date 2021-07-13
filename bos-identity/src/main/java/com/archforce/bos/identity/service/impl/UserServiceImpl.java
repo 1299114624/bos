@@ -43,11 +43,11 @@ public class UserServiceImpl implements UserService {
         // 用户关联角色对应的菜单
         List<Role> roleList = roleMapper.selectRoleAndResourceByUserId(user.getId());
         user.setRoles(roleList);
-        List<String> resourceList = new ArrayList<>();
+        List<String> resourceList = new ArrayList();
         boolean isSuperAdmin = false;
         user.setOnlyAccountRole(true);
         if (!CollectionUtils.isEmpty(roleList)) {
-            List<Long> roleIds = new ArrayList<>();
+            List<Long> roleIds = new ArrayList();
             for (Role item : roleList) {
                 if (RoleTypeEnum.Admin.getValue().equals(item.getOrgType())) {
                     isSuperAdmin = true;

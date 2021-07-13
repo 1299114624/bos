@@ -1,10 +1,9 @@
 package com.archforce.arc.facility.service.function;
 
-import com.archforce.arc.facility.common.AvmTree;
 import com.archforce.arc.facility.entity.avm.function.FunctionGroup;
+import com.archforce.arc.facility.common.AvmTree;
 
 import java.util.List;
-import java.util.Map;
 
 public interface FunctionGroupService{
 

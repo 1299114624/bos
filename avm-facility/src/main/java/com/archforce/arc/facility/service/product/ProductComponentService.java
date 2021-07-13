@@ -2,10 +2,9 @@ package com.archforce.arc.facility.service.product;
 
 import java.util.List;
 
-import com.archforce.arc.facility.entity.avm.company.CompanyComponentInfo;
-import com.archforce.arc.facility.entity.avm.product.ProductComponent;
 import com.archforce.arc.facility.entity.avm.product.ProductComponentInfo;
-import com.archforce.arc.facility.utils.QueryVo;
+import com.archforce.arc.facility.entity.avm.product.ProductComponent;
+import com.archforce.common.utils.QueryVo;
 import com.github.pagehelper.Page;
 
 public interface ProductComponentService{

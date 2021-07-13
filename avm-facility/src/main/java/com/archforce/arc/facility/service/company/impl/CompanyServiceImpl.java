@@ -2,15 +2,15 @@ package com.archforce.arc.facility.service.company.impl;
 
 import com.archforce.arc.facility.entity.avm.company.CompanyProduct;
 import com.archforce.arc.facility.entity.vo.CompanyVo;
+import com.archforce.arc.facility.mapper.avm.CompanyMapper;
 import com.archforce.arc.facility.mapper.avm.CompanyProductMapper;
-import com.archforce.arc.facility.utils.QueryVo;
-import com.archforce.arc.facility.utils.Sort;
+import com.archforce.common.utils.QueryVo;
+import com.archforce.common.utils.Sort;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.archforce.arc.facility.entity.avm.company.Company;
-import com.archforce.arc.facility.mapper.avm.CompanyMapper;
 import com.archforce.arc.facility.service.company.CompanyService;
 import org.springframework.transaction.annotation.Transactional;
 

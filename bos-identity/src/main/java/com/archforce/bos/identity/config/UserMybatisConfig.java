@@ -19,13 +19,11 @@ import javax.sql.DataSource;
 @AutoConfigureAfter
 public class UserMybatisConfig {
     @Bean("userTransactionManager")
-    @Primary
     public PlatformTransactionManager transactionManager(@Qualifier("userDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean("userSqlSessionFactory")
-    @Primary
     public SqlSessionFactory sqlSessionFactory(@Qualifier("userDataSource") DataSource dataSource) {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);

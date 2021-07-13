@@ -1,8 +1,8 @@
 package com.archforce.arc.facility.service.company;
 
-import com.archforce.arc.facility.entity.avm.company.Company;
 import com.archforce.arc.facility.entity.vo.CompanyVo;
-import com.archforce.arc.facility.utils.QueryVo;
+import com.archforce.arc.facility.entity.avm.company.Company;
+import com.archforce.common.utils.QueryVo;
 import com.github.pagehelper.Page;
 
 import java.util.List;

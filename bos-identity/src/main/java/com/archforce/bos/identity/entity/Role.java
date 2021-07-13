@@ -38,7 +38,7 @@ public class Role {
     /**
      * 角色对应的资源
      */
-    private List<Resource> resources = new ArrayList<>();
+    private List<Resource> resources = new ArrayList();
 
     public Long getId() {
         return id;

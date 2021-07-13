@@ -1,31 +1,28 @@
 package com.archforce.arc.facility.service.function.impl;
 
+import com.archforce.arc.facility.entity.avm.function.FunctionFunctionGroup;
+import com.archforce.arc.facility.entity.avm.function.FunctionGroup;
+import com.archforce.arc.facility.entity.vo.FunctionVo;
+import com.archforce.arc.facility.mapper.avm.FunctionFunctionGroupMapper;
+import com.archforce.arc.facility.service.cache.FunctionCache;
+import com.archforce.arc.facility.service.function.FunctionGroupService;
+import com.archforce.arc.facility.service.function.FunctionService;
+import com.archforce.common.exception.BusinessException;
+import com.archforce.common.exception.ErrorCodeConstant;
 import com.archforce.arc.facility.common.AvmTree;
 import com.archforce.arc.facility.common.TreeUtils;
-import com.archforce.arc.facility.entity.avm.function.FunctionFunctionGroup;
-import com.archforce.arc.facility.entity.vo.FunctionVo;
-import com.archforce.arc.facility.exception.BusinessException;
-import com.archforce.arc.facility.mapper.avm.FunctionFunctionGroupMapper;
-import com.archforce.arc.facility.mapper.avm.FunctionMapper;
-import com.archforce.arc.facility.service.cache.FunctionCache;
-import com.archforce.arc.facility.service.function.FunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.archforce.arc.facility.mapper.avm.FunctionGroupMapper;
-import com.archforce.arc.facility.entity.avm.function.FunctionGroup;
-import com.archforce.arc.facility.service.function.FunctionGroupService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-import static com.archforce.arc.facility.exception.ErrorCodeConstant.FUNCTION_GROUP_NAME_EXIT;
-
 @Service
-public class FunctionGroupServiceImpl implements FunctionGroupService{
+public class FunctionGroupServiceImpl implements FunctionGroupService {
 
     @Resource
     private FunctionGroupMapper functionGroupMapper;
@@ -60,7 +57,7 @@ public class FunctionGroupServiceImpl implements FunctionGroupService{
         //校验
         FunctionGroup functionGroup = functionGroupMapper.selectByGroupName(record.getGroupName());
         if (Objects.nonNull(functionGroup)) {
-            throw new BusinessException(FUNCTION_GROUP_NAME_EXIT);
+            throw new BusinessException(ErrorCodeConstant.FUNCTION_GROUP_NAME_EXIT);
         }
 
         UUID uuid = UUID.randomUUID();
@@ -81,7 +78,7 @@ public class FunctionGroupServiceImpl implements FunctionGroupService{
         try {
             functionGroupMapper.selectByGroupName(record.getGroupName());
         } catch (Exception e) {
-            throw new BusinessException(FUNCTION_GROUP_NAME_EXIT);
+            throw new BusinessException(ErrorCodeConstant.FUNCTION_GROUP_NAME_EXIT);
         }
         return i;
     }

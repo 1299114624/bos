@@ -33,29 +33,41 @@
 
     <build>
         <plugins>
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <groupId>org.codehaus.mojo</groupId>-->
-<!--                <artifactId>appassembler-maven-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <programs>-->
-<!--                        <program>-->
-<!--                            <name>bootstrap.sh</name>-->
-<!--                            <mainClass>com.archforce.AVM</mainClass>-->
-<!--                        </program>-->
-<!--                    </programs>-->
-<!--                    <useTimestampInSnapshotFileName>false</useTimestampInSnapshotFileName>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>2.1.0</version>
+                <configuration>
+                    <programs>
+                        <program>
+                            <name>bootstrap.sh</name>
+                            <mainClass>com.archforce.AVM</mainClass>
+                        </program>
+                    </programs>
+                    <useTimestampInSnapshotFileName>false</useTimestampInSnapshotFileName>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>src/assembly/assembly.xml</descriptors><!--配置描述文件路径-->
                 </configuration>
+
+                <executions>
+                    <execution><!-- 配置执行器 -->
+                        <id>make-assembly</id>
+                        <phase>package</phase><!-- 绑定到package生命周期阶段上 -->
+                        <goals>
+                            <goal>single</goal><!-- 只运行一次 -->
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

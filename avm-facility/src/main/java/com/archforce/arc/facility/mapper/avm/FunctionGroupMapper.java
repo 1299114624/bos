@@ -1,7 +1,6 @@
 package com.archforce.arc.facility.mapper.avm;
 
 import com.archforce.arc.facility.entity.avm.function.FunctionGroup;
-import com.archforce.arc.facility.entity.vo.FunctionVo;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.archforce.arc.facility.service.common.impl;
 
-import com.archforce.arc.facility.entity.avm.Parameter;
 import com.archforce.arc.facility.mapper.avm.ParameterMapper;
+import com.archforce.arc.facility.entity.avm.Parameter;
 import com.archforce.arc.facility.service.common.ParameterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
