@@ -29,7 +29,10 @@
             <result column="status" jdbcType="VARCHAR" property="status"/>
         </collection>
     </resultMap>
-
+      <sql id="Base_Column_List">
+        id, dict_code, dict_value, dict_name, category_code, sort_no, status, remark,
+        add_time, add_user, update_time, update_user
+      </sql>
     <select id="selectAllDict" resultMap="DictResultMap">
         SELECT
             dc.category_code, dc.category_name, d.category_code as d_category_code, d.dict_code, d.dict_value, d.dict_name, d.status
@@ -40,5 +43,16 @@
             d.status in (1)
         ORDER BY
             dc.sort_no ASC
+    </select>
+
+    <select id="selectByCode" parameterType="com.archforce.arc.facility.entity.common.Dict" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_dict
+        where STATUS in (0,1)
+        <if test="categoryCode != null">
+            and category_code = #{categoryCode,jdbcType=VARCHAR}
+        </if>
+        ORDER BY sort_no ASC
     </select>
 </mapper>

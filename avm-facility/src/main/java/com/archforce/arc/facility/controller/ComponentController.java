@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.archforce.arc.facility.entity.avm.component.Component;
 import com.archforce.arc.facility.entity.vo.ComponentVo;
+import com.archforce.arc.facility.service.common.DictService;
 import com.archforce.arc.facility.service.component.ComponentService;
 import com.archforce.arc.facility.util.ExcelExportUtils;
 import com.archforce.arc.common.utils.PageInfo;
@@ -28,6 +29,9 @@ import java.text.SimpleDateFormat;
 public class ComponentController {
     @Autowired
     private ComponentService componentService;
+
+    @Autowired
+    private DictService dictService;
 
     @PostMapping("/page")
     public ResBody pageProducts(@RequestBody QueryVo<Component> queryVo) {
@@ -61,9 +65,11 @@ public class ComponentController {
         query.resetPage();
         query.getPage().setPageNumber(-1);
         List<ComponentVo> list = componentService.getAllComponnet(query);
+        Map<String, String> languageTypeMap = dictService.selectDictMap("LanguageType");
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("componentName", "组件名称");
         dataMap.put("componentEnglishName", "组件英文全称");
+        dataMap.put("languageType", "开发语言");
         dataMap.put("description", "组件说明");
         dataMap.put("chargeman", "组件负责人");
         dataMap.put("designSvnAddress", "设计文档SVN地址");
@@ -84,6 +90,8 @@ public class ComponentController {
             if (newItem.get("updateTime") != null) {
                 newItem.put("updateTime", dateFormat.format((Date) newItem.get("updateTime")));
             }
+            String languageType = languageTypeMap.get(newItem.get("languageType"));
+            newItem.put("languageType", languageType == null ? "" : languageType);
         }
         dataMap.put("data", jsonArray);
         final InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(excelName);
