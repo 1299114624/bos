@@ -1,8 +1,8 @@
 package com.archforce.bos.identity.web.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.archforce.common.log.LogUtils;
-import com.archforce.common.utils.ResBody;
+import com.archforce.arc.common.log.LogUtils;
+import com.archforce.arc.common.utils.ResBody;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import org.apache.shiro.SecurityUtils;

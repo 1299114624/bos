@@ -2,7 +2,7 @@ package com.archforce.arc.facility.controller;
 
 import com.archforce.arc.facility.service.function.FunctionService;
 import com.archforce.arc.facility.entity.vo.FunctionVo;
-import com.archforce.common.utils.ResBody;
+import com.archforce.arc.common.utils.ResBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

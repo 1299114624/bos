@@ -2,7 +2,7 @@ package com.archforce.arc.facility.service.company.impl;
 
 import com.archforce.arc.facility.entity.avm.company.CompanyComponentInfo;
 import com.archforce.arc.facility.service.company.CompanyComponentService;
-import com.archforce.common.utils.QueryVo;
+import com.archforce.arc.common.utils.QueryVo;
 import com.github.pagehelper.Page;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;

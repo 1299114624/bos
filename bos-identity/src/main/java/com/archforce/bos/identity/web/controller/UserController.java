@@ -1,11 +1,11 @@
 package com.archforce.bos.identity.web.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.archforce.common.exception.ApplicationException;
-import com.archforce.common.log.LogTitle;
-import com.archforce.common.log.LogUtils;
-import com.archforce.common.utils.Encrypt;
-import com.archforce.common.utils.ResBody;
+import com.archforce.arc.common.exception.ApplicationException;
+import com.archforce.arc.common.log.LogTitle;
+import com.archforce.arc.common.log.LogUtils;
+import com.archforce.arc.common.utils.Encrypt;
+import com.archforce.arc.common.utils.ResBody;
 import com.archforce.bos.identity.common.IdentityConstants;
 import com.archforce.bos.identity.common.IdentityUtils;
 import com.archforce.bos.identity.entity.LoginInfo;

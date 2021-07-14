@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.archforce.arc</groupId>
+            <groupId>com.archforce.arc.common</groupId>
             <artifactId>avm-common</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>

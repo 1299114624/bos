@@ -1,7 +1,7 @@
 package com.archforce.arc.facility.service.product;
 
 import com.archforce.arc.facility.entity.avm.product.Product;
-import com.archforce.common.utils.QueryVo;
+import com.archforce.arc.common.utils.QueryVo;
 import com.github.pagehelper.Page;
 
 import java.util.List;

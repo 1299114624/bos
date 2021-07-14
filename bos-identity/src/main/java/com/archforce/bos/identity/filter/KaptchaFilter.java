@@ -1,7 +1,7 @@
 package com.archforce.bos.identity.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.archforce.common.log.LogUtils;
+import com.archforce.arc.common.log.LogUtils;
 import com.google.code.kaptcha.Constants;
 import com.google.common.collect.Maps;
 import org.apache.shiro.SecurityUtils;

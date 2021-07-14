@@ -2,9 +2,9 @@ package com.archforce.arc.facility.controller;
 
 import com.archforce.arc.facility.entity.vo.CompanyVo;
 import com.archforce.arc.facility.service.company.CompanyService;
-import com.archforce.common.utils.PageInfo;
-import com.archforce.common.utils.QueryVo;
-import com.archforce.common.utils.ResBody;
+import com.archforce.arc.common.utils.PageInfo;
+import com.archforce.arc.common.utils.QueryVo;
+import com.archforce.arc.common.utils.ResBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

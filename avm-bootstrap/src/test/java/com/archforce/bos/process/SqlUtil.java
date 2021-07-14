@@ -1,6 +1,6 @@
 package com.archforce.bos.process;
 
-import com.archforce.common.utils.EncryptUtil;
+import com.archforce.arc.common.utils.EncryptUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;

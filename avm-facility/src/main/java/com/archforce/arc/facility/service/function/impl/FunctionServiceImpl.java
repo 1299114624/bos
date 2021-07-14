@@ -5,7 +5,7 @@ import com.archforce.arc.facility.service.function.FunctionService;
 import com.archforce.arc.facility.entity.avm.function.FunctionCompany;
 import com.archforce.arc.facility.entity.avm.function.FunctionFunctionGroup;
 import com.archforce.arc.facility.entity.vo.FunctionVo;
-import com.archforce.common.exception.BusinessException;
+import com.archforce.arc.common.exception.BusinessException;
 import com.archforce.arc.facility.mapper.avm.FunctionCompanyMapper;
 import com.archforce.arc.facility.mapper.avm.FunctionComponentMapper;
 import com.archforce.arc.facility.mapper.avm.FunctionFunctionGroupMapper;
@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.archforce.common.exception.ErrorCodeConstant.FUNCTION_CODE_EXIT;
-import static com.archforce.common.exception.ErrorCodeConstant.FUNCTION_NAME_EXIT;
+import static com.archforce.arc.common.exception.ErrorCodeConstant.FUNCTION_CODE_EXIT;
+import static com.archforce.arc.common.exception.ErrorCodeConstant.FUNCTION_NAME_EXIT;
 
 @Service
 public class FunctionServiceImpl implements FunctionService {

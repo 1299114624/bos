@@ -2,7 +2,7 @@ package com.archforce.arc.facility.service.component;
 
 import com.archforce.arc.facility.entity.avm.component.Component;
 import com.archforce.arc.facility.entity.vo.ComponentVo;
-import com.archforce.common.utils.QueryVo;
+import com.archforce.arc.common.utils.QueryVo;
 import com.github.pagehelper.Page;
 
 import java.util.List;
