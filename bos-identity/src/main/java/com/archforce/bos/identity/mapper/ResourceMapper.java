@@ -15,5 +15,5 @@ public interface ResourceMapper {
 
     List<Resource> getAllMenu();
 
-//    List<Resource> gerResourceByUserId(Long id);
+    List<Resource> getResourceByUserId(Long id);
 }

@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 01/07/2021 19:41:32
+ Date: 19/07/2021 15:00:34
 */
 
 SET NAMES utf8mb4;
@@ -56,7 +56,7 @@ INSERT INTO `t_company` VALUES (16, '国泰君安国际控股有限公司', 'Guo
 INSERT INTO `t_company` VALUES (17, '东方证券股份有限公司', 'Orient Securities Company Limited', '东方证券', '', 0, '', '2021-03-01 14:42:23', '', '2021-03-01 14:42:23');
 INSERT INTO `t_company` VALUES (18, '国信证券股份有限公司', 'Guosen Securities Co.,Ltd', '国信证券', '', 0, '', '2021-03-01 14:43:00', '', '2021-03-01 14:43:00');
 INSERT INTO `t_company` VALUES (19, '天风证券股份有限公司', 'TF Securities Co.,Ltd', '天风证券', '', 0, '', '2021-05-01 02:29:47', '', '2021-05-01 10:29:46');
-INSERT INTO `t_company` VALUES (20, '中信建投证券股份有限公司', 'China Securities Co.,Ltd', '中信建投', '', 0, '', '2021-03-03 08:36:50', '', '2021-03-03 16:36:50');
+INSERT INTO `t_company` VALUES (20, '中信建投证券股份有限公司', 'China Securities Co.,Ltd', '中信建投', '', 0, '', '2021-07-12 10:27:35', '', '2021-07-12 10:27:35');
 
 -- ----------------------------
 -- Table structure for t_company_component
@@ -79,7 +79,7 @@ CREATE TABLE `t_company_product`  (
   `company_id` int(11) NOT NULL DEFAULT -1 COMMENT 'companyId',
   `product_id` int(11) NOT NULL DEFAULT -1 COMMENT 'productId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_company_product' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 49 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_company_product' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_company_product
@@ -102,10 +102,9 @@ INSERT INTO `t_company_product` VALUES (24, 6, 6);
 INSERT INTO `t_company_product` VALUES (25, 5, 6);
 INSERT INTO `t_company_product` VALUES (26, 4, 6);
 INSERT INTO `t_company_product` VALUES (27, 3, 6);
-INSERT INTO `t_company_product` VALUES (42, 20, 6);
-INSERT INTO `t_company_product` VALUES (43, 20, 7);
-INSERT INTO `t_company_product` VALUES (44, 20, 8);
 INSERT INTO `t_company_product` VALUES (46, 19, 6);
+INSERT INTO `t_company_product` VALUES (47, 20, 7);
+INSERT INTO `t_company_product` VALUES (48, 20, 6);
 
 -- ----------------------------
 -- Table structure for t_component
@@ -113,22 +112,22 @@ INSERT INTO `t_company_product` VALUES (46, 19, 6);
 DROP TABLE IF EXISTS `t_component`;
 CREATE TABLE `t_component`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `component_english_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'componentEnglishName',
-  `component_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'componentName',
+  `component_english_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '组件英文全称',
+  `component_name` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '组件名称',
   `component_code` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'componentCode',
   `component_type` int(11) NOT NULL DEFAULT 0 COMMENT 'componentType',
-  `description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'description',
-  `language_type` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'languageType',
-  `chargeman` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'chargeman',
-  `del_status` int(11) NOT NULL DEFAULT 0 COMMENT 'delStatus',
-  `update_user` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'updateUser',
-  `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
-  `add_user` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'addUser',
-  `add_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'addTime',
-  `design_svn_address` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'designSvnAddress',
-  `require_svn_address` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'requireSvnAddress',
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '组件说明',
+  `language_type` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '开发语言',
+  `chargeman` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '所属客户',
+  `del_status` int(11) NULL DEFAULT 0 COMMENT 'delStatus',
+  `update_user` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT 'updateUser',
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
+  `add_user` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT 'addUser',
+  `add_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'addTime',
+  `design_svn_address` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '设计文档SVN地址',
+  `require_svn_address` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '需求文档SVN地址',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_component' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_component' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_component
@@ -165,7 +164,7 @@ INSERT INTO `t_component` VALUES (31, 'Single Sign On', 'SSO', '', 0, '单点登
 INSERT INTO `t_component` VALUES (32, 'Unified User Management', 'UUM', '', 0, '统一用户管理', '1', '', 0, '', '2021-02-26 20:10:35', '', '2021-02-26 20:10:35', '', '');
 INSERT INTO `t_component` VALUES (33, 'Data Adapt', 'DA', '', 0, '数据适配器', '1', '周胜兵', 0, '', '2021-04-13 11:17:02', '', '2021-04-13 11:17:02', '', '');
 INSERT INTO `t_component` VALUES (34, 'Data Persistence', 'DP', '', 0, '数据持久化', '1', '周胜兵', 0, '', '2021-04-13 11:16:47', '', '2021-04-13 11:16:47', '', '');
-INSERT INTO `t_component` VALUES (35, '', 'RA', '', 0, '数据重演', '1', '', 0, '', '2021-04-13 11:16:54', '', '2021-04-13 11:16:54', '', '');
+INSERT INTO `t_component` VALUES (35, '', 'RA', '', 0, '数据重演', '1', '', 0, '', '2021-07-09 14:08:19', '', '2021-07-09 14:08:19', '', '');
 
 -- ----------------------------
 -- Table structure for t_component_company
@@ -187,6 +186,35 @@ INSERT INTO `t_component_company` VALUES (7, 23, 10);
 INSERT INTO `t_component_company` VALUES (8, 22, 20);
 INSERT INTO `t_component_company` VALUES (9, 13, 5);
 INSERT INTO `t_component_company` VALUES (10, 13, 6);
+
+-- ----------------------------
+-- Table structure for t_component_import_temp
+-- ----------------------------
+DROP TABLE IF EXISTS `t_component_import_temp`;
+CREATE TABLE `t_component_import_temp`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `component_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '组件名称',
+  `file_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文件id',
+  `line_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '行号',
+  `is_success` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否导入成功（Y：成功，N：失败）',
+  `component_info` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '导入的组件信息',
+  `error_info` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '错误信息',
+  `mark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_component_import_temp
+-- ----------------------------
+INSERT INTO `t_component_import_temp` VALUES (1, 'testName1', 'a922f6c9-1096-4a06-aa54-a08f50b64340', '3', 'Y', '{\"componentEnglishName\":\"testEngName1\",\"designSvnAddress\":\"designSvnAddressTest\",\"componentCode\":\"0\",\"requireSvnAddress\":\"requireSvnAddressTest\",\"description\":\"descriptionTest\",\"componentName\":\"testName1\"}', NULL, NULL);
+INSERT INTO `t_component_import_temp` VALUES (2, 'testName1', '5d4d3e8f-0e9f-4cb5-ada0-a9d2953f4139', '3', 'Y', '{\"componentEnglishName\":\"testEngName\",\"designSvnAddress\":\"designSvnAddressTest\",\"componentCode\":\"0\",\"requireSvnAddress\":\"requireSvnAddressTest\",\"description\":\"descriptionTest\",\"componentName\":\"testName1\"}', NULL, NULL);
+INSERT INTO `t_component_import_temp` VALUES (3, 'testName2', '5d4d3e8f-0e9f-4cb5-ada0-a9d2953f4139', '4', 'Y', '{\"componentEnglishName\":\"testEngName\",\"designSvnAddress\":\"designSvnAddressTest\",\"componentCode\":\"0\",\"requireSvnAddress\":\"requireSvnAddressTest\",\"description\":\"descriptionTest\",\"componentName\":\"testName2\"}', NULL, NULL);
+INSERT INTO `t_component_import_temp` VALUES (4, 'testName1', '2f9479d5-4532-4627-bf15-18395d9f7de2', '3', 'N', '{\"componentEnglishName\":\"testEngName\",\"designSvnAddress\":\"designSvnAddressTest\",\"componentCode\":\"0\",\"requireSvnAddress\":\"requireSvnAddressTest\",\"description\":\"descriptionTest\",\"componentName\":\"testName1\"}', '{\"组件名称\":\"50001:组件名称已存在！\"}', NULL);
+INSERT INTO `t_component_import_temp` VALUES (5, 'testName2', '2f9479d5-4532-4627-bf15-18395d9f7de2', '4', 'N', '{\"componentEnglishName\":\"testEngName\",\"designSvnAddress\":\"designSvnAddressTest\",\"componentCode\":\"0\",\"requireSvnAddress\":\"requireSvnAddressTest\",\"description\":\"descriptionTest\",\"componentName\":\"testName2\"}', '{\"组件名称\":\"50001:组件名称已存在！\"}', NULL);
+INSERT INTO `t_component_import_temp` VALUES (6, 'testName3', '65aca6d6-e72c-48b5-b625-d7f07488d97d', '3', 'Y', '{\"componentEnglishName\":\"testEngName\",\"designSvnAddress\":\"designSvnAddressTest\",\"componentCode\":\"0\",\"requireSvnAddress\":\"requireSvnAddressTest\",\"description\":\"descriptionTest\",\"componentName\":\"testName3\"}', NULL, NULL);
+INSERT INTO `t_component_import_temp` VALUES (7, 'testName2', '65aca6d6-e72c-48b5-b625-d7f07488d97d', '4', 'N', '{\"componentEnglishName\":\"testEngName\",\"designSvnAddress\":\"designSvnAddressTest\",\"componentCode\":\"0\",\"requireSvnAddress\":\"requireSvnAddressTest\",\"description\":\"descriptionTest\",\"componentName\":\"testName2\"}', '{\"组件名称\":\"50001:组件名称已存在！\"}', NULL);
+INSERT INTO `t_component_import_temp` VALUES (8, 'testName4', 'abeaf4c5-992b-49fb-a4e8-69f30af12141', '3', 'Y', '{\"componentEnglishName\":\"testEngName\",\"designSvnAddress\":\"designSvnAddressTest\",\"componentCode\":\"0\",\"requireSvnAddress\":\"requireSvnAddressTest\",\"description\":\"descriptionTest\",\"componentName\":\"testName4\"}', NULL, NULL);
+INSERT INTO `t_component_import_temp` VALUES (9, 'testName5', 'abeaf4c5-992b-49fb-a4e8-69f30af12141', '4', 'Y', '{\"componentEnglishName\":\"testEngName\",\"designSvnAddress\":\"designSvnAddressTest\",\"componentCode\":\"0\",\"requireSvnAddress\":\"requireSvnAddressTest\",\"description\":\"descriptionTest\",\"componentName\":\"testName5\"}', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for t_dict
@@ -248,6 +276,37 @@ INSERT INTO `t_dict_category` VALUES (1, 'QuestionType', '问题类型', 1, 1, '
 INSERT INTO `t_dict_category` VALUES (2, 'LanguageType', '开发语言', 2, 1, '', 0, '2021-02-22 20:19:53', '', '2021-02-22 20:19:57', '');
 INSERT INTO `t_dict_category` VALUES (3, 'FunctionType', '功能类型', 3, 1, '', 0, '2021-02-22 20:19:53', '', '2021-03-05 16:06:44', '');
 INSERT INTO `t_dict_category` VALUES (4, 'ComponentType', '组件类型', 4, 1, '', 0, '2021-05-12 15:36:17', '', '2021-05-12 15:36:21', '');
+
+-- ----------------------------
+-- Table structure for t_files
+-- ----------------------------
+DROP TABLE IF EXISTS `t_files`;
+CREATE TABLE `t_files`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `file_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文件名称',
+  `file_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文件路径',
+  `file_size` bigint(20) NULL DEFAULT NULL COMMENT '文件大小',
+  `file_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文件类别（文件后缀）',
+  `file_uploadtime` datetime(0) NULL DEFAULT NULL,
+  `file_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '通用唯一识别码（32位）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_files
+-- ----------------------------
+INSERT INTO `t_files` VALUES (1, '组件管理导入模板.xlsx', 'D:/workspace/java/upload/component_template.xlsx', NULL, '.xlsx', '2021-07-15 11:49:33', 'component_template');
+INSERT INTO `t_files` VALUES (4, 'component_template.xlsx', 'D:/workspace/java/upload/fba1ed89-834f-48ca-968f-6aa71a7f93ee.xlsx', 10476, '.xlsx', '2021-07-16 21:59:00', 'fba1ed89-834f-48ca-968f-6aa71a7f93ee');
+INSERT INTO `t_files` VALUES (5, 'component_template.xlsx', 'D:/workspace/java/upload/b539c372-7631-48b6-bf79-2bc61b2c079f.xlsx', 10476, '.xlsx', '2021-07-16 22:00:25', 'b539c372-7631-48b6-bf79-2bc61b2c079f');
+INSERT INTO `t_files` VALUES (6, 'component_template.xlsx', 'D:/workspace/java/upload/71c0f735-cf8b-4edd-9c80-86458735fd8d.xlsx', 10476, '.xlsx', '2021-07-16 22:02:53', '71c0f735-cf8b-4edd-9c80-86458735fd8d');
+INSERT INTO `t_files` VALUES (7, 'component_template.xlsx', 'D:/workspace/java/upload/7f98cb8f-839c-4fb4-8d38-d171304f211b.xlsx', 10476, '.xlsx', '2021-07-19 09:26:28', '7f98cb8f-839c-4fb4-8d38-d171304f211b');
+INSERT INTO `t_files` VALUES (8, 'component_template.xlsx', 'D:/workspace/java/upload/90eb2f48-ce80-4046-8520-f6643f31a231.xlsx', 10476, '.xlsx', '2021-07-19 09:26:58', '90eb2f48-ce80-4046-8520-f6643f31a231');
+INSERT INTO `t_files` VALUES (9, 'component_template.xlsx', 'D:/workspace/java/upload/a922f6c9-1096-4a06-aa54-a08f50b64340.xlsx', 10476, '.xlsx', '2021-07-19 09:32:59', 'a922f6c9-1096-4a06-aa54-a08f50b64340');
+INSERT INTO `t_files` VALUES (10, 'component_template.xlsx', 'D:/workspace/java/upload/d0510f20-f87f-42b8-a4fd-2cd7c5c43c79.xlsx', 10476, '.xlsx', '2021-07-19 09:34:51', 'd0510f20-f87f-42b8-a4fd-2cd7c5c43c79');
+INSERT INTO `t_files` VALUES (11, 'component_template.xlsx', 'D:/workspace/java/upload/5d4d3e8f-0e9f-4cb5-ada0-a9d2953f4139.xlsx', 10571, '.xlsx', '2021-07-19 10:26:29', '5d4d3e8f-0e9f-4cb5-ada0-a9d2953f4139');
+INSERT INTO `t_files` VALUES (12, 'component_template.xlsx', 'D:/workspace/java/upload/2f9479d5-4532-4627-bf15-18395d9f7de2.xlsx', 10571, '.xlsx', '2021-07-19 14:47:58', '2f9479d5-4532-4627-bf15-18395d9f7de2');
+INSERT INTO `t_files` VALUES (13, 'component_template.xlsx', 'D:/workspace/java/upload/65aca6d6-e72c-48b5-b625-d7f07488d97d.xlsx', 10549, '.xlsx', '2021-07-19 14:48:46', '65aca6d6-e72c-48b5-b625-d7f07488d97d');
+INSERT INTO `t_files` VALUES (14, 'component_template.xlsx', 'D:/workspace/java/upload/abeaf4c5-992b-49fb-a4e8-69f30af12141.xlsx', 10545, '.xlsx', '2021-07-19 14:49:20', 'abeaf4c5-992b-49fb-a4e8-69f30af12141');
 
 -- ----------------------------
 -- Table structure for t_function
@@ -516,7 +575,7 @@ CREATE TABLE `t_product`  (
 -- ----------------------------
 INSERT INTO `t_product` VALUES (5, 'ARC', 'Archforce Risk Control', '华锐实时风控平台', '', '', '', '2021-02-26 14:21:55', '', '2021-02-26 14:21:55', '');
 INSERT INTO `t_product` VALUES (6, 'TSM', 'Trading Supervision Management', '异常交易行为与处置系统', '', '', '', '2021-02-26 14:21:49', '', '2021-02-26 14:21:49', '');
-INSERT INTO `t_product` VALUES (7, 'ERS', 'eXtreme Risk System', '外部接入管理与风控系统', '', '', '', '2021-02-26 14:21:38', '', '2021-02-26 14:21:38', '');
+INSERT INTO `t_product` VALUES (7, 'ERS', 'eXtreme Risk System', '外部接入管理与风控系统', '黄广立', '', '', '2021-07-07 14:34:08', '', '2021-07-07 14:34:08', '');
 
 -- ----------------------------
 -- Table structure for t_product_component
@@ -527,7 +586,7 @@ CREATE TABLE `t_product_component`  (
   `product_id` int(11) NOT NULL DEFAULT -1 COMMENT 'productId',
   `component_id` int(11) NOT NULL DEFAULT -1 COMMENT 'componentId',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_product_component' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_product_component' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_product_component

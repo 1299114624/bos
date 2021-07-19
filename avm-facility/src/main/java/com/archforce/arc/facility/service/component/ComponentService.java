@@ -1,10 +1,12 @@
 package com.archforce.arc.facility.service.component;
 
 import com.archforce.arc.facility.entity.avm.component.Component;
+import com.archforce.arc.facility.entity.common.Files;
 import com.archforce.arc.facility.entity.vo.ComponentVo;
 import com.archforce.arc.common.utils.QueryVo;
 import com.github.pagehelper.Page;
 
+import java.io.File;
 import java.util.List;
 
 public interface ComponentService{
@@ -22,4 +24,5 @@ public interface ComponentService{
     int updateByPrimaryKeySelective(ComponentVo record);
 
     List<Component> getAllComponnetList();
+
 }

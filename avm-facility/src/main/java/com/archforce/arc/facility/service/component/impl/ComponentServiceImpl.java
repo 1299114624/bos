@@ -1,26 +1,35 @@
 package com.archforce.arc.facility.service.component.impl;
 
+import cn.hutool.json.JSONUtil;
+import com.archforce.arc.common.exception.ApplicationException;
+import com.archforce.arc.common.exception.FileHandlerException;
+import com.archforce.arc.common.log.LogUtils;
+import com.archforce.arc.facility.entity.avm.component.ComponentImportTemp;
+import com.archforce.arc.facility.entity.common.Files;
 import com.archforce.arc.facility.mapper.avm.ComponentMapper;
 import com.archforce.arc.facility.entity.avm.component.ComponentCompany;
 import com.archforce.arc.facility.entity.vo.ComponentVo;
 import com.archforce.arc.common.exception.BusinessException;
 import com.archforce.arc.facility.mapper.avm.ComponentCompanyMapper;
+import com.archforce.arc.facility.mapper.avm.FilesMapper;
 import com.archforce.arc.facility.mapper.avm.FunctionComponentMapper;
 import com.archforce.arc.common.utils.QueryVo;
 import com.archforce.arc.common.utils.Sort;
+import com.archforce.arc.facility.util.Constant;
+import com.archforce.arc.facility.util.ExcelUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 import com.archforce.arc.facility.entity.avm.component.Component;
 import com.archforce.arc.facility.service.component.ComponentService;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.io.File;
+import java.util.*;
 
 import static com.archforce.arc.common.exception.ErrorCodeConstant.COMPONENT_NAME_EXIT;
 
@@ -85,7 +94,6 @@ public class ComponentServiceImpl implements ComponentService{
         int i = componentMapper.insertSelective(record);
         // 添加组件与客户的关联关系
         batchInsertComponentCompany(record);
-
         return i;
     }
 

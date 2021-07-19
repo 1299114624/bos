@@ -18,4 +18,11 @@ public interface ResourceService{
      * 获取所有菜单
      */
     List<Resource> getAllMenu();
+
+    /**
+     * 获取用户的所有资源信息
+     * @param id
+     * @return
+     */
+    List<Resource> getResourceByUserId(Long id);
 }

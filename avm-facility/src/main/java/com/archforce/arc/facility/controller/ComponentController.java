@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.archforce.arc.facility.entity.avm.component.Component;
+import com.archforce.arc.facility.entity.common.Files;
 import com.archforce.arc.facility.entity.vo.ComponentVo;
 import com.archforce.arc.facility.service.common.DictService;
 import com.archforce.arc.facility.service.component.ComponentService;
@@ -59,6 +60,7 @@ public class ComponentController {
         componentService.deleteBatch(ids);
         return ResBody.ok();
     }
+
 
     @PostMapping("/export")
     public void export(@RequestBody QueryVo<Component> query, HttpServletResponse response) {

@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 02/07/2021 16:51:45
+ Date: 19/07/2021 15:00:45
 */
 
 SET NAMES utf8mb4;
@@ -39,7 +39,7 @@ INSERT INTO `t_app` VALUES (2, 'ERS', '外部接入管理系统');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_environment_parameter`;
 CREATE TABLE `t_environment_parameter`  (
-  `id` int(11) NOT NULL COMMENT 'ID',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `para_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '参数名',
   `para_value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '参数值',
   `para_desc` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '参数描述',
@@ -48,7 +48,7 @@ CREATE TABLE `t_environment_parameter`  (
   `sort_field` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '排序字段',
   `sort_num` int(11) NULL DEFAULT NULL COMMENT '排序顺序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_environment_parameter
@@ -58,12 +58,13 @@ INSERT INTO `t_environment_parameter` VALUES (2, 'expireTime', '18000000', '会�
 INSERT INTO `t_environment_parameter` VALUES (3, 'domainconfigdb.database.host', '127.0.0.1:3306', '配置中心数据库ip', b'1', b'0', 'domainconfigdb', 3);
 INSERT INTO `t_environment_parameter` VALUES (4, 'domainconfigdb.database.username', 'root', '配置中心数据库用户名', b'1', b'0', 'domainconfigdb', 4);
 INSERT INTO `t_environment_parameter` VALUES (5, 'domainconfigdb.database.password', 'Vl9kolqsxX65cWET7SKx2g==', '配置中心数据库密码', b'1', b'1', 'domainconfigdb', 5);
-INSERT INTO `t_environment_parameter` VALUES (6, 'userdb.database.host', '127.0.0.1:3306', '用户管理数据库ip', b'1', b'0', 'userdb', 6);
+INSERT INTO `t_environment_parameter` VALUES (6, 'userdb.database.host', '101.34.54.70:3306', '用户管理数据库ip', b'1', b'0', 'userdb', 6);
 INSERT INTO `t_environment_parameter` VALUES (7, 'userdb.database.username', 'root', '用户管理数据库用户名', b'1', b'0', 'userdb', 7);
-INSERT INTO `t_environment_parameter` VALUES (8, 'userdb.database.password', 'Vl9kolqsxX65cWET7SKx2g==', '用户管理数据库密码', b'1', b'1', 'userdb', 8);
+INSERT INTO `t_environment_parameter` VALUES (8, 'userdb.database.password', 'Vl9kolqsxX65cWET7SKx2g==', '用户管理数据库密码', b'1', b'0', 'userdb', 8);
 INSERT INTO `t_environment_parameter` VALUES (9, 'avmdb.database.host', '127.0.0.1:3306', 'avmdb数据库ip', b'1', b'0', 'avmdb', 9);
 INSERT INTO `t_environment_parameter` VALUES (10, 'avmdb.database.username', 'root', 'avmdb数据库用户名', b'1', b'0', 'avmdb', 10);
 INSERT INTO `t_environment_parameter` VALUES (11, 'avmdb.database.password', 'Vl9kolqsxX65cWET7SKx2g==', 'avmdb数据库密码', b'1', b'1', 'avmdb', 11);
+INSERT INTO `t_environment_parameter` VALUES (12, 'tsm.upload.dir', 'D:/workspace/java/upload/', '上传文件基础路径', b'1', b'0', 'tsm', NULL);
 
 -- ----------------------------
 -- Table structure for t_sys_parameter
@@ -83,7 +84,7 @@ CREATE TABLE `t_sys_parameter`  (
   `sort_field` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '排序字段',
   `sort_num` int(11) NULL DEFAULT NULL COMMENT '排序顺序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_sys_parameter' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 't_sys_parameter' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_sys_parameter
@@ -95,7 +96,7 @@ INSERT INTO `t_sys_parameter` VALUES (4, 1, 'BOS', NULL, 'domainconfigdb.datasou
 INSERT INTO `t_sys_parameter` VALUES (5, 1, 'BOS', NULL, 'domainconfigdb.datasource.username', '${domainconfigdb.database.username}', 1, b'1', '数据库账户', b'0', 'domainconfigdb', NULL);
 INSERT INTO `t_sys_parameter` VALUES (6, 1, 'BOS', NULL, 'domainconfigdb.datasource.password', '${domainconfigdb.database.username}', 1, b'1', '数据库账户登录密码', b'0', 'domainconfigdb', NULL);
 INSERT INTO `t_sys_parameter` VALUES (7, 1, 'BOS', NULL, 'domainconfigdb.datasource.driver-class-name', 'com.mysql.cj.jdbc.Driver', 1, b'1', '指定driver的类名', b'0', 'domainconfigdb', NULL);
-INSERT INTO `t_sys_parameter` VALUES (8, 1, 'BOS', NULL, 'userdb.datasource.jdbc-url', 'jdbc:mysql://${userdb.database.host}/userdb?useSSL=false&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&autoReconnectForPools=true', 1, b'1', '用户管理数据库地址', b'0', 'domainconfigdb', NULL);
+INSERT INTO `t_sys_parameter` VALUES (8, 1, 'BOS', NULL, 'userdb.datasource.jdbc-url', 'jdbc:mysql://${userdb.database.host}/userdb?allowPublicKeyRetrieval=true&useSSL=false&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&autoReconnectForPools=true', 1, b'1', '用户管理数据库地址', b'0', 'domainconfigdb', NULL);
 INSERT INTO `t_sys_parameter` VALUES (9, 1, 'BOS', NULL, 'userdb.datasource.username', '${userdb.database.username}', 1, b'1', '用户管理账户', b'0', 'domainconfigdb', NULL);
 INSERT INTO `t_sys_parameter` VALUES (10, 1, 'BOS', NULL, 'userdb.datasource.password', '${userdb.database.username}', 1, b'1', '用户管理登录密码', b'0', 'domainconfigdb', NULL);
 INSERT INTO `t_sys_parameter` VALUES (11, 1, 'BOS', NULL, 'userdb.datasource.driver-class-name', 'com.mysql.cj.jdbc.Driver', 1, b'1', '指定driver的类名', b'0', 'domainconfigdb', NULL);
@@ -106,5 +107,12 @@ INSERT INTO `t_sys_parameter` VALUES (15, 1, 'BOS', NULL, 'avmdb.datasource.driv
 INSERT INTO `t_sys_parameter` VALUES (16, 1, 'BOS', NULL, 'server.port', '8080', 1, b'1', 'BOS端口', b'0', NULL, NULL);
 INSERT INTO `t_sys_parameter` VALUES (17, 1, 'BOS', NULL, 'server.servlet.context-path', '/arc', 1, b'1', '当前项目相对路径', b'0', NULL, NULL);
 INSERT INTO `t_sys_parameter` VALUES (18, 1, 'BOS', NULL, 'identity.login.validateCode', '0', 1, b'1', '验证码开关', b'0', NULL, NULL);
+INSERT INTO `t_sys_parameter` VALUES (19, 1, 'BOS', NULL, 'identity.kaptcha', '/login', 1, b'1', '校验图形验证器', b'0', 'identity', NULL);
+INSERT INTO `t_sys_parameter` VALUES (20, 1, 'BOS', NULL, 'bos.websocket', '/websocket', 1, b'1', 'BOS访问websocket路径', b'0', 'oss', NULL);
+INSERT INTO `t_sys_parameter` VALUES (21, 1, 'BOS', NULL, 'sys.datetime', 'sys.datetime', 1, b'1', 'websocket推送的时间前缀', b'0', 'oss', NULL);
+INSERT INTO `t_sys_parameter` VALUES (22, 1, 'BOS', NULL, 'bos.login', 'login-', 1, b'1', '用户登录成功后建立连接标志', b'0', 'oss', NULL);
+INSERT INTO `t_sys_parameter` VALUES (23, 1, 'BOS', NULL, 'bos.logout', 'logout-', 1, b'1', '用户退出后注销', b'0', 'oss', NULL);
+INSERT INTO `t_sys_parameter` VALUES (24, 1, 'BOS', NULL, 'upload-dir', '${tsm.upload.dir}', 1, b'1', '上传文件的基础路径', b'0', 'upload-dir', NULL);
+INSERT INTO `t_sys_parameter` VALUES (25, 1, 'BOS', NULL, 'support-ext-names', '', 1, b'1', '支持的文件上传格式', b'0', 'support-ext-names', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

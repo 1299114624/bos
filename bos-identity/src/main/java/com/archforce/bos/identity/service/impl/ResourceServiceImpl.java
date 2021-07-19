@@ -1,5 +1,6 @@
 package com.archforce.bos.identity.service.impl;
 
+import com.archforce.bos.identity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.archforce.bos.identity.mapper.ResourceMapper;
@@ -13,6 +14,8 @@ public class ResourceServiceImpl implements ResourceService{
 
     @Autowired
     private ResourceMapper resourceMapper;
+    @Autowired
+    private UserService userService;
 
     @Override
     public int deleteByPrimaryKey(Long id) {
@@ -37,6 +40,13 @@ public class ResourceServiceImpl implements ResourceService{
     @Override
     public List<Resource> getAllMenu() {
         List<Resource> resourceList = resourceMapper.getAllMenu();
+        return resourceList;
+    }
+
+    @Override
+    public List<Resource> getResourceByUserId(Long id) {
+        List<Resource> resourceList = resourceMapper.getResourceByUserId(id);
+        userService.resetResource(resourceList);
         return resourceList;
     }
 

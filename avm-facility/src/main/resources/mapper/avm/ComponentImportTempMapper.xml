@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archforce.arc.facility.mapper.avm.ComponentImportTempMapper">
+  <resultMap id="BaseResultMap" type="com.archforce.arc.facility.entity.avm.component.ComponentImportTemp">
+    <!--@mbg.generated-->
+    <!--@Table t_component_import_temp-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="component_name" jdbcType="VARCHAR" property="componentName" />
+    <result column="file_id" jdbcType="VARCHAR" property="fileId" />
+    <result column="line_number" jdbcType="VARCHAR" property="lineNumber" />
+    <result column="is_success" jdbcType="VARCHAR" property="isSuccess" />
+    <result column="component_info" jdbcType="LONGVARCHAR" property="componentInfo" />
+    <result column="error_info" jdbcType="LONGVARCHAR" property="errorInfo" />
+    <result column="mark" jdbcType="VARCHAR" property="mark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, component_name, file_id, line_number, is_success, component_info, error_info, 
+    mark
+  </sql>
+  <select id="selectByFileId" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_component_import_temp
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_component_import_temp
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_component_import_temp
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.archforce.arc.facility.entity.avm.component.ComponentImportTemp">
+    <!--@mbg.generated-->
+    insert into t_component_import_temp (id, component_name, file_id, 
+      line_number, is_success, component_info, 
+      error_info, mark)
+    values (#{id,jdbcType=BIGINT}, #{componentName,jdbcType=VARCHAR}, #{fileId,jdbcType=VARCHAR}, 
+      #{lineNumber,jdbcType=VARCHAR}, #{isSuccess,jdbcType=VARCHAR}, #{componentInfo,jdbcType=LONGVARCHAR}, 
+      #{errorInfo,jdbcType=LONGVARCHAR}, #{mark,jdbcType=VARCHAR})
+  </insert>
+</mapper>
