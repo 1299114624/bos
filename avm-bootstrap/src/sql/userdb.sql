@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 19/07/2021 15:00:54
+ Date: 05/08/2021 11:24:25
 */
 
 SET NAMES utf8mb4;
@@ -38,20 +38,22 @@ CREATE TABLE `t_resource`  (
   `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'updateTime',
   `update_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'updateUser',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_resource
 -- ----------------------------
 INSERT INTO `t_resource` VALUES (1, 'AVM', NULL, 'AVM', '基础信息维护', 1, 1, '0', NULL, 1, NULL, '2021-07-05 10:25:38', NULL, '2021-07-05 10:25:40', NULL);
-INSERT INTO `t_resource` VALUES (2, 'AVM01', 1, 'AVM', '组件管理', 1, 1, '1', '/component/page', 1, NULL, '2021-07-05 10:27:07', NULL, '2021-07-06 14:28:51', NULL);
+INSERT INTO `t_resource` VALUES (2, 'AVM01', 1, 'AVM', '组件管理', 1, 1, '1', '', 1, NULL, '2021-07-05 10:27:07', NULL, '2021-07-21 16:23:30', NULL);
 INSERT INTO `t_resource` VALUES (3, 'AVM02', 1, 'AVM', '功能管理', 1, 1, '1', NULL, 1, NULL, '2021-07-05 10:28:30', NULL, '2021-07-05 10:29:33', NULL);
 INSERT INTO `t_resource` VALUES (4, 'AVM03', 1, 'AVM', '产品管理', 1, 1, '1', '', 1, NULL, '2021-07-05 10:29:39', NULL, '2021-07-06 14:37:01', NULL);
-INSERT INTO `t_resource` VALUES (5, 'AVM04', 1, 'AVM', '客户管理', 1, 1, '1', '/company/list', 1, NULL, '2021-07-05 10:30:43', NULL, '2021-07-06 14:37:03', NULL);
+INSERT INTO `t_resource` VALUES (5, 'AVM04', 1, 'AVM', '客户管理', 1, 1, '1', '/company/list', 1, NULL, '2021-07-05 10:30:43', NULL, '2021-07-21 16:38:27', NULL);
 INSERT INTO `t_resource` VALUES (6, 'AVM0301', 4, 'AVM', '产品管理', 1, 1, '2', NULL, 1, NULL, '2021-07-05 10:31:55', NULL, '2021-07-05 10:31:56', NULL);
 INSERT INTO `t_resource` VALUES (7, 'AVM0302', 4, 'AVM', '产品管理详情', 1, 1, '2', NULL, 1, NULL, '2021-07-05 10:32:26', NULL, '2021-07-05 10:32:28', NULL);
 INSERT INTO `t_resource` VALUES (8, 'AVM0401', 5, 'AVM', '客户管理', 1, 1, '2', NULL, 1, NULL, '2021-07-05 10:33:10', NULL, '2021-07-05 10:33:11', NULL);
 INSERT INTO `t_resource` VALUES (9, 'AVM0402', 5, 'AVM', '客户管理详情', 1, 1, '2', NULL, 1, NULL, '2021-07-05 10:33:35', NULL, '2021-07-05 10:33:37', NULL);
+INSERT INTO `t_resource` VALUES (10, 'AVM0101', 2, 'AVM', '新增组件', 1, 1, '2', '/component/add', 1, NULL, '2021-07-21 15:59:10', NULL, '2021-07-21 15:59:10', NULL);
+INSERT INTO `t_resource` VALUES (11, 'AVM0102', 2, 'AVM', '批量新增组件', 1, 1, '2', '', 1, NULL, '2021-07-21 15:59:23', NULL, '2021-07-21 16:23:17', NULL);
 
 -- ----------------------------
 -- Table structure for t_role
@@ -95,6 +97,8 @@ INSERT INTO `t_role_resource` VALUES (1, 6);
 INSERT INTO `t_role_resource` VALUES (1, 7);
 INSERT INTO `t_role_resource` VALUES (1, 8);
 INSERT INTO `t_role_resource` VALUES (1, 9);
+INSERT INTO `t_role_resource` VALUES (1, 10);
+INSERT INTO `t_role_resource` VALUES (1, 11);
 INSERT INTO `t_role_resource` VALUES (2, 1);
 INSERT INTO `t_role_resource` VALUES (2, 2);
 
@@ -120,7 +124,7 @@ CREATE TABLE `t_user`  (
 -- Records of t_user
 -- ----------------------------
 INSERT INTO `t_user` VALUES (1, 'allOp', '5a172a4673460c90736ecf86a8596588a7c13b0a3f681d6271eccd21833487b4', '全部权限用户', '2021-06-18 13:50:25', '', '2021-06-18 13:50:25', '', b'0', b'0');
-INSERT INTO `t_user` VALUES (3, 'ceshi1', '5a172a4673460c90736ecf86a8596588a7c13b0a3f681d6271eccd21833487b4', '测试', '2021-07-05 19:17:39', '', '2021-07-05 19:17:41', '', b'0', b'0');
+INSERT INTO `t_user` VALUES (3, 'ceshi1', '5a172a4673460c90736ecf86a8596588a7c13b0a3f681d6271eccd21833487b4', '权限测试用户1', '2021-07-05 19:17:39', '', '2021-07-05 19:17:41', '', b'0', b'0');
 
 -- ----------------------------
 -- Table structure for t_user_role

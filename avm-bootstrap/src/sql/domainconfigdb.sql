@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 19/07/2021 15:00:45
+ Date: 05/08/2021 11:24:13
 */
 
 SET NAMES utf8mb4;
@@ -58,7 +58,7 @@ INSERT INTO `t_environment_parameter` VALUES (2, 'expireTime', '18000000', '会�
 INSERT INTO `t_environment_parameter` VALUES (3, 'domainconfigdb.database.host', '127.0.0.1:3306', '配置中心数据库ip', b'1', b'0', 'domainconfigdb', 3);
 INSERT INTO `t_environment_parameter` VALUES (4, 'domainconfigdb.database.username', 'root', '配置中心数据库用户名', b'1', b'0', 'domainconfigdb', 4);
 INSERT INTO `t_environment_parameter` VALUES (5, 'domainconfigdb.database.password', 'Vl9kolqsxX65cWET7SKx2g==', '配置中心数据库密码', b'1', b'1', 'domainconfigdb', 5);
-INSERT INTO `t_environment_parameter` VALUES (6, 'userdb.database.host', '101.34.54.70:3306', '用户管理数据库ip', b'1', b'0', 'userdb', 6);
+INSERT INTO `t_environment_parameter` VALUES (6, 'userdb.database.host', '127.0.0.1:3306', '用户管理数据库ip', b'1', b'0', 'userdb', 6);
 INSERT INTO `t_environment_parameter` VALUES (7, 'userdb.database.username', 'root', '用户管理数据库用户名', b'1', b'0', 'userdb', 7);
 INSERT INTO `t_environment_parameter` VALUES (8, 'userdb.database.password', 'Vl9kolqsxX65cWET7SKx2g==', '用户管理数据库密码', b'1', b'0', 'userdb', 8);
 INSERT INTO `t_environment_parameter` VALUES (9, 'avmdb.database.host', '127.0.0.1:3306', 'avmdb数据库ip', b'1', b'0', 'avmdb', 9);
