@@ -1,0 +1,14 @@
+windows杀进程 netstat -aon | findstr "8080"      taskkill /f /t /im pid
+linux杀进程 lsof -i:8080     kill-9
+持续运行 nohup ./start.sh &
+清空当前目录所有文件 rm -rf *
+
+
+启动 Nginx   systemctl start nginx
+设置 Nginx 为开机自启动    systemctl enable nginx
+
+jdbc:mysql://localhost:3306/domainconfigdb?useSSL=false|root|mq4mOTNKpByL/5KoZVwX9g==
+
+jdbc:mysql://101.34.54.70:3306/domainconfigdb?useSSL=false&allowPublicKeyRetrieval=true|root|7EK7hqhRFFLOV+aOlez3uWaukg1K/kBv
+7PkCKYHu4Qwlc8wEeTIfFwRydzxP5J5o
+M66sdAtNQ8DumhaA/RReBJn8x6ms89pwBCvt16wHw7nBctdB8WnnM5rJqkVsels2Ovm8OqCn5ngIPmLQz3hkxAswguwhs5b44Si8hmR3LP4Mjqh9i686hv1BgoIVCtUhzdf8qwkI/v790aKObs3cBo3UWna3orSD0x0lu6og1L0ZSW041w/+Cg==
